@@ -3,10 +3,12 @@
   "version": "1.0.1",
   "description": "A simple file uploader that shows your users a preview of the file they've uploaded. Written in pure JavaScript. No dependencies. Works well with Bootstrap 4 or without a framework.",
   "author": "Promosis",
-  "contributors": [{
-    "name": "John Datserakis",
-    "email": "johndatserakis@users.noreply.github.com"
-  }],
+  "contributors": [
+    {
+      "name": "John Datserakis",
+      "email": "johndatserakis@users.noreply.github.com"
+    }
+  ],
   "main": "./dist/file-upload-with-preview.min.js",
   "scripts": {
     "dev": "gulp",

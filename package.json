@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A simple file uploader that shows your users a preview of the file they've uploaded. Written in pure JavaScript. No dependencies. Works well with Bootstrap 4 or without a framework.",
   "author": "Promosis",
-    "contributors": [{
-    "name": "John Datserakis"
+  "contributors": [{
+    "name": "John Datserakis",
+    "email": "johndatserakis@users.noreply.github.com"
   }],
   "main": "./dist/file-upload-with-preview.min.js",
   "scripts": {
@@ -13,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/promosis/file-upload-with-preview.git"
   },
   "keywords": [
     "upload",
@@ -25,7 +26,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/promosis/file-upload-with-preview/issues"
   },
   "homepage": "",
   "devDependencies": {

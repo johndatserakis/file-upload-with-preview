@@ -1,0 +1,46 @@
+{
+  "name": "file-upload-with-preview",
+  "version": "1.0.0",
+  "description": "A simple file uploader that shows your users a preview of the file they've uploaded. Written in pure JavaScript. No dependencies. Works well with Bootstrap 4 or without a framework.",
+  "author": "Promosis",
+    "contributors": [{
+    "name": "John Datserakis"
+  }],
+  "main": "./dist/file-upload-with-preview.min.js",
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp clean && gulp script && gulp style"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "upload",
+    "uploader",
+    "preview",
+    "image",
+    "file",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-rollup": "^2.15.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-size": "^2.1.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-uglify": "^2.0.1",
+    "run-sequence": "^1.2.2"
+  }
+}

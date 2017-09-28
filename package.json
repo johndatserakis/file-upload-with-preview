@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/promosis/file-upload-with-preview/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/promosis/file-upload-with-preview",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.0",

@@ -1,8 +1,10 @@
 .custom-file-container {
+    box-sizing: border-box;
     position: relative;
     display: block;
 
     &__custom-file {
+        box-sizing: border-box;
         position: relative;
         display: inline-block;
         width: 100%;
@@ -10,7 +12,12 @@
         margin-bottom: 0;
         margin-top: 5px;
 
+        &:hover {
+            cursor: pointer;
+        }
+
         &__custom-file-input {
+            box-sizing: border-box;
             min-width: 14rem;
             max-width: 100%;
             height: calc(2.25rem + 2px);
@@ -22,11 +29,8 @@
             }
         }
 
-        &__custom-file-input:focus~.custom-file-control {
-            box-shadow: 0 0 0 .075rem #fff,0 0 0 .2rem #185091;
-        }
-
         &__custom-file-control {
+            box-sizing: border-box;
             position: absolute;
             top: 0;
             right: 0;
@@ -49,10 +53,12 @@
         }
 
         &__custom-file-control:empty::after {
+            box-sizing: border-box;
             content: "Choose file...";
         }
 
         &__custom-file-control::before {
+            box-sizing: border-box;
             position: absolute;
             top: 0;
             right: 0;
@@ -67,11 +73,13 @@
         }
 
         &__custom-file-control::before {
+            box-sizing: border-box;
             content: "Browse";
         }
     }
 
     &__image-preview {
+        box-sizing: border-box;
         transition: all 1.0s ease-out;
         margin-top: 20px;
         margin-bottom: 40px;

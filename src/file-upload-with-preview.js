@@ -1,20 +1,25 @@
 class FileUploadWithPreview {
 
     constructor(uploadId) {
+        if (!uploadId) {
+            throw new Error('No uploadId found. You must initialize file-upload-with-preview with a unique uploadId.')
+        }
+
         //Set initial variables
         this.uploadId = uploadId;
         this.cachedImage = null;
 
-        //Grab the custom file element
-        this.el = document.querySelector('.custom-file-container__custom-file[data-upload-id="' + this.uploadId + '"]');
+        //Grab the custom file container elements
+        this.el = document.querySelector('.custom-file-container[data-upload-id="' + this.uploadId + '"]');
+        if (!this.el) { throw new Error('Could not find a `custom-file-container` with the id of: ' + this.uploadId); }
         this.input = this.el.querySelector('input[type="file"]');
-        this.inputLabel = document.querySelector('.custom-file-container__custom-file__custom-file-control[data-upload-id="' + this.uploadId + '"]');
-        this.imagePreview = document.querySelector('.custom-file-container__image-preview[data-upload-id="' + this.uploadId + '"]');
-        this.clearButton = document.querySelector('.custom-file-container__image-clear[data-upload-id="' + this.uploadId + '"]');
+        this.inputLabel = this.el.querySelector('.custom-file-container__custom-file__custom-file-control');
+        this.imagePreview = this.el.querySelector('.custom-file-container__image-preview');
+        this.clearButton = this.el.querySelector('.custom-file-container__image-clear');
 
         //Make sure all elements have been attached
         if (!this.el || !this.input || !this.inputLabel || !this.imagePreview || !this.clearButton) {
-            throw new Error('Cannot find all necessary elements. Please make sure you have attached all the necessary elements.')
+            throw new Error('Cannot find all necessary elements. Please make sure you have all the necessary elements in your html for the id: ' + this.uploadId);
         }
 
         //Set the base64 background images

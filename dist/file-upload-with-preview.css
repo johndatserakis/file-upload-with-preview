@@ -19,8 +19,6 @@
       height: calc(2.25rem + 2px);
       margin: 0;
       opacity: 0; }
-      .custom-file-container__custom-file__custom-file-input:hover {
-        cursor: pointer; }
     .custom-file-container__custom-file__custom-file-control {
       box-sizing: border-box;
       position: absolute;
@@ -31,16 +29,12 @@
       height: calc(2.25rem + 2px);
       padding: .5rem .75rem;
       overflow: hidden;
-      line-height: 1.25;
-      color: #495057;
-      pointer-events: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
+      line-height: 1.5;
+      color: #333;
       user-select: none;
       background-color: #fff;
       background-clip: padding-box;
-      border: 1px solid rgba(51, 51, 51, 0.15);
+      border: 1px solid #c0c0af;
       border-radius: .25rem; }
     .custom-file-container__custom-file__custom-file-control:empty::after {
       box-sizing: border-box;
@@ -55,15 +49,15 @@
       height: calc(2.25rem + 2px);
       padding: .5rem .75rem;
       line-height: 1.25;
-      color: #495057;
+      color: #333;
       background-color: #EDEDE8;
-      border-left: 1px solid rgba(51, 51, 51, 0.15); }
+      border-left: 1px solid #c0c0af; }
     .custom-file-container__custom-file__custom-file-control::before {
       box-sizing: border-box;
       content: "Browse"; }
   .custom-file-container__image-preview {
     box-sizing: border-box;
-    transition: all 1.0s ease-out;
+    transition: all 0.6s ease;
     margin-top: 20px;
     margin-bottom: 40px;
     height: 250px;

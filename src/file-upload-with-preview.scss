@@ -1,3 +1,8 @@
+$grey: #EDEDE8;
+$font-color: #333;
+$white: #fff;
+$border-color: darken($grey, 20%);
+
 .custom-file-container {
     box-sizing: border-box;
     position: relative;
@@ -23,10 +28,6 @@
             height: calc(2.25rem + 2px);
             margin: 0;
             opacity: 0;
-
-            &:hover {
-                cursor: pointer;
-            }
         }
 
         &__custom-file-control {
@@ -39,16 +40,12 @@
             height: calc(2.25rem + 2px);
             padding: .5rem .75rem;
             overflow: hidden;
-            line-height: 1.25;
-            color: #495057;
-            pointer-events: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            line-height: 1.5;
+            color: $font-color;
             user-select: none;
-            background-color: #fff;
+            background-color: $white;
             background-clip: padding-box;
-            border: 1px solid rgba(51,51,51,.15);
+            border: 1px solid $border-color;
             border-radius: .25rem;
         }
 
@@ -67,9 +64,9 @@
             height: calc(2.25rem + 2px);
             padding: .5rem .75rem;
             line-height: 1.25;
-            color: #495057;
-            background-color: #EDEDE8;
-            border-left: 1px solid rgba(51,51,51,.15);
+            color: $font-color;
+            background-color: $grey;
+            border-left: 1px solid $border-color;
         }
 
         &__custom-file-control::before {
@@ -80,7 +77,7 @@
 
     &__image-preview {
         box-sizing: border-box;
-        transition: all 1.0s ease-out;
+        transition: all 0.6s ease;
         margin-top: 20px;
         margin-bottom: 40px;
         height: 250px;

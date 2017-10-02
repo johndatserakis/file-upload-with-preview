@@ -31,8 +31,8 @@ describe('Module Actions', () => {
         file["name"] = "filename";
 
         //Attach the fake file
-        upload.cachedFile = file
-        expect(upload.cachedFile).toBeTruthy()
+        upload.cachedFileArray.push(file)
+        expect(upload.cachedFileArray.length).toBe(1)
 
         //Clear that fake file
         let event = new Event('click', {
@@ -42,7 +42,7 @@ describe('Module Actions', () => {
         upload.clearButton.dispatchEvent(event);
 
         expect(upload.uploadId).toBe('myTestImage')
-        expect(upload.cachedFile).toBe(null)
+        expect(upload.cachedFileArray).toEqual([])
     })
 
 })

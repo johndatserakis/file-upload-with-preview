@@ -8,19 +8,19 @@
 
 # file-upload-with-preview
 
-This is a simple frontend utility to help the file-upload process on your website. It is written in pure JavaScript, has no dependencies, and is a tiny 3.75 kB (gzipped). You can check out the live demo [here](https://promosis.github.io/file-upload-with-preview/).
+This is a simple frontend utility to help the file-upload process on your website. It is written in pure JavaScript, has no dependencies, and is a small 13.55 kB (gzipped). You can check out the live demo [here](https://promosis.github.io/file-upload-with-preview/).
 
 For the most part, browsers do a good job of handling image-uploads. That being said - we find that the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.
 
 **file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
 
 ## Features
-- Shows the actual image preview in the case of uploaded .jpg, .jpeg, and .png images. Shows a *success-image* in the case of uploaded .pdf files, uploaded videos, and other uploaded file types - so the user knows their image was collected successfully.
-- Shows the image name in the input bar.
+- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, or .png image. Shows a *success-image* in the case of an uploaded .pdf file, uploaded video, or other uploaded file - so the user knows their image was collected successfully. In the case of multiple selcted files, the user will be shown a *success-image* that indicates multiple files were selected.
+- Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
 - Allows the user to clear their upload.
 - Looks great - styling based on Bootstrap 4's [custom file-upload](https://getbootstrap.com/docs/4.0/components/forms/#file-browser) style.
-- Framework agnostic - to access the uploaded file just use the `cachedFile` property of your `FileUploadWithPreview` object.
-- For every file you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page.
+- Framework agnostic - to access the uploaded file/files just use the `cachedFileArray` (always will be an array) property of your `FileUploadWithPreview` object.
+- For every file-group you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a `multiple` property to allow multiple files on the same input.
 
 ## Installation
 
@@ -70,21 +70,24 @@ The javascript looks for a specific set of HTML elements to display the file inp
 ```html
 <div class="custom-file-container" data-upload-id="myFirstImage">
     <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-
     <label class="custom-file-container__custom-file" >
         <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-        <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="application/pdf,image/*">
+        <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple>
         <span class="custom-file-container__custom-file__custom-file-control"></span>
     </label>
     <div class="custom-file-container__image-preview"></div>
 </div>
 ```
 
-Then when you're ready to use the user's file for an API call or whatever, just access the user's uploaded file in the `cachedFile` property of your initialized object like this:
+Then when you're ready to use the user's file for an API call or whatever, just access the user's uploaded file/files in the `cachedFileArray` property of your initialized object like this:
 
 ```javascript
-upload.cachedFile
+upload.cachedFileArray
 ```
+
+### Note
+
+The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.
 
 ## Full Example
 
@@ -107,7 +110,7 @@ upload.cachedFile
 
             <label class="custom-file-container__custom-file" >
                 <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="application/pdf,image/*">
+                <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple>
                 <span class="custom-file-container__custom-file__custom-file-control"></span>
             </label>
             <div class="custom-file-container__image-preview"></div>
@@ -124,9 +127,12 @@ upload.cachedFile
 </html>
 ```
 
-In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB) and the accepted images to `*` (everything) - adjust those settings to whatever you like. For example, if you'd like to limit uploads to only images and pdf, use the following:
+In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accepted images to `*` (everything), and designate `multiple` to allow the user to select multiple files - you can adjust those settings to whatever you like. For example, if you'd like to limit uploads to only images and pdf's and only allow a single file upload use the following:
 
-`<input type="file" class="custom-file-container__custom-file__custom-file-input" accept="application/pdf,image/*">`
+```html
+<input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+<input type="file" class="custom-file-container__custom-file__custom-file-input" accept="application/pdf,image/*">
+```
 
 ## Testing
 

@@ -82,7 +82,7 @@
                 padding: 50px 10px;
                 margin-left: auto;
                 margin-right: auto;
-                max-width: 800px;
+                max-width: 1000px;
                 position: relative;
                 display: flex;
                 flex-direction: row;
@@ -149,8 +149,7 @@
         <div class="demo-upload-container">
 
             <div class="custom-file-container" data-upload-id="myFirstImage">
-                <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-
+                <label>Upload (Single File) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                 <label class="custom-file-container__custom-file" >
                     <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
                     <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*">
@@ -160,11 +159,10 @@
             </div>
 
             <div class="custom-file-container" data-upload-id="mySecondImage">
-                <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-
+                <label>Upload (Allow Multiple) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                 <label class="custom-file-container__custom-file" >
                     <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                    <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*">
+                    <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple>
                     <span class="custom-file-container__custom-file__custom-file-control"></span>
                 </label>
                 <div class="custom-file-container__image-preview"></div>
@@ -175,7 +173,7 @@
         <div class="demo-info-container">
             <div>
                 <a href="javascript:void(0)" class="upload-info-button upload-info-button--first">Get first file info</a>
-                <a href="javascript:void(0)" class="upload-info-button upload-info-button--second">Get second file info</a>
+                <a href="javascript:void(0)" class="upload-info-button upload-info-button--second">Get second file-group info</a>
                 <span>Output will be in the console.</span>
             </div>
         </div>
@@ -186,14 +184,14 @@
             var firstUpload = new FileUploadWithPreview('myFirstImage')
             var firstUploadInfoButton = document.querySelector('.upload-info-button--first');
             firstUploadInfoButton.addEventListener('click', function(){
-                console.log('First upload:', firstUpload, firstUpload.cachedFile);
+                console.log('First upload:', firstUpload, firstUpload.cachedFileArray);
             })
 
             //Second upload
             var secondUpload = new FileUploadWithPreview('mySecondImage')
             var secondUploadInfoButton = document.querySelector('.upload-info-button--second');
             secondUploadInfoButton.addEventListener('click', function(){
-                console.log('Second upload:', secondUpload, secondUpload.cachedFile)
+                console.log('Second upload:', secondUpload, secondUpload.cachedFileArray)
             })
         </script>
 

@@ -60,6 +60,8 @@ class FileUploadWithPreview {
             let reader = new FileReader();
             reader.onload = function (e) {
 
+                console.log('TYPE: ' ,file.type);
+
                 //Set the label on the input
                 self.inputLabel.innerHTML = file.name;
 
@@ -69,7 +71,7 @@ class FileUploadWithPreview {
                 } else if (file.type.match('application/pdf')) {
                     //PDF Upload
                     self.imagePreview.style.backgroundImage = 'url("' + self.successPdf + '")';
-                } else if (file.type.match('application/pdf')) {
+                } else if (file.type.match('video.*')) {
                     //Video upload
                     self.imagePreview.style.backgroundImage = 'url("' + self.successVideo + '")';
                 } else {

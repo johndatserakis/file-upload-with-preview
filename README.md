@@ -73,8 +73,8 @@ The JavaScript looks for a specific set of HTML elements to display the file inp
 <div class="custom-file-container" data-upload-id="myFirstImage">
     <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
     <label class="custom-file-container__custom-file" >
-        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
         <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple>
+        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
         <span class="custom-file-container__custom-file__custom-file-control"></span>
     </label>
     <div class="custom-file-container__image-preview"></div>
@@ -111,8 +111,8 @@ The `cachedFileArray` property is always an array. So if you are only allowing t
             <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
 
             <label class="custom-file-container__custom-file" >
-                <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
                 <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple>
+                <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
                 <span class="custom-file-container__custom-file__custom-file-control"></span>
             </label>
             <div class="custom-file-container__image-preview"></div>
@@ -132,8 +132,8 @@ The `cachedFileArray` property is always an array. So if you are only allowing t
 In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accepted images to `*` (everything), and designate `multiple` to allow the user to select multiple files - you can adjust those settings to whatever you like. For example, if you'd like to limit uploads to only images and pdf's and only allow a single file upload use the following:
 
 ```html
-<input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
 <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="application/pdf,image/*">
+<input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
 ```
 
 ## Testing

@@ -44,13 +44,13 @@ Or you can include it through the browser at the bottom of your page:
 When installed through npm or yarn:
 
 ```javascript
-# using require
+// using require
 const FileUploadWithPreview = require('file-upload-with-preview')
 
-# using import
+// using import
 import FileUploadWithPreview from 'file-upload-with-preview'
 
-# initialize a new FileUploadWithPreview object
+// initialize a new FileUploadWithPreview object
 const upload = new FileUploadWithPreview('myUniqueUploadId')
 ```
 ...or through the browser:
@@ -67,7 +67,7 @@ You'll also want to include the css in your `<head></head>`:
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css">
 ```
 
-The javascript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the `custom-file-container` element with the uniqueId:
+The JavaScript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the `custom-file-container` element with the uniqueId:
 
 ```html
 <div class="custom-file-container" data-upload-id="myFirstImage">

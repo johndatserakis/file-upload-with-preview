@@ -103,6 +103,10 @@ class FileUploadWithPreview {
         }, true);
     }
 
+    selectImage() {
+        this.input.click();
+    }
+
     clearPreviewImage() {
         this.input.value = '';
         this.inputLabel.innerHTML = '';

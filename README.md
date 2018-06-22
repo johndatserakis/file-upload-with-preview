@@ -87,6 +87,13 @@ Then when you're ready to use the user's file for an API call or whatever, just 
 upload.cachedFileArray
 ```
 
+You can optionally trigger image browser and clear selected images by script code:
+
+```javascript
+upload.selectImage(); // to open image browser
+upload.clearPreviewImage(); // clear all selected images
+```
+
 ### Note
 
 The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.

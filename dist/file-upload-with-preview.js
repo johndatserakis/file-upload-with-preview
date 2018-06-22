@@ -89,6 +89,8 @@ var FileUploadWithPreview = function () {
                     reader.readAsDataURL(file);
 
                     reader.onload = function (e) {
+                        self.imagePreview.classList.add('custom-file-container__image-preview__active');
+
                         //If more than one file was selected show a special input label and image
                         if (selectedFilesCount > 1) {
                             self.inputLabel.innerHTML = selectedFilesCount + ' files selected';
@@ -126,11 +128,17 @@ var FileUploadWithPreview = function () {
             }, true);
         }
     }, {
+        key: 'selectImage',
+        value: function selectImage() {
+            this.input.click();
+        }
+    }, {
         key: 'clearPreviewImage',
         value: function clearPreviewImage() {
             this.input.value = '';
             this.inputLabel.innerHTML = '';
             this.imagePreview.style.backgroundImage = 'url("' + this.baseImage + '")';
+            this.imagePreview.classList.remove('custom-file-container__image-preview__active');
             this.cachedFileArray = [];
         }
     }]);

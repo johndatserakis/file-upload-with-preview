@@ -104,7 +104,7 @@ You may also want to capture the event that an image is selected:
 
 ```javascript
 upload.imageSelected = function(event) {
-    var files = this.imagePreview.cachedFileArray;
+    var files = upload.cachedFileArray;
     // handle files
 };
 ```

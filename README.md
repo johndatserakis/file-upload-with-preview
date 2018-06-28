@@ -16,7 +16,7 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 
 **file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
 
-## Features
+### Features
 - Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, or .png image. Shows a *success-image* in the case of an uploaded .pdf file, uploaded video, or other uploaded file - so the user knows their image was collected successfully. In the case of multiple selcted files, the user will be shown a *success-image* that indicates multiple files were selected.
 - Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
 - Allows the user to clear their upload.
@@ -24,7 +24,7 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 - Framework agnostic - to access the uploaded file/files just use the `cachedFileArray` (always will be an array) property of your `FileUploadWithPreview` object.
 - For every file-group you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a `multiple` property to allow multiple files on the same input.
 
-## Installation
+### Installation
 
 ```bash
 # npm
@@ -39,7 +39,7 @@ Or you can include it through the browser at the bottom of your page:
 <script src="https://unpkg.com/file-upload-with-preview"></script>
 ```
 
-## Usage
+### Usage
 
 When installed through npm or yarn:
 
@@ -57,13 +57,19 @@ const upload = new FileUploadWithPreview('myUniqueUploadId')
 
 ```html
 <script>
-	var upload = new FileUploadWithPreview('myUniqueUploadId')
+    var upload = new FileUploadWithPreview('myUniqueUploadId')
 </script>
 ```
 
 You'll also want to include the css in your `<head></head>`:
 
+```javascript
+// JavaScript
+import 'file-upload-with-preview/dist/file-upload-with-preview.min.css'
+```
+
 ```html
+<!-- Browser -->
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css">
 ```
 
@@ -103,11 +109,11 @@ upload.imageSelected = function(event) {
 };
 ```
 
-### Note
+#### Note
 
 The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.
 
-## Full Example
+### Full Example
 
 ```html
 <html>
@@ -152,11 +158,17 @@ In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accep
 <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
 ```
 
-## Testing
+### Vue Example
+
+View the Vue example on codesandbox:
+
+[![Edit Vue Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/3z15v4106)
+
+### Testing
 
 Use `npm run test` to run the tests.
 
-## Development
+### Development
 
 Clone the repo, then use the following to work on the project locally:
 
@@ -170,11 +182,11 @@ npm run watch
 npm run build
 ```
 
-## Other
+### Other
 
 Go ahead and fork the project! Submit an issue if needed. Have fun!
 
-## License
+### License
 
 Copywrite 2017 [Promosis](https://promosis.com)
 

@@ -58,7 +58,7 @@ var FileUploadWithPreview = function () {
             this.imagePreview.style.backgroundImage = 'url("' + this.baseImage + '")';
 
             //Deal with the change event on the input
-            this.input.addEventListener('change', function () {
+            this.input.addEventListener('change', function (event) {
                 var _this = this;
 
                 var selectedFilesCount = this.files.length;
@@ -119,6 +119,10 @@ var FileUploadWithPreview = function () {
 
                 for (var x = 0; x < this.files.length; x++) {
                     _loop(x);
+                }
+
+                if (self.imageSelected) {
+                    self.imageSelected(event);
                 }
             }, true);
 

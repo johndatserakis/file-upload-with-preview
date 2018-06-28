@@ -94,6 +94,15 @@ upload.selectImage(); // to open image browser
 upload.clearPreviewImage(); // clear all selected images
 ```
 
+You may also want to capture the event that an image is selected:
+
+```javascript
+upload.imageSelected = function(event) {
+    var files = this.imagePreview.cachedFileArray;
+    // handle files
+};
+```
+
 ### Note
 
 The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.

@@ -94,12 +94,17 @@ var FileUploadWithPreview = function () {
                         //If more than one file was selected show a special input label and image
                         if (selectedFilesCount > 1) {
                             self.inputLabel.innerHTML = selectedFilesCount + ' files selected';
+                            // вот тут нужно вывести все изображения
                             self.imagePreview.style.backgroundImage = 'url("' + self.successMultiple + '")';
+                            // test
+                            self.imagePreview.innerHTML += '<div class="custom-file-container__image-preview" style="background-image: url(' + reader.result + '); width:100px; height:100px; float:left; "></div>';
                             return;
                         }
 
                         //A single file was selected...
                         self.inputLabel.innerHTML = file.name;
+
+                        self.imagePreview.innerHTML = "";
 
                         //If png or jpg/jpeg, use the actual image
                         if (file.type.match('image/png') || file.type.match('image/jpeg')) {

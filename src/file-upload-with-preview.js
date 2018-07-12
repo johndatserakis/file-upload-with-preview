@@ -74,11 +74,13 @@ class FileUploadWithPreview {
                     if (selectedFilesCount > 1) {
                         self.inputLabel.innerHTML = selectedFilesCount + ' files selected';
                         // вот тут нужно вывести все изображения
-                        self.imagePreview.style.backgroundImage = 'url("' + self.successMultiple + '")';
+                        //self.imagePreview.style.backgroundImage = 'url("' + self.successMultiple + '")';
+                        self.imagePreview.style.backgroundImage = '';
+                        self.imagePreview.style.width = '100%';
                         // test
                         self.imagePreview.innerHTML 
-                        += '<div class="custom-file-container__image-preview" style="background-image: url('
-                        + reader.result +'); width:100px; height:100px; float:left; "></div>';
+                        += '<div class="custom-file-container__image-multi-preview" style="background-image: url('
+                        + reader.result +'); "></div>';
                         return;
                     }
 
@@ -124,6 +126,8 @@ class FileUploadWithPreview {
         this.imagePreview.style.backgroundImage = 'url("' + this.baseImage + '")';
         this.imagePreview.classList.remove('custom-file-container__image-preview__active');
         this.cachedFileArray = [];
+        this.imagePreview.style.width = '120px';
+        this.imagePreview.innerHTML = '';
     }
 }
 

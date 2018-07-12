@@ -65,7 +65,8 @@
     border-radius: 4px;
     background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;
+    background-color: #fff; }
   .custom-file-container__image-multi-preview {
     box-sizing: border-box;
     transition: all 0.6s ease;

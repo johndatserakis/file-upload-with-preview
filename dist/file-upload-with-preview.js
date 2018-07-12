@@ -85,6 +85,12 @@ var FileUploadWithPreview = function () {
 
                     //File/files selected.
                     self.cachedFileArray.push(file);
+
+                    // We can view only 3 file
+                    if (x > 4) {
+                        return 'continue';
+                    }
+
                     var reader = new FileReader();
                     reader.readAsDataURL(file);
 
@@ -125,7 +131,9 @@ var FileUploadWithPreview = function () {
                 };
 
                 for (var x = 0; x < this.files.length; x++) {
-                    _loop(x);
+                    var _ret = _loop(x);
+
+                    if (_ret === 'continue') continue;
                 }
 
                 if (self.imageSelected) {

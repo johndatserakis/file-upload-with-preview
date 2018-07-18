@@ -10,6 +10,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var FileUploadWithPreview = function () {
     function FileUploadWithPreview(uploadId) {
+        var showMultiple = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
         _classCallCheck(this, FileUploadWithPreview);
 
         if (!uploadId) {
@@ -18,6 +20,7 @@ var FileUploadWithPreview = function () {
 
         //Set initial variables
         this.uploadId = uploadId;
+        this.showMultiple = showMultiple;
         this.cachedFileArray = [];
 
         //Grab the custom file container elements
@@ -86,11 +89,6 @@ var FileUploadWithPreview = function () {
                     //File/files selected.
                     self.cachedFileArray.push(file);
 
-                    // We can view only 3 file
-                    if (x > 4) {
-                        return 'continue';
-                    }
-
                     var reader = new FileReader();
                     reader.readAsDataURL(file);
 
@@ -101,11 +99,14 @@ var FileUploadWithPreview = function () {
                         if (selectedFilesCount > 1) {
                             self.inputLabel.innerHTML = selectedFilesCount + ' files selected';
                             // вот тут нужно вывести все изображения
-                            //self.imagePreview.style.backgroundImage = 'url("' + self.successMultiple + '")';
-                            self.imagePreview.style.backgroundImage = '';
-                            self.imagePreview.style.width = '100%';
-                            // test
-                            self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + reader.result + '); "></div>';
+                            if (self.showMultiple) {
+                                self.imagePreview.style.backgroundImage = '';
+                                self.imagePreview.style.width = '100%';
+                                // test
+                                self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + reader.result + '); "></div>';
+                            } else {
+                                self.imagePreview.style.backgroundImage = 'url("' + self.successMultiple + '")';
+                            }
                             return;
                         }
 
@@ -131,9 +132,7 @@ var FileUploadWithPreview = function () {
                 };
 
                 for (var x = 0; x < this.files.length; x++) {
-                    var _ret = _loop(x);
-
-                    if (_ret === 'continue') continue;
+                    _loop(x);
                 }
 
                 if (self.imageSelected) {

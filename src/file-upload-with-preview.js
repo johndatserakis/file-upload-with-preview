@@ -1,12 +1,13 @@
 class FileUploadWithPreview {
 
-    constructor(uploadId) {
+    constructor(uploadId, showMultiple = false) {
         if (!uploadId) {
             throw new Error('No uploadId found. You must initialize file-upload-with-preview with a unique uploadId.')
         }
 
         //Set initial variables
         this.uploadId = uploadId;
+        this.showMultiple = showMultiple;
         this.cachedFileArray = [];
 
         //Grab the custom file container elements
@@ -65,11 +66,6 @@ class FileUploadWithPreview {
                 //File/files selected.
                 self.cachedFileArray.push(file);
 
-                // We can view only 3 file
-                if (x > 4) {
-                    continue;
-                }
-
                 let reader = new FileReader();
                 reader.readAsDataURL(file);
 
@@ -80,13 +76,16 @@ class FileUploadWithPreview {
                     if (selectedFilesCount > 1) {
                         self.inputLabel.innerHTML = selectedFilesCount + ' files selected';
                         // вот тут нужно вывести все изображения
-                        //self.imagePreview.style.backgroundImage = 'url("' + self.successMultiple + '")';
-                        self.imagePreview.style.backgroundImage = '';
-                        self.imagePreview.style.width = '100%';
-                        // test
-                        self.imagePreview.innerHTML 
-                        += '<div class="custom-file-container__image-multi-preview" style="background-image: url('
-                        + reader.result +'); "></div>';
+                        if (self.showMultiple){
+                            self.imagePreview.style.backgroundImage = '';
+                            self.imagePreview.style.width = '100%';
+                            // test
+                            self.imagePreview.innerHTML 
+                            += '<div class="custom-file-container__image-multi-preview" style="background-image: url('
+                            + reader.result +'); "></div>';
+                        } else {
+                            self.imagePreview.style.backgroundImage = 'url("' + self.successMultiple + '")';
+                        }
                         return;
                     }
 

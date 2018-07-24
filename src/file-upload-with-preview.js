@@ -48,6 +48,8 @@ class FileUploadWithPreview {
         this.input.addEventListener('change', function(event) {
 
             self.selectedFilesCount += this.files.length; 
+
+            console.log('Gooo');
             
             //In this case, the user most likely had hit cancel - which does something
             //a little strange if they had already selected a single or multiple images -
@@ -81,11 +83,12 @@ class FileUploadWithPreview {
                         // вот тут нужно вывести все изображения
                         if (self.showMultiple){
                             if (self.onlyFirstImageSelected){
-                                self.imagePreview.backgroundImage = '';
                                 self.imagePreview.innerHTML 
                                     += '<div class="custom-file-container__image-multi-preview" style="background-image: url('
                                     + self.firstImage +'); "></div>';
                                 self.onlyFirstImageSelected = false;
+                                self.imagePreview.backgroundImage = '';
+                                console.log(self.imagePreview.innerHTML);
                             }
                             self.imagePreview.style.backgroundImage = '';
                             self.imagePreview.style.width = '100%';
@@ -103,21 +106,26 @@ class FileUploadWithPreview {
 
                     self.imagePreview.innerHTML = "";
 
+                    console.log('aaaaa');
+
                     //If png or jpg/jpeg, use the actual image
                     if (file.type.match('image/png') || file.type.match('image/jpeg')) {
                         self.imagePreview.style.backgroundImage = 'url("' + reader.result + '")';
                         self.firstImage = reader.result;
-                        self.onlyFirstImageSelected = true;
                     } else if (file.type.match('application/pdf')) {
                         //PDF Upload
                         self.imagePreview.style.backgroundImage = 'url("' + self.successPdf + '")';
+                        self.firstImage = self.successPdf;
                     } else if (file.type.match('video/*')) {
                         //Video upload
                         self.imagePreview.style.backgroundImage = 'url("' + self.successVideo + '")';
+                        self.firstImage = self.successVideo;
                     } else {
                         //Everything else
                         self.imagePreview.style.backgroundImage = 'url("' + self.successFileAlt + '")';
+                        self.firstImage = self.successFileAlt;
                     }
+                    self.onlyFirstImageSelected = true;
                 }
             }
 

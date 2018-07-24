@@ -69,8 +69,6 @@ var FileUploadWithPreview = function () {
 
                 self.selectedFilesCount += this.files.length;
 
-                console.log('Gooo');
-
                 //In this case, the user most likely had hit cancel - which does something
                 //a little strange if they had already selected a single or multiple images -
                 //it acts like they now have *no* files - which isn't true. We'll just check here
@@ -109,11 +107,26 @@ var FileUploadWithPreview = function () {
                                     self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + self.firstImage + '); "></div>';
                                     self.onlyFirstImageSelected = false;
                                     self.imagePreview.backgroundImage = '';
-                                    console.log(self.imagePreview.innerHTML);
                                 }
                                 self.imagePreview.style.backgroundImage = '';
                                 self.imagePreview.style.width = '100%';
-                                self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + reader.result + '); "></div>';
+
+                                var res = void 0;
+
+                                if (file.type.match('image/png') || file.type.match('image/jpeg')) {
+                                    res = reader.result;
+                                } else if (file.type.match('application/pdf')) {
+                                    //PDF Upload
+                                    res = self.successPdf;
+                                } else if (file.type.match('video/*')) {
+                                    //Video upload
+                                    res = self.successVideo;
+                                } else {
+                                    //Everything else
+                                    res = self.successFileAlt;
+                                }
+
+                                self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + res + '); "></div>';
                             } else {
                                 self.imagePreview.style.backgroundImage = 'url("' + self.successMultiple + '")';
                             }
@@ -124,8 +137,6 @@ var FileUploadWithPreview = function () {
                         self.inputLabel.innerHTML = file.name;
 
                         self.imagePreview.innerHTML = "";
-
-                        console.log('aaaaa');
 
                         //If png or jpg/jpeg, use the actual image
                         if (file.type.match('image/png') || file.type.match('image/jpeg')) {

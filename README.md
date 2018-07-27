@@ -119,7 +119,7 @@ An optional second boolean parameter can be set to `true` to allow a group of im
 ```javascript
 const upload = new FileUploadWithPreview('myUniqueUploadId', true)
 ```
-<p align="center"><a href="" target="_blank"><img width="200" src="static/file-upload-with-preview.png"></a></p>
+<p align="center"><a href="" target="_blank"><img width="200" src="static/multiple-file-upload-with-preview.png"></a></p>
 
 ### Full Example
 

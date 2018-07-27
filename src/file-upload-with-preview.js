@@ -47,7 +47,11 @@ class FileUploadWithPreview {
         //Deal with the change event on the input
         this.input.addEventListener('change', function(event) {
 
-            self.selectedFilesCount += this.files.length; 
+            if (self.showMultiple) {
+                self.selectedFilesCount += this.files.length;
+            } else {
+                self.selectedFilesCount = this.files.length;
+            }
 
             //In this case, the user most likely had hit cancel - which does something
             //a little strange if they had already selected a single or multiple images -
@@ -83,7 +87,7 @@ class FileUploadWithPreview {
                         // вот тут нужно вывести все изображения
                         if (self.showMultiple){
                             if (self.onlyFirstImageSelected){
-                                self.imagePreview.innerHTML 
+                                self.imagePreview.innerHTML
                                     += '<div class="custom-file-container__image-multi-preview" style="background-image: url('
                                     + self.firstImage +'); "></div>';
                                 self.onlyFirstImageSelected = false;
@@ -107,7 +111,7 @@ class FileUploadWithPreview {
                                 res = self.successFileAlt;
                             }
 
-                            self.imagePreview.innerHTML 
+                            self.imagePreview.innerHTML
                                 += '<div class="custom-file-container__image-multi-preview" style="background-image: url('
                                 + res +'); "></div>';
                         } else {

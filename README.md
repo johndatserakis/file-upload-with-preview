@@ -109,16 +109,16 @@ upload.imageSelected = function(event) {
 };
 ```
 
+#### Note
+
+The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.
+
 ### Show multiple
 
 ```javascript
 //or if we want to see the preview of all files
 const upload = new FileUploadWithPreview('myUniqueUploadId', true)
 ```
-
-#### Note
-
-The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.
 
 ### Full Example
 

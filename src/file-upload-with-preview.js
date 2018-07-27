@@ -59,7 +59,9 @@ class FileUploadWithPreview {
             //The first thing we want to do is clear whatever
             //we already have saved in self.cachedFileArray, as they are overwriting that now. The logic is that their
             //latest selection should be the one we listen to.
-            self.cachedFileArray = [];
+            if (self.showMultiple !== true){
+                self.cachedFileArray = [];
+            }
 
             //Let's loop through the selected images
             for (let x = 0; x < this.files.length; x++) {

@@ -71,6 +71,10 @@ var FileUploadWithPreview = function () {
                     self.selectedFilesCount += this.files.length;
                 } else {
                     self.selectedFilesCount = this.files.length;
+                    //The first thing we want to do is clear whatever
+                    //we already have saved in self.cachedFileArray, as they are overwriting that now. The logic is that their
+                    //latest selection should be the one we listen to.
+                    self.cachedFileArray = [];
                 }
 
                 //In this case, the user most likely had hit cancel - which does something
@@ -80,13 +84,6 @@ var FileUploadWithPreview = function () {
                 //to clear their images, they'll use the clear button on the label we provide.
                 if (self.selectedFilesCount === 0) {
                     return;
-                }
-
-                //The first thing we want to do is clear whatever
-                //we already have saved in self.cachedFileArray, as they are overwriting that now. The logic is that their
-                //latest selection should be the one we listen to.
-                if (self.showMultiple !== true) {
-                    self.cachedFileArray = [];
                 }
 
                 //Let's loop through the selected images
@@ -107,7 +104,7 @@ var FileUploadWithPreview = function () {
                         //If more than one file was selected show a special input label and image
                         if (self.selectedFilesCount > 1) {
                             self.inputLabel.innerHTML = self.selectedFilesCount + ' files selected';
-                            // вот тут нужно вывести все изображения
+                            // Display all images then if the "showMultiple" option is "True"
                             if (self.showMultiple) {
                                 if (self.onlyFirstImageSelected) {
                                     self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + self.firstImage + '); "></div>';

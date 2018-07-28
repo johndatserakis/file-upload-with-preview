@@ -67,7 +67,11 @@ var FileUploadWithPreview = function () {
             this.input.addEventListener('change', function (event) {
                 var _this = this;
 
-                self.selectedFilesCount += this.files.length;
+                if (self.showMultiple) {
+                    self.selectedFilesCount += this.files.length;
+                } else {
+                    self.selectedFilesCount = this.files.length;
+                }
 
                 //In this case, the user most likely had hit cancel - which does something
                 //a little strange if they had already selected a single or multiple images -

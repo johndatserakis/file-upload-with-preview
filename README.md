@@ -114,11 +114,12 @@ upload.imageSelected = function(event) {
 The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.
 
 ### Show multiple
+An optional second boolean parameter can be set to `true` to allow a group of images to be uploaded and displayed in an image grid.  You'll also need to add the `multiple` parameter to the html input element so that users can select multiple images at a time.
 
 ```javascript
-//or if we want to see the preview of all files
 const upload = new FileUploadWithPreview('myUniqueUploadId', true)
 ```
+<p align="center"><a href="" target="_blank"><img width="200" src="static/multiple-file-upload-with-preview.png"></a></p>
 
 ### Full Example
 

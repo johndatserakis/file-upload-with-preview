@@ -67,6 +67,15 @@ var FileUploadWithPreview = function () {
             this.input.addEventListener('change', function (event) {
                 var _this = this;
 
+                //In this case, the user most likely had hit cancel - which does something
+                //a little strange if they had already selected a single or multiple images -
+                //it acts like they now have *no* files - which isn't true. We'll just check here
+                //for any cached images already captured, and proceed normally. If something *does* want
+                //to clear their images, they'll use the clear button on the label we provide.
+                if (self.selectedFilesCount === 0) {
+                    return;
+                }
+
                 if (self.showMultiple) {
                     self.selectedFilesCount += this.files.length;
                 } else {
@@ -75,15 +84,6 @@ var FileUploadWithPreview = function () {
                     //we already have saved in self.cachedFileArray, as they are overwriting that now. The logic is that their
                     //latest selection should be the one we listen to.
                     self.cachedFileArray = [];
-                }
-
-                //In this case, the user most likely had hit cancel - which does something
-                //a little strange if they had already selected a single or multiple images -
-                //it acts like they now have *no* files - which isn't true. We'll just check here
-                //for any cached images already captured, and proceed normally. If something *does* want
-                //to clear their images, they'll use the clear button on the label we provide.
-                if (self.selectedFilesCount === 0) {
-                    return;
                 }
 
                 //Let's loop through the selected images

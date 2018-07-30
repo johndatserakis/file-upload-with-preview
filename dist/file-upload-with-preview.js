@@ -72,7 +72,7 @@ var FileUploadWithPreview = function () {
                 //it acts like they now have *no* files - which isn't true. We'll just check here
                 //for any cached images already captured, and proceed normally. If something *does* want
                 //to clear their images, they'll use the clear button on the label we provide.
-                if (self.selectedFilesCount === 0) {
+                if (this.files.length === 0) {
                     return;
                 }
 

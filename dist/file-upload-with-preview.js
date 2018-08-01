@@ -67,25 +67,22 @@ var FileUploadWithPreview = function () {
             this.input.addEventListener('change', function (event) {
                 var _this = this;
 
-                if (self.showMultiple) {
-                    self.selectedFilesCount += this.files.length;
-                } else {
-                    self.selectedFilesCount = this.files.length;
-                }
-
                 //In this case, the user most likely had hit cancel - which does something
                 //a little strange if they had already selected a single or multiple images -
                 //it acts like they now have *no* files - which isn't true. We'll just check here
                 //for any cached images already captured, and proceed normally. If something *does* want
                 //to clear their images, they'll use the clear button on the label we provide.
-                if (self.selectedFilesCount === 0) {
+                if (this.files.length === 0) {
                     return;
                 }
 
-                //The first thing we want to do is clear whatever
-                //we already have saved in self.cachedFileArray, as they are overwriting that now. The logic is that their
-                //latest selection should be the one we listen to.
-                if (self.showMultiple !== true) {
+                if (self.showMultiple) {
+                    self.selectedFilesCount += this.files.length;
+                } else {
+                    self.selectedFilesCount = this.files.length;
+                    //The first thing we want to do is clear whatever
+                    //we already have saved in self.cachedFileArray, as they are overwriting that now. The logic is that their
+                    //latest selection should be the one we listen to.
                     self.cachedFileArray = [];
                 }
 
@@ -107,7 +104,7 @@ var FileUploadWithPreview = function () {
                         //If more than one file was selected show a special input label and image
                         if (self.selectedFilesCount > 1) {
                             self.inputLabel.innerHTML = self.selectedFilesCount + ' files selected';
-                            // вот тут нужно вывести все изображения
+                            // Display all images then if the "showMultiple" option is "True"
                             if (self.showMultiple) {
                                 if (self.onlyFirstImageSelected) {
                                     self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + self.firstImage + '); "></div>';

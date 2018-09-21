@@ -181,14 +181,14 @@
         <script src="dist/file-upload-with-preview.js"></script>
         <script>
             //First upload
-            var firstUpload = new FileUploadWithPreview('myFirstImage')
-            var firstUploadInfoButton = document.querySelector('.upload-info-button--first');
-            firstUploadInfoButton.addEventListener('click', function(){
-                console.log('First upload:', firstUpload, firstUpload.cachedFileArray);
-            })
+            // var firstUpload = new FileUploadWithPreview('myFirstImage')
+            // var firstUploadInfoButton = document.querySelector('.upload-info-button--first');
+            // firstUploadInfoButton.addEventListener('click', function(){
+            //     console.log('First upload:', firstUpload, firstUpload.cachedFileArray);
+            // })
 
             //Second upload
-            var secondUpload = new FileUploadWithPreview('mySecondImage', true)
+            var secondUpload = new FileUploadWithPreview('mySecondImage')
             var secondUploadInfoButton = document.querySelector('.upload-info-button--second');
             secondUploadInfoButton.addEventListener('click', function(){
                 console.log('Second upload:', secondUpload, secondUpload.cachedFileArray)

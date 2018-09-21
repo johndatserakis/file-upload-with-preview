@@ -53,7 +53,7 @@ class FileUploadWithPreview {
             //for any cached images already captured, and proceed normally. If something *does* want
             //to clear their images, they'll use the clear button on the label we provide.
             if (this.files.length === 0) { return; }
-            
+
             if (self.showMultiple) {
                 self.selectedFilesCount += this.files.length;
             } else {
@@ -95,7 +95,7 @@ class FileUploadWithPreview {
 
                             let res;
 
-                            if (file.type.match('image/png') || file.type.match('image/jpeg')) {
+                            if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
                                 res = reader.result;
                             } else if (file.type.match('application/pdf')) {
                                 //PDF Upload
@@ -123,7 +123,7 @@ class FileUploadWithPreview {
                     self.imagePreview.innerHTML = "";
 
                     //If png or jpg/jpeg, use the actual image
-                    if (file.type.match('image/png') || file.type.match('image/jpeg')) {
+                    if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
                         self.imagePreview.style.backgroundImage = 'url("' + reader.result + '")';
                         self.firstImage = reader.result;
                     } else if (file.type.match('application/pdf')) {

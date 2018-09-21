@@ -116,7 +116,7 @@ var FileUploadWithPreview = function () {
 
                                 var res = void 0;
 
-                                if (file.type.match('image/png') || file.type.match('image/jpeg')) {
+                                if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
                                     res = reader.result;
                                 } else if (file.type.match('application/pdf')) {
                                     //PDF Upload
@@ -142,7 +142,7 @@ var FileUploadWithPreview = function () {
                         self.imagePreview.innerHTML = "";
 
                         //If png or jpg/jpeg, use the actual image
-                        if (file.type.match('image/png') || file.type.match('image/jpeg')) {
+                        if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
                             self.imagePreview.style.backgroundImage = 'url("' + reader.result + '")';
                             self.firstImage = reader.result;
                         } else if (file.type.match('application/pdf')) {

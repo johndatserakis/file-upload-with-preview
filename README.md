@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img width="200" src="static/file-upload-with-preview.png"></a></p>
+<p align="center"><a href="" target="_blank"><img src="static/file-upload-with-preview-animated.gif"></a></p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/v/file-upload-with-preview.svg" alt="NPM Version"></a>
@@ -17,7 +17,7 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 **file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
 
 ### Features
-- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, or .png image. Shows a *success-image* in the case of an uploaded .pdf file, uploaded video, or other uploaded file - so the user knows their image was collected successfully. In the case of multiple selcted files, the user will be shown a *success-image* that indicates multiple files were selected.
+- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a *success-image* in the case of an uploaded .pdf file, uploaded video, or other uploaded file - so the user knows their image was collected successfully. In the case of multiple selcted files, the users selected images will be shown in a grid (with the options to instead show a single *success-image* that indicates multiple files were selected).
 - Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
 - Allows the user to clear their upload.
 - Looks great - styling based on Bootstrap 4's [custom file-upload](https://getbootstrap.com/docs/4.0/components/forms/#file-browser) style.
@@ -28,7 +28,7 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 
 ```bash
 # npm
-npm install --save file-upload-with-preview
+npm i file-upload-with-preview
 
 # yarn
 yarn add file-upload-with-preview
@@ -77,7 +77,7 @@ The JavaScript looks for a specific set of HTML elements to display the file inp
 
 ```html
 <div class="custom-file-container" data-upload-id="myFirstImage">
-    <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+    <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">&times;</a></label>
     <label class="custom-file-container__custom-file" >
         <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple>
         <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
@@ -103,23 +103,48 @@ upload.clearPreviewImage(); // clear all selected images
 You may also want to capture the event that an image is selected:
 
 ```javascript
-upload.imageSelected = function(event) {
-    var files = upload.cachedFileArray;
-    // handle files
-};
+window.addEventListener('fileUploadWithPreview:imageSelected', function(e) {
+    // e.detail.id
+    // e.detail.cachedFileArray
+    // Use e.detail.id to match up to your specific input
+    if (e.detail.id === 'mySecondImage') {
+        console.log(e.detail.cachedFileArray)
+    }
+})
 ```
 
 #### Note
 
 The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.
 
-### Show multiple
-An optional second boolean parameter can be set to `true` to allow a group of images to be uploaded and displayed in an image grid.  You'll also need to add the `multiple` parameter to the html input element so that users can select multiple images at a time.
+Make sure to set `multiple` on your input if you want to allow the user to select multiple images.
 
-```javascript
-const upload = new FileUploadWithPreview('myUniqueUploadId', true)
-```
-<p align="center"><a href="" target="_blank"><img width="200" src="static/multiple-file-upload-with-preview.png"></a></p>
+### Properties
+
+| name | type | description |
+|---|---|---|
+| uploadId | String | The id you set for the instance |
+| options.showMultiple | Boolean | Show the grid when there's multiple images. Default `true` |
+| cachedFileArray | Array | The current selected files |
+| selectedFilesCount | Number | The count of the currently selected files |
+| el | Element | The main container for the instance |
+| input | Element | The main container for the instance |
+| inputLabel | Element | The label for the image name/count |
+| imagePreview | Element | The display panel for the images |
+| clearButton | Element | The button to reset the instance |
+
+### Methods
+
+| method | parameters | description |
+|---|---|---|
+| selectImage | none | Open the image browser |
+| clearPreviewImage | none | Clear the `cachedFileArray` |
+
+### Events
+
+| event | parameters | description |
+|---|---|---|
+| fileUploadWithPreview:imageSelected | e.detail.id, e.detail.cachedFileArray, e.detail.selectedFilesCount | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `selectedFilesCount` for the event. |
 
 ### Full Example
 
@@ -138,7 +163,7 @@ const upload = new FileUploadWithPreview('myUniqueUploadId', true)
         ...
 
         <div class="custom-file-container" data-upload-id="myUniqueUploadId">
-            <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+            <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">&times;</a></label>
 
             <label class="custom-file-container__custom-file" >
                 <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple>
@@ -184,6 +209,7 @@ Clone the repo, then use the following to work on the project locally:
 npm install
 
 # watch changes
+# (Open the index.html to work real-time. Refresh browser to test changes.)
 npm run watch
 
 # when done working

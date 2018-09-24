@@ -2,6 +2,7 @@ $grey: #EDEDE8;
 $font-color: #333;
 $white: #fff;
 $border-color: darken($grey, 20%);
+$black: #333;
 
 .custom-file-container {
     box-sizing: border-box;
@@ -77,7 +78,7 @@ $border-color: darken($grey, 20%);
 
     &__image-preview {
         box-sizing: border-box;
-        transition: all 0.6s ease;
+        transition: all 0.2s ease;
         margin-top: 20px;
         margin-bottom: 40px;
         height: 250px;
@@ -87,6 +88,7 @@ $border-color: darken($grey, 20%);
         background-position: center center;
         background-repeat: no-repeat;
         background-color: $white;
+        overflow: scroll;
     }
 
     &__image-multi-preview {
@@ -99,6 +101,7 @@ $border-color: darken($grey, 20%);
   		float: left;
   		margin: 1.858736059%;
         width: 29.615861214%;
-        height: 100px;
+        height: 90px;
+        box-shadow: 0 4px 10px 0 rgba($black, 0.25);
     }
 }

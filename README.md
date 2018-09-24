@@ -106,9 +106,11 @@ You may also want to capture the event that an image is selected:
 window.addEventListener('fileUploadWithPreview:imageSelected', function(e) {
     // e.detail.id
     // e.detail.cachedFileArray
+    // e.detail.selectedFilesCount
     // Use e.detail.id to match up to your specific input
     if (e.detail.id === 'mySecondImage') {
         console.log(e.detail.cachedFileArray)
+        console.log(e.detail.selectedFilesCount)
     }
 })
 ```

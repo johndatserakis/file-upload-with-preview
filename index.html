@@ -139,7 +139,7 @@
             </h1>
 
             <div class="header-container__code">
-                <pre>npm install --save file-upload-with-preview</pre>
+                <pre>npm i file-upload-with-preview</pre>
             </div>
 
             <a href="https://github.com/promosis/file-upload-with-preview" target="_blank" class="header-container__link">View the source code on GitHub</a>
@@ -149,7 +149,7 @@
         <div class="demo-upload-container">
 
             <div class="custom-file-container" data-upload-id="myFirstImage">
-                <label>Upload (Single File) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                <label>Upload (Single File) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">&times;</a></label>
                 <label class="custom-file-container__custom-file" >
                     <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*">
                     <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
@@ -159,7 +159,7 @@
             </div>
 
             <div class="custom-file-container" data-upload-id="mySecondImage">
-                <label>Upload (Allow Multiple) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                <label>Upload (Allow Multiple) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">&times;</a></label>
                 <label class="custom-file-container__custom-file" >
                     <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple>
                     <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
@@ -180,18 +180,29 @@
 
         <script src="dist/file-upload-with-preview.js"></script>
         <script>
-            //First upload
-            // var firstUpload = new FileUploadWithPreview('myFirstImage')
-            // var firstUploadInfoButton = document.querySelector('.upload-info-button--first');
-            // firstUploadInfoButton.addEventListener('click', function(){
-            //     console.log('First upload:', firstUpload, firstUpload.cachedFileArray);
-            // })
+            // First upload
+            var firstUpload = new FileUploadWithPreview('myFirstImage')
+            var firstUploadInfoButton = document.querySelector('.upload-info-button--first');
+            firstUploadInfoButton.addEventListener('click', function(){
+                console.log('First upload:', firstUpload, firstUpload.cachedFileArray);
+            })
 
-            //Second upload
+            // Second upload
             var secondUpload = new FileUploadWithPreview('mySecondImage')
             var secondUploadInfoButton = document.querySelector('.upload-info-button--second');
             secondUploadInfoButton.addEventListener('click', function(){
                 console.log('Second upload:', secondUpload, secondUpload.cachedFileArray)
+            })
+
+            // General event listener
+            window.addEventListener('fileUploadWithPreview:imageSelected', function(e) {
+                // e.detail.uploadId
+                // e.detail.cachedFileArray
+                // e.detail.selectedFilesCount
+                // Use `e.detail.uploadId` to match up to your specific input
+                if (e.detail.uploadId === 'mySecondImage') {
+                    console.log(e.detail.cachedFileArray)
+                }
             })
         </script>
 

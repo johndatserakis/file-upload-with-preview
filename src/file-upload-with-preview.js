@@ -125,8 +125,8 @@ class FileUploadWithPreview {
                         //If png, jpg/jpeg, gif, use the actual image
                         if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
                             self.imagePreview.innerHTML
-                                += '<div class="custom-file-container__image-multi-preview" style="background-image: url('
-                                + reader.result +'); "></div>';
+                                += '<div><span class="custom-file-container__image-multi-preview" style="background-image: url('
+                                + reader.result +'); "></span><span class="custom-file-container__image-multi-preview__single-image-clear '+ x + '">&times;</span></div>';
                         } else if (file.type.match('application/pdf')) { //PDF Upload
                             self.imagePreview.innerHTML
                                 += '<div class="custom-file-container__image-multi-preview" style="background-image: url('
@@ -181,6 +181,18 @@ class FileUploadWithPreview {
         this.clearButton.addEventListener('click', () => {
             this.clearPreviewImage();
         }, true);
+
+        // Listen for individual clear buttons on images
+        this.imagePreview.addEventListener('click', function(event) {
+            if (event.target.matches('.custom-file-container__image-multi-preview__single-image-clear')) {
+                console.log(event.toElement.classList[1])
+                let item = event.toElement.classList[1]
+                self.cachedFileArray[item] = ''
+                self.selectedFilesCount -= 1;
+                self.imagePreview.innerHTML = ''
+                // now we need to reload the html without the removed image - enter a for loop here through the cached file array, changing out the background url for the name?
+            }
+        })
     }
 
     selectImage() {

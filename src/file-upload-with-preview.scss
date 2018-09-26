@@ -103,5 +103,12 @@ $black: #333;
         width: 29.615861214%;
         height: 90px;
         box-shadow: 0 4px 10px 0 rgba($black, 0.25);
+
+        &__single-image-clear {
+            height: 20px;
+            width: 20px;
+            margin: 0;
+            float: left;
+        }
     }
 }

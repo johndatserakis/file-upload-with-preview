@@ -104,11 +104,11 @@ You may also want to capture the event that an image is selected:
 
 ```javascript
 window.addEventListener('fileUploadWithPreview:imageSelected', function(e) {
-    // e.detail.id
+    // e.detail.uploadId
     // e.detail.cachedFileArray
     // e.detail.selectedFilesCount
-    // Use e.detail.id to match up to your specific input
-    if (e.detail.id === 'mySecondImage') {
+    // Use e.detail.uploadId to match up to your specific input
+    if (e.detail.uploadId === 'mySecondImage') {
         console.log(e.detail.cachedFileArray)
         console.log(e.detail.selectedFilesCount)
     }
@@ -146,7 +146,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
 | event | parameters | description |
 |---|---|---|
-| fileUploadWithPreview:imageSelected | e.detail.id, e.detail.cachedFileArray, e.detail.selectedFilesCount | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `selectedFilesCount` for the event. |
+| fileUploadWithPreview:imageSelected | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.selectedFilesCount) | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `selectedFilesCount` for the event. |
 
 ### Full Example
 

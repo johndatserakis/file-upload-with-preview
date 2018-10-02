@@ -17,7 +17,7 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 **file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
 
 ### Features
-- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a *success-image* in the case of an uploaded .pdf file, uploaded video, or other unrenderable file - so the user knows their image was collected successfully. In the case of multiple selcted files, the users selected images will be shown in a grid.
+- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a *success-image* in the case of an uploaded .pdf file, uploaded video, or other unrenderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user's selected images will be shown in a grid.
 - Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
 - Allows the user to clear their upload, and clear individual images in the `multiple` grid.
 - Looks great - styling based on Bootstrap 4's [custom file-upload](https://getbootstrap.com/docs/4.0/components/forms/#file-browser) style.

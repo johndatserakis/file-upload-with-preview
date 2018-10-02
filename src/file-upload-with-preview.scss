@@ -92,8 +92,9 @@ $black: #333;
     }
 
     &__image-multi-preview {
+        position: relative;
         box-sizing: border-box;
-        transition: all 0.6s ease;
+        transition: all 0.2s ease;
         border-radius: 6px;
         background-size: cover;
         background-position: center center;
@@ -105,10 +106,26 @@ $black: #333;
         box-shadow: 0 4px 10px 0 rgba($black, 0.25);
 
         &__single-image-clear {
-            height: 20px;
+            left: -6px;
+            background: $grey;
+            position: absolute;
             width: 20px;
-            margin: 0;
-            float: left;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            margin-top: -6px;
+            box-shadow: 0 4px 10px 0 rgba($black, 0.25);
+
+            &:hover {
+                background: darken($grey, 15%);
+                cursor: pointer;
+            }
+
+            &__icon {
+                color: darken($grey, 55%);
+                display: block;
+                margin-top: -2px;
+            }
         }
     }
 }

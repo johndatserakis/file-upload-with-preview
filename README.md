@@ -17,9 +17,9 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 **file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
 
 ### Features
-- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a *success-image* in the case of an uploaded .pdf file, uploaded video, or other uploaded file - so the user knows their image was collected successfully. In the case of multiple selcted files, the users selected images will be shown in a grid (with the options to instead show a single *success-image* that indicates multiple files were selected).
+- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a *success-image* in the case of an uploaded .pdf file, uploaded video, or other unrenderable file - so the user knows their image was collected successfully. In the case of multiple selcted files, the users selected images will be shown in a grid.
 - Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
-- Allows the user to clear their upload.
+- Allows the user to clear their upload, and clear individual images in the `multiple` grid.
 - Looks great - styling based on Bootstrap 4's [custom file-upload](https://getbootstrap.com/docs/4.0/components/forms/#file-browser) style.
 - Framework agnostic - to access the uploaded file/files just use the `cachedFileArray` (always will be an array) property of your `FileUploadWithPreview` object.
 - For every file-group you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a `multiple` property to allow multiple files on the same input.
@@ -126,7 +126,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 | name | type | description |
 |---|---|---|
 | uploadId | String | The id you set for the instance |
-| options.showMultiple | Boolean | Show the grid when there's multiple images. Default `true` |
+| options.showDeleteButtonOnImages | Boolean | Show a delete button on images in the grid. Default `true` |
 | cachedFileArray | Array | The current selected files |
 | selectedFilesCount | Number | The count of the currently selected files |
 | el | Element | The main container for the instance |
@@ -144,9 +144,10 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
 ### Events
 
-| event | parameters | description |
+| event | value | description |
 |---|---|---|
 | fileUploadWithPreview:imageSelected | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.selectedFilesCount) | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `selectedFilesCount` for the event. |
+| fileUploadWithPreview:imageDeleted | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.selectedFilesCount) | Triggered each time a file is deleted. Delivers the `uploadId`, updated `cachedFilesArray`, and `selectedFilesCount` for the event. |
 
 ### Full Example
 

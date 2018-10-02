@@ -20,14 +20,14 @@ var FileUploadWithPreview = function () {
         // Set initial variables
         this.uploadId = uploadId;
         this.options = options || {};
-        this.options.showMultiple = this.options.hasOwnProperty('showMultiple') ? this.options.showMultiple : true;
+        this.options.showDeleteButtonOnImages = this.options.hasOwnProperty('showDeleteButtonOnImages') ? this.options.showDeleteButtonOnImages : true;
         this.cachedFileArray = [];
         this.selectedFilesCount = 0;
 
         // Grab the custom file container elements
         this.el = document.querySelector('.custom-file-container[data-upload-id="' + this.uploadId + '"]');
         if (!this.el) {
-            throw new Error('Could not find a `custom-file-container` with the id of: ' + this.uploadId);
+            throw new Error('Could not find a \'custom-file-container\' with the id of: ' + this.uploadId);
         }
         this.input = this.el.querySelector('input[type="file"]');
         this.inputLabel = this.el.querySelector('.custom-file-container__custom-file__custom-file-control');
@@ -57,15 +57,13 @@ var FileUploadWithPreview = function () {
     _createClass(FileUploadWithPreview, [{
         key: 'bindClickEvents',
         value: function bindClickEvents() {
-            var _this2 = this;
+            var _this = this;
 
             // Grab the current instance
             var self = this;
 
             // Deal with the change event on the input
-            this.input.addEventListener('change', function (event) {
-                var _this = this;
-
+            self.input.addEventListener('change', function (event) {
                 // In this case, the user most likely had hit cancel - which does something
                 // a little strange if they had already selected a single or multiple images -
                 // it acts like they now have *no* files - which isn't true. We'll just check here
@@ -76,7 +74,7 @@ var FileUploadWithPreview = function () {
                 }
 
                 // If the input is set to allow multiple files, then we'll add to
-                // the existing file count and keep the cachedFileArray If not,
+                // the existing file count and keep the cachedFileArray. If not,
                 // then we'll reset the file count and reset the cachedFileArray
                 if (self.input.multiple) {
                     self.selectedFilesCount += this.files.length;
@@ -86,113 +84,19 @@ var FileUploadWithPreview = function () {
                 }
 
                 // Now let's loop over the selected images and act accordingly based on there were multiple images or not
-
-                var _loop = function _loop(x) {
+                for (var x = 0; x < this.files.length; x++) {
                     // Grab this index's file
-                    var file = _this.files[x];
+                    var file = this.files[x];
+
+                    // To make sure each image can be treated individually, let's give
+                    // each file a unique token
+                    file.token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
                     // File/files selected.
                     self.cachedFileArray.push(file);
 
-                    // Update our input label here - if there's 1 image then show the file name, otherwise
-                    // show the count
-                    self.inputLabel.innerHTML = self.selectedFilesCount === 1 ? file.name : self.selectedFilesCount + ' files selected';
-
-                    // Set up our reader
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-
-                    // Check the file and act accordingly
-                    reader.onload = function (e) {
-                        // Apply the 'custom-file-container__image-preview--active' class
-                        self.imagePreview.classList.add('custom-file-container__image-preview--active');
-
-                        // We'll pivot here and go through our cases.
-                        // The logic we've set is basically as follows:
-                        // If this is an input that only accepts a single image, then just show
-                        // back that single image each time, and their file count is always 1.
-                        // If they have `multiple` set on the input, then what we'll do is ADD
-                        // images to the `cachedImageArray`. If they have `options.showMultiple = true`
-                        // (the default) then we'll show the images in a grid style at all times - even
-                        // when there's one image selected. If they have `options.showMultiple = false`, then
-                        // we'll show a single image if there's 1 image in the `cachedFileArray` - but other
-                        // than that we'll show the `successMultipleImage` background image.
-                        // All cases for the `multiple` situation have images be ADDED to the `cachedFileArray` -
-                        // if the user wants to get rid of all the images they'll used the `x` button near the input.
-                        // Maybe in the future an `x` will show on each image in the grid and they can delete them
-                        // individually.
-
-                        ////////////////////////////////////////////////////
-                        // First, we'll deal with a single selected image //
-                        ////////////////////////////////////////////////////
-                        if (!self.input.multiple) {
-                            //If png, jpg/jpeg, gif, use the actual image
-                            if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
-                                self.imagePreview.style.backgroundImage = 'url("' + reader.result + '")';
-                            } else if (file.type.match('application/pdf')) {
-                                //PDF Upload
-                                self.imagePreview.style.backgroundImage = 'url("' + self.successPdfImage + '")';
-                            } else if (file.type.match('video/*')) {
-                                //Video upload
-                                self.imagePreview.style.backgroundImage = 'url("' + self.successVideoImage + '")';
-                            } else {
-                                //Everything else
-                                self.imagePreview.style.backgroundImage = 'url("' + self.successFileAltImage + '")';
-                            }
-                        }
-
-                        //////////////////////////////////////////////////////////
-                        // The next logic set is for a multiple situation, and  //
-                        // they want to show multiple images                    //
-                        //////////////////////////////////////////////////////////
-                        if (self.input.multiple && self.options.showMultiple) {
-                            // Set the main panel's background image to the blank one here
-                            self.imagePreview.style.backgroundImage = 'url("' + self.blankImage + '")';
-
-                            //If png, jpg/jpeg, gif, use the actual image
-                            if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
-                                self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + reader.result + '); "></div>';
-                            } else if (file.type.match('application/pdf')) {
-                                //PDF Upload
-                                self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + self.successPdfImage + '); "></div>';
-                            } else if (file.type.match('video/*')) {
-                                //Video upload
-                                self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + self.successVideoImage + '); "></div>';
-                            } else {
-                                //Everything else
-                                self.imagePreview.innerHTML += '<div class="custom-file-container__image-multi-preview" style="background-image: url(' + self.successFileAltImage + '); "></div>';
-                            }
-                        }
-
-                        //////////////////////////////////////////////////////////////////////
-                        // The final logic set is the case where this is a multiple input,  //
-                        // but they don't want to show multiple images.                     //
-                        //////////////////////////////////////////////////////////////////////
-                        if (self.input.multiple && !self.options.showMultiple) {
-                            // This will be based more on current file count then anything else
-                            if (self.selectedFilesCount > 1) {
-                                self.imagePreview.style.backgroundImage = 'url("' + self.successMultipleImage + '")';
-                            } else {
-                                //If png, jpg/jpeg, gif, use the actual image
-                                if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
-                                    self.imagePreview.style.backgroundImage = 'url("' + reader.result + '")';
-                                } else if (file.type.match('application/pdf')) {
-                                    //PDF Upload
-                                    self.imagePreview.style.backgroundImage = 'url("' + self.successPdfImage + '")';
-                                } else if (file.type.match('video/*')) {
-                                    //Video upload
-                                    self.imagePreview.style.backgroundImage = 'url("' + self.successVideoImage + '")';
-                                } else {
-                                    //Everything else
-                                    self.imagePreview.style.backgroundImage = 'url("' + self.successFileAltImage + '")';
-                                }
-                            }
-                        }
-                    };
-                };
-
-                for (var x = 0; x < this.files.length; x++) {
-                    _loop(x);
+                    // Process the image in our loop
+                    self.processFile(file);
                 }
 
                 // Send out our event
@@ -208,8 +112,147 @@ var FileUploadWithPreview = function () {
 
             //Listen for the clear button
             this.clearButton.addEventListener('click', function () {
-                _this2.clearPreviewImage();
+                _this.clearImagePreviewPanel();
             }, true);
+
+            // Listen for individual clear buttons on images
+            this.imagePreview.addEventListener('click', function (event) {
+
+                // Listen for the specific click of a clear button
+                if (event.target.matches('.custom-file-container__image-multi-preview__single-image-clear__icon')) {
+                    // Grab the clicked function
+                    var clearFileButton = event.target;
+
+                    // Get its token
+                    var fileToken = clearFileButton.getAttribute('data-upload-token');
+
+                    // Get the index of the file
+                    var selectedFileIndex = _this.cachedFileArray.findIndex(function (x) {
+                        return x.token === fileToken;
+                    });
+
+                    // Remove the file from the array
+                    _this.cachedFileArray.splice(selectedFileIndex, 1);
+
+                    // Reset the imagePreview pane
+                    _this.imagePreview.innerHTML = '';
+
+                    // Reset our selectedFilesCount with the new proper count
+                    _this.selectedFilesCount = _this.cachedFileArray.length;
+
+                    // Load back up the images in the pane with the new updated cachedFileArray
+                    _this.cachedFileArray.forEach(function (file) {
+                        return _this.processFile(file);
+                    });
+
+                    // If there's no images left after the latest deletion event,
+                    // then let's reset the panel entirely
+                    if (!_this.cachedFileArray.length) {
+                        _this.clearImagePreviewPanel();
+                    }
+
+                    // Send out our deletion event
+                    var imageDeletedEvent = new CustomEvent('fileUploadWithPreview:imageDeleted', {
+                        detail: {
+                            uploadId: _this.uploadId,
+                            cachedFileArray: _this.cachedFileArray,
+                            selectedFilesCount: _this.selectedFilesCount
+                        }
+                    });
+                    window.dispatchEvent(imageDeletedEvent);
+                }
+            });
+        }
+    }, {
+        key: 'processFile',
+        value: function processFile(file) {
+            var _this2 = this;
+
+            // Update our input label here based on instance selectedFilesCount
+            if (this.selectedFilesCount === 0) {
+                this.inputLabel.innerHTML = 'Choose file...';
+            } else if (this.selectedFilesCount === 1) {
+                this.inputLabel.innerHTML = file.name;
+            } else {
+                this.inputLabel.innerHTML = this.selectedFilesCount + ' files selected';
+            }
+
+            // Apply the 'custom-file-container__image-preview--active' class
+            this.imagePreview.classList.add('custom-file-container__image-preview--active');
+
+            // Set up our reader
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            // Check the file and act accordingly
+            reader.onload = function (e) {
+                // We'll pivot here and go through our cases.
+                // The logic we've set is basically as follows:
+                // If this is an input that only accepts a single image, then just show
+                // back that single image each time, and their file count is always 1.
+                // If they have `multiple` set on the input, then what we'll do is ADD
+                // images to the `cachedImageArray`. We'll show the images in a grid style at all times when
+                // `multiple` is set on the input. If the user wants to get rid of all the
+                // images they'll used the `x` button near the input, or the `x` button on the image.
+
+                ////////////////////////////////////////////////////
+                // First, we'll deal with a single selected image //
+                ////////////////////////////////////////////////////
+                if (!_this2.input.multiple) {
+                    //If png, jpg/jpeg, gif, use the actual image
+                    if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
+                        _this2.imagePreview.style.backgroundImage = 'url("' + reader.result + '")';
+                    } else if (file.type.match('application/pdf')) {
+                        //PDF Upload
+                        _this2.imagePreview.style.backgroundImage = 'url("' + _this2.successPdfImage + '")';
+                    } else if (file.type.match('video/*')) {
+                        //Video upload
+                        _this2.imagePreview.style.backgroundImage = 'url("' + _this2.successVideoImage + '")';
+                    } else {
+                        //Everything else
+                        _this2.imagePreview.style.backgroundImage = 'url("' + _this2.successFileAltImage + '")';
+                    }
+                }
+
+                //////////////////////////////////////////////////////////
+                // The next logic set is for a multiple situation, and  //
+                // they want to show multiple images                    //
+                //////////////////////////////////////////////////////////
+                if (_this2.input.multiple) {
+                    // Set the main panel's background image to the blank one here
+                    _this2.imagePreview.style.backgroundImage = 'url("' + _this2.blankImage + '")';
+
+                    //If png, jpg/jpeg, gif, use the actual image
+                    if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
+                        if (_this2.options.showDeleteButtonOnImages) {
+                            _this2.imagePreview.innerHTML += '\n                            <div>\n                                <span\n                                    class="custom-file-container__image-multi-preview"\n                                    style="background-image: url(\'' + reader.result + '\'); "\n                                >\n                                    <span class="custom-file-container__image-multi-preview__single-image-clear">\n                                        <span\n                                            class="custom-file-container__image-multi-preview__single-image-clear__icon"\n                                            data-upload-token="' + file.token + '"\n                                        >&times;</span>\n                                    </span>\n                                </span>\n\n                            </div>\n                        ';
+                        } else {
+                            _this2.imagePreview.innerHTML += '\n                            <div>\n                                <span\n                                    class="custom-file-container__image-multi-preview"\n                                    style="background-image: url(\'' + reader.result + '\'); "\n                                ></span>\n                            </div>\n                        ';
+                        }
+                    } else if (file.type.match('application/pdf')) {
+                        //PDF Upload
+                        if (_this2.options.showDeleteButtonOnImages) {
+                            _this2.imagePreview.innerHTML += '\n                            <div>\n                                <span\n                                    class="custom-file-container__image-multi-preview"\n                                    style="background-image: url(\'' + _this2.successPdfImage + '\'); "\n                                >\n                                    <span class="custom-file-container__image-multi-preview__single-image-clear">\n                                        <span\n                                            class="custom-file-container__image-multi-preview__single-image-clear__icon"\n                                            data-upload-token="' + file.token + '"\n                                        >&times;</span>\n                                    </span>\n                                </span>\n\n                            </div>\n                        ';
+                        } else {
+                            _this2.imagePreview.innerHTML += '\n                            <div>\n                                <span\n                                    class="custom-file-container__image-multi-preview"\n                                    style="background-image: url(\'' + _this2.successPdfImage + '\'); "\n                                ></span>\n                            </div>\n                        ';
+                        }
+                    } else if (file.type.match('video/*')) {
+                        //Video upload
+                        if (_this2.options.showDeleteButtonOnImages) {
+                            _this2.imagePreview.innerHTML += '\n                            <div>\n                                <span\n                                    class="custom-file-container__image-multi-preview"\n                                    style="background-image: url(\'' + _this2.successVideoImage + '\'); "\n                                >\n                                    <span class="custom-file-container__image-multi-preview__single-image-clear">\n                                        <span\n                                            class="custom-file-container__image-multi-preview__single-image-clear__icon"\n                                            data-upload-token="' + file.token + '"\n                                        >&times;</span>\n                                    </span>\n                                </span>\n\n                            </div>\n                        ';
+                        } else {
+                            _this2.imagePreview.innerHTML += '\n                            <div>\n                                <span\n                                    class="custom-file-container__image-multi-preview"\n                                    style="background-image: url(\'' + _this2.successVideoImage + '\'); "\n                                ></span>\n                            </div>\n                        ';
+                        }
+                    } else {
+                        //Everything else
+                        if (_this2.options.showDeleteButtonOnImages) {
+                            _this2.imagePreview.innerHTML += '\n                            <div>\n                                <span\n                                    class="custom-file-container__image-multi-preview"\n                                    style="background-image: url(\'' + _this2.successFileAltImage + '\'); "\n                                >\n                                    <span class="custom-file-container__image-multi-preview__single-image-clear">\n                                        <span\n                                            class="custom-file-container__image-multi-preview__single-image-clear__icon"\n                                            data-upload-token="' + file.token + '"\n                                        >&times;</span>\n                                    </span>\n                                </span>\n\n                            </div>\n                        ';
+                        } else {
+                            _this2.imagePreview.innerHTML += '\n                            <div>\n                                <span\n                                    class="custom-file-container__image-multi-preview"\n                                    style="background-image: url(\'' + _this2.successFileAltImage + '\'); "\n                                ></span>\n                            </div>\n                        ';
+                        }
+                    }
+                }
+            };
         }
     }, {
         key: 'selectImage',
@@ -217,14 +260,13 @@ var FileUploadWithPreview = function () {
             this.input.click();
         }
     }, {
-        key: 'clearPreviewImage',
-        value: function clearPreviewImage() {
+        key: 'clearImagePreviewPanel',
+        value: function clearImagePreviewPanel() {
             this.input.value = '';
-            this.inputLabel.innerHTML = '';
+            this.inputLabel.innerHTML = 'Choose file...';
             this.imagePreview.style.backgroundImage = 'url("' + this.baseImage + '")';
             this.imagePreview.classList.remove('custom-file-container__image-preview--active');
             this.cachedFileArray = [];
-            this.imagePreview.style.width = '';
             this.imagePreview.innerHTML = '';
             this.selectedFilesCount = 0;
         }

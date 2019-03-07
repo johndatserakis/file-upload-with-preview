@@ -19,9 +19,9 @@
       height: calc(2.25rem + 2px);
       margin: 0;
       opacity: 0; }
-    .custom-file-container__custom-file__custom-file-input:focus + .custom-file-container__custom-file__custom-file-control {
-      outline: 1px dotted #212121;
-      outline: 5px auto -webkit-focus-ring-color; }
+      .custom-file-container__custom-file__custom-file-input:focus ~ span {
+        outline: 1px dotted #212121;
+        outline: 5px auto -webkit-focus-ring-color; }
     .custom-file-container__custom-file__custom-file-control {
       box-sizing: border-box;
       position: absolute;

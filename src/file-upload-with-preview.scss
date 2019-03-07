@@ -29,11 +29,12 @@ $black: #333;
             height: calc(2.25rem + 2px);
             margin: 0;
             opacity: 0;
-        }
 
-        &__custom-file-input:focus + &__custom-file-control {
-            outline: 1px dotted #212121;
-            outline: 5px auto -webkit-focus-ring-color;
+            // on input focus, applies focus style to the styled input span
+            &:focus ~ span {
+                outline: 1px dotted #212121;
+                outline: 5px auto -webkit-focus-ring-color;
+            }
         }
 
         &__custom-file-control {

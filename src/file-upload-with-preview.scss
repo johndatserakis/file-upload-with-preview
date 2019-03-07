@@ -31,6 +31,11 @@ $black: #333;
             opacity: 0;
         }
 
+        &__custom-file-input:focus + &__custom-file-control {
+            outline: 1px dotted #212121;
+            outline: 5px auto -webkit-focus-ring-color;
+        }
+
         &__custom-file-control {
             box-sizing: border-box;
             position: absolute;
@@ -48,31 +53,22 @@ $black: #333;
             background-clip: padding-box;
             border: 1px solid $border-color;
             border-radius: .25rem;
-        }
 
-        &__custom-file-control:empty::after {
-            box-sizing: border-box;
-            content: "Choose file...";
-        }
-
-        &__custom-file-control::before {
-            box-sizing: border-box;
-            position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 6;
-            display: block;
-            height: calc(2.25rem + 2px);
-            padding: .5rem .75rem;
-            line-height: 1.25;
-            color: $font-color;
-            background-color: $grey;
-            border-left: 1px solid $border-color;
-        }
-
-        &__custom-file-control::before {
-            box-sizing: border-box;
-            content: "Browse";
+            &__button {
+                box-sizing: border-box;
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 6;
+                display: block;
+                height: calc(2.25rem + 2px);
+                padding: .5rem .75rem;
+                line-height: 1.25;
+                color: $font-color;
+                background-color: $grey;
+                border-left: 1px solid $border-color;
+                box-sizing: border-box;
+            }
         }
     }
 

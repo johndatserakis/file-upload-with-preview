@@ -19,6 +19,9 @@
       height: calc(2.25rem + 2px);
       margin: 0;
       opacity: 0; }
+    .custom-file-container__custom-file__custom-file-input:focus + .custom-file-container__custom-file__custom-file-control {
+      outline: 1px dotted #212121;
+      outline: 5px auto -webkit-focus-ring-color; }
     .custom-file-container__custom-file__custom-file-control {
       box-sizing: border-box;
       position: absolute;
@@ -36,25 +39,20 @@
       background-clip: padding-box;
       border: 1px solid #c0c0af;
       border-radius: .25rem; }
-    .custom-file-container__custom-file__custom-file-control:empty::after {
-      box-sizing: border-box;
-      content: "Choose file..."; }
-    .custom-file-container__custom-file__custom-file-control::before {
-      box-sizing: border-box;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 6;
-      display: block;
-      height: calc(2.25rem + 2px);
-      padding: .5rem .75rem;
-      line-height: 1.25;
-      color: #333;
-      background-color: #EDEDE8;
-      border-left: 1px solid #c0c0af; }
-    .custom-file-container__custom-file__custom-file-control::before {
-      box-sizing: border-box;
-      content: "Browse"; }
+      .custom-file-container__custom-file__custom-file-control__button {
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 6;
+        display: block;
+        height: calc(2.25rem + 2px);
+        padding: .5rem .75rem;
+        line-height: 1.25;
+        color: #333;
+        background-color: #EDEDE8;
+        border-left: 1px solid #c0c0af;
+        box-sizing: border-box; }
   .custom-file-container__image-preview {
     box-sizing: border-box;
     transition: all 0.2s ease;

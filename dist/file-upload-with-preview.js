@@ -21,6 +21,9 @@ var FileUploadWithPreview = function () {
         this.uploadId = uploadId;
         this.options = options || {};
         this.options.showDeleteButtonOnImages = this.options.hasOwnProperty('showDeleteButtonOnImages') ? this.options.showDeleteButtonOnImages : true;
+        this.options.text = this.options.hasOwnProperty('text') ? this.options.text : { 'chooseFile': 'Choose file...' };
+        this.options.text.chooseFile = this.options.text.hasOwnProperty('chooseFile') ? this.options.text.chooseFile : 'Choose file...';
+        this.options.text.browse = this.options.text.hasOwnProperty('browse') ? this.options.text.browse : 'Browse';
         this.cachedFileArray = [];
         this.selectedFilesCount = 0;
 
@@ -33,6 +36,8 @@ var FileUploadWithPreview = function () {
         this.inputLabel = this.el.querySelector('.custom-file-container__custom-file__custom-file-control');
         this.imagePreview = this.el.querySelector('.custom-file-container__image-preview');
         this.clearButton = this.el.querySelector('.custom-file-container__image-clear');
+        this.inputLabel.innerHTML = this.options.text.chooseFile;
+        this.addBrowseButton(this.options.text.browse);
 
         // Make sure all elements have been attached
         if (!this.el || !this.input || !this.inputLabel || !this.imagePreview || !this.clearButton) {
@@ -170,12 +175,13 @@ var FileUploadWithPreview = function () {
 
             // Update our input label here based on instance selectedFilesCount
             if (this.selectedFilesCount === 0) {
-                this.inputLabel.innerHTML = 'Choose file...';
+                this.inputLabel.innerHTML = this.options.text.chooseFile;
             } else if (this.selectedFilesCount === 1) {
                 this.inputLabel.innerHTML = file.name;
             } else {
                 this.inputLabel.innerHTML = this.selectedFilesCount + ' files selected';
             }
+            this.addBrowseButton(this.options.text.browse);
 
             // Apply the 'custom-file-container__image-preview--active' class
             this.imagePreview.classList.add('custom-file-container__image-preview--active');
@@ -255,6 +261,11 @@ var FileUploadWithPreview = function () {
             };
         }
     }, {
+        key: 'addBrowseButton',
+        value: function addBrowseButton(text) {
+            this.inputLabel.innerHTML += '<span class="custom-file-container__custom-file__custom-file-control__button">' + text + '</span>';
+        }
+    }, {
         key: 'selectImage',
         value: function selectImage() {
             this.input.click();
@@ -263,7 +274,8 @@ var FileUploadWithPreview = function () {
         key: 'clearImagePreviewPanel',
         value: function clearImagePreviewPanel() {
             this.input.value = '';
-            this.inputLabel.innerHTML = 'Choose file...';
+            this.inputLabel.innerHTML = this.options.text.chooseFile;
+            this.addBrowseButton(this.options.text.browse);
             this.imagePreview.style.backgroundImage = 'url("' + this.baseImage + '")';
             this.imagePreview.classList.remove('custom-file-container__image-preview--active');
             this.cachedFileArray = [];

@@ -9,7 +9,7 @@ const env = process.env.NODE_ENV || 'development';
 
 const config = {
     entry: [
-        "@babel/polyfill", path.resolve(__dirname, 'example', 'main.js')
+        path.resolve(__dirname, 'example', 'main.js')
     ],
     output: {
         path: path.resolve(__dirname, './docs'),

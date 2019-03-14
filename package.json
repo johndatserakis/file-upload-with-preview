@@ -1,6 +1,6 @@
 {
   "name": "file-upload-with-preview",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with Bootstrap 4 or without a framework.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "license": "MIT",
@@ -33,9 +33,6 @@
     "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/file-upload-with-preview.min.js",
     "build:example": "rm -rf ./docs && cross-env NODE_ENV=production webpack --progress --hide-modules",
     "test": "jest"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.2.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

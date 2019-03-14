@@ -1,4 +1,6 @@
 import './file-upload-with-preview.scss'
+//fixes matching issue in older ie versions
+import './polyfill'
 
 class FileUploadWithPreview {
 

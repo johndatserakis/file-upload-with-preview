@@ -184,7 +184,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
         <script src="https://unpkg.com/file-upload-with-preview"></script>
         <script>
-            var upload = new FileUploadWithPreview('myUniqueUploadId', {showDeleteButtonOnImages: true, text: {chooseFile: 'Custom Placeholder Copy', browse: 'Custom Button Copy'}})
+            var upload = new FileUploadWithPreview.default('myUniqueUploadId', {showDeleteButtonOnImages: true, text: {chooseFile: 'Custom Placeholder Copy', browse: 'Custom Button Copy'}})
         </script>
 
     </body>

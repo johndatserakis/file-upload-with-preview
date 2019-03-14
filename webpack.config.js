@@ -73,7 +73,7 @@ const config = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin('dist', {}),
+        new CleanWebpackPlugin('docs', {}),
         new HtmlWebpackPlugin({
             title: 'file-upload-with-preview',
             template: path.resolve(__dirname, 'example', 'index.html'),

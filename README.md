@@ -57,16 +57,18 @@ const upload = new FileUploadWithPreview('myUniqueUploadId')
 
 ```html
 <script>
-    var upload = new FileUploadWithPreview('myUniqueUploadId')
+    var upload = new FileUploadWithPreview.default('myUniqueUploadId')
 </script>
 ```
 
-You'll also want to include the css in your `<head></head>`:
+You'll also want to include the css:
 
 ```javascript
 // JavaScript
 import 'file-upload-with-preview/dist/file-upload-with-preview.min.css'
 ```
+
+Or in your `<head></head>` if you're in the browser:
 
 ```html
 <!-- Browser -->
@@ -76,7 +78,7 @@ import 'file-upload-with-preview/dist/file-upload-with-preview.min.css'
 The JavaScript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the `custom-file-container` element with the uniqueId:
 
 ```html
-<div class="custom-file-container" data-upload-id="myFirstImage">
+<div class="custom-file-container" data-upload-id="myUniqueUploadId">
     <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">&times;</a></label>
     <label class="custom-file-container__custom-file" >
         <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple aria-label="Choose File">
@@ -214,7 +216,6 @@ Clone the repo, then use the following to work on the project locally:
 npm install
 
 # watch changes
-# (Open the index.html to work real-time. Refresh browser to test changes.)
 npm run watch
 
 # when done working

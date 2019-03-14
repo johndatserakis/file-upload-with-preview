@@ -1,6 +1,6 @@
 {
   "name": "file-upload-with-preview",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "description": "A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with Bootstrap 4 or without a framework.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "license": "MIT",
@@ -22,7 +22,6 @@
   "main": "dist/file-upload-with-preview.umd.js",
   "module": "dist/file-upload-with-preview.esm.js",
   "unpkg": "dist/file-upload-with-preview.min.js",
-  "browser": "dist/file-upload-with-preview.min.js",
   "scripts": {
     "watch": "cross-env NODE_ENV=development webpack-dev-server --open --hot --display-error-details",
     "build": "rm -rf ./dist npm run build:unpkg & npm run build:es & npm run build:umd & npm run build:unpkg",

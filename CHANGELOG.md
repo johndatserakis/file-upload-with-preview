@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 3.2.0
+
+- Moves from Gulp to Webpack
+
 ## 3.1.0
 
 - Made updates for accessibility.

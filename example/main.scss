@@ -1,0 +1,113 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+a {
+    color: #3157B3;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3f7ebd;
+}
+
+/*Pre, Code*/
+
+pre {
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace
+}
+
+pre {
+    padding: .2rem .4rem;
+    font-size: 90%;
+    color: #333;
+    background-color:#EDEDE8;
+    border-radius: .25rem
+}
+
+/*Header*/
+
+.header-container {
+    margin-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container__header-image {
+    max-width: 100%;
+    max-height: 60px;
+    margin-bottom: 30px;
+}
+
+.header-container__header-content {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.header-container__code {
+    margin-bottom: 10px;
+}
+
+/*Upload Container*/
+
+.demo-upload-container {
+    padding: 50px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/*Info Container*/
+
+.demo-info-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    max-width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    background: #3157B3;
+    padding: 15px 15px;
+    border-radius: 6px;
+    text-align: center;
+    color: white;
+}
+
+.demo-info-container a {
+    color: white;
+    text-decoration: underline;
+}
+
+.demo-info-container a:hover {
+    color: #eee;
+}
+
+.upload-info-button {
+    display: block;
+    margin-bottom: 10px;
+}

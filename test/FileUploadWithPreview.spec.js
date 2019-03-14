@@ -1,4 +1,4 @@
-import FileUploadWithPreview from '../dist/file-upload-with-preview.js'
+import FileUploadWithPreview from '../src/file-upload-with-preview.js'
 
 describe('Module Actions', () => {
 
@@ -17,6 +17,27 @@ describe('Module Actions', () => {
         expect.assertions(1)
 
         const upload = new FileUploadWithPreview('myTestImage')
+        expect(upload.uploadId).toBe('myTestImage')
+    })
+
+    it('test that the cachedFileArray works', async () => {
+        expect.assertions(2)
+
+        const upload = new FileUploadWithPreview('myTestImage')
+
+        //Creat two fake files
+        let file = new Blob([""], { type: 'text/html' });
+        file["lastModifiedDate"] = "";
+        file["name"] = "filename";
+
+        let file1 = new Blob([""], { type: 'text/html' });
+        file1["lastModifiedDate"] = "";
+        file1["name"] = "filename";
+
+        //Attach the fake file
+        upload.cachedFileArray.push(file)
+        upload.cachedFileArray.push(file1)
+        expect(upload.cachedFileArray.length).toBe(2)
         expect(upload.uploadId).toBe('myTestImage')
     })
 

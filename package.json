@@ -1,6 +1,6 @@
 {
   "name": "file-upload-with-preview",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with Bootstrap 4 or without a framework.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "license": "MIT",

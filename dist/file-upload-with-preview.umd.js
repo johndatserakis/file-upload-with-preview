@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = global || self, factory(global.FileUploadWithPreview = {}));
-}(this, function (exports) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = global || self, global.FileUploadWithPreview = factory());
+}(this, function () { 'use strict';
 
   /* eslint-disable */
 
@@ -341,8 +341,6 @@
       this.selectedFilesCount = 0;
   };
 
-  exports.default = FileUploadWithPreview;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
+  return FileUploadWithPreview;
 
 }));

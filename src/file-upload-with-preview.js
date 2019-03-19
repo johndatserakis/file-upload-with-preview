@@ -1,8 +1,9 @@
 import './file-upload-with-preview.scss'
+
 //fixes matching issue in older ie versions
 import './polyfill'
 
-class FileUploadWithPreview {
+export default class FileUploadWithPreview {
 
     constructor(uploadId, options) {
         // Make sure uploadId was specified
@@ -340,5 +341,3 @@ class FileUploadWithPreview {
         this.selectedFilesCount = 0
     }
 }
-
-export default FileUploadWithPreview

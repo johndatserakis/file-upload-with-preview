@@ -11,23 +11,19 @@ const argv = minimist(process.argv.slice(2))
 const config = {
     input: 'src/file-upload-with-preview.js',
     output: {
-        name: 'FileUploadWithPreview',
-        exports: 'named',
-        globals: {},
+        name: 'FileUploadWithPreview'
     },
     plugins: [
         commonjs(),
         resolve({
             jsnext: true,
-            main: true,
-            browser: true,
+            main: true
         }),
         scss({
             output: 'dist/file-upload-with-preview.min.css'
         }),
         buble(),
-    ],
-    external: []
+    ]
 }
 
 // Only minify browser (iife) version

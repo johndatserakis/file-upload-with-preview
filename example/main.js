@@ -20,7 +20,6 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
     },
     images: {
         baseImage: importedBaseImage,
-        backgroundImage: '',
     },
 })
 

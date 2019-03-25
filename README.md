@@ -127,22 +127,22 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
 | name | type | description |
 |---|---|---|
-| uploadId | String | The id you set for the instance |
-| options.showDeleteButtonOnImages | Boolean | Show a delete button on images in the grid. Default `true` |
-| options.text.chooseFile | String | Edit input placeholder text. Default `'Choose file...'`|
-| options.text.browse | String | Edit button text. Default `'Browse'`|
-| options.images.baseImage | String | Replace placeholder image. |
-| options.images.successPdfImage | String | Replace successful PDF upload image. |
-| options.images.successVideoImage | String | Replace successful video upload image. |
-| options.images.successFileAltImage | String | Replace successful file upload image for other file types. |
-| options.images.backgroundImage | String | Replace background image for image grid. |
-| cachedFileArray | Array | The current selected files |
-| selectedFilesCount | Number | The count of the currently selected files |
 | el | Element | The main container for the instance |
 | input | Element | The main container for the instance |
 | inputLabel | Element | The label for the image name/count |
-| imagePreview | Element | The display panel for the images |
+| uploadId | String | The id you set for the instance |
+| cachedFileArray | Array | The current selected files |
+| selectedFilesCount | Number | The count of the currently selected files |
 | clearButton | Element | The button to reset the instance |
+| imagePreview | Element | The display panel for the images |
+| options.images.baseImage | String | Replace placeholder image. |
+| options.images.backgroundImage | String | Replace background image for image grid. |
+| options.images.successFileAltImage | String | Replace successful alternate file upload image. |
+| options.images.successPdfImage | String | Replace successful PDF upload image. |
+| options.images.successVideoImage | String | Replace successful video upload image. |
+| options.showDeleteButtonOnImages | Boolean | Show a delete button on images in the grid. Default `true` |
+| options.text.browse | String | Edit button text. Default `'Browse'`|
+| options.text.chooseFile | String | Edit input placeholder text. Default `'Choose file...'`|
 
 ### Methods
 

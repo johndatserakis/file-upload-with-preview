@@ -36,7 +36,7 @@ yarn add file-upload-with-preview
 Or you can include it through the browser at the bottom of your page. When using the browser version make sure update your target version as needed.
 
 ```html
-<script src="https://unpkg.com/file-upload-with-preview@3.3.9/dist/file-upload-with-preview.min.js"></script>
+<script src="https://unpkg.com/file-upload-with-preview@3.3.0/dist/file-upload-with-preview.min.js"></script>
 ```
 
 ### Usage
@@ -72,7 +72,7 @@ Or in your `<head></head>` if you're in the browser:
 
 ```html
 <!-- Browser -->
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.3.9/dist/file-upload-with-preview.min.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.3.0/dist/file-upload-with-preview.min.css">
 ```
 
 The JavaScript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the `custom-file-container` element with the uniqueId:
@@ -134,8 +134,8 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 | options.images.baseImage | String | Replace placeholder image. |
 | options.images.successPdfImage | String | Replace successful PDF upload image. |
 | options.images.successVideoImage | String | Replace successful video upload image. |
-| options.images.successFileAltImage | String | Replace successful alternate file upload image. |
-| options.images.blankImage | String | Replace background image for image grid. |
+| options.images.successFileAltImage | String | Replace successful file upload image for other file types. |
+| options.images.backgroundImage | String | Replace background image for image grid. |
 | cachedFileArray | Array | The current selected files |
 | selectedFilesCount | Number | The count of the currently selected files |
 | el | Element | The main container for the instance |
@@ -164,7 +164,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 <html>
     <head>
         ...
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.3.9/dist/file-upload-with-preview.min.css">
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.3.0/dist/file-upload-with-preview.min.css">
 
         <!-- You'll want to make sure to at least set a width on the -->
         <!-- .custom-file-container class... -->
@@ -187,7 +187,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
         ...
 
-        <script src="https://unpkg.com/file-upload-with-preview@3.3.9/dist/file-upload-with-preview.min.js"></script>
+        <script src="https://unpkg.com/file-upload-with-preview@3.3.0/dist/file-upload-with-preview.min.js"></script>
         <script>
             var upload = new FileUploadWithPreview('myUniqueUploadId', {showDeleteButtonOnImages: true, text: {chooseFile: 'Custom Placeholder Copy', browse: 'Custom Button Copy'}})
         </script>

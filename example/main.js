@@ -2,6 +2,8 @@ import './main.scss'
 import FileUploadWithPreview from '../src/file-upload-with-preview'
 import '../src/file-upload-with-preview.scss'
 
+const importedBaseImage = require('./custom-image.svg')
+
 // First upload
 const firstUpload = new FileUploadWithPreview('myFirstImage')
 const firstUploadInfoButton = document.querySelector('.upload-info-button--first')
@@ -15,6 +17,10 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
     text: {
         chooseFile: 'Custom Placeholder Copy',
         browse: 'Custom Button Copy',
+    },
+    images: {
+        baseImage: importedBaseImage,
+        backgroundImage: '',
     },
 })
 

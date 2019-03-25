@@ -19,7 +19,8 @@
         "max-len": "off",
         "template-curly-spacing": [1, "always"],
         "spaced-comment": "off",
-        "no-lonely-if": "off"
+        "no-lonely-if": "off",
+        "global-require": "off"
     },
     "env": {
         "browser": true,

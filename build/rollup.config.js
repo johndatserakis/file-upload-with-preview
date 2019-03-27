@@ -1,10 +1,10 @@
-// import css from 'rollup-plugin-css-only'
+import url from "rollup-plugin-url"
 import scss from 'rollup-plugin-scss'
 import buble from 'rollup-plugin-buble'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
-import minimist from 'minimist';
+import minimist from 'minimist'
 
 const argv = minimist(process.argv.slice(2))
 
@@ -14,15 +14,16 @@ const config = {
         name: 'FileUploadWithPreview'
     },
     plugins: [
-        commonjs(),
+        scss({
+            output: 'dist/file-upload-with-preview.min.css'
+        }),
         resolve({
             jsnext: true,
             main: true
         }),
-        scss({
-            output: 'dist/file-upload-with-preview.min.css'
-        }),
+        commonjs(),
         buble(),
+        url()
     ]
 }
 

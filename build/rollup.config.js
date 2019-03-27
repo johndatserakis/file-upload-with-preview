@@ -1,4 +1,3 @@
-import url from "rollup-plugin-url"
 import scss from 'rollup-plugin-scss'
 import buble from 'rollup-plugin-buble'
 import commonjs from 'rollup-plugin-commonjs'
@@ -22,8 +21,7 @@ const config = {
             main: true
         }),
         commonjs(),
-        buble(),
-        url()
+        buble()
     ]
 }
 

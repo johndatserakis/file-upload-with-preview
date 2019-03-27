@@ -1,6 +1,6 @@
 {
   "name": "file-upload-with-preview",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with Bootstrap 4 or without a framework.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
   "license": "MIT",
@@ -60,7 +60,6 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-scss": "^1.0.1",
     "rollup-plugin-terser": "^4.0.3",
-    "rollup-plugin-url": "^2.2.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "terser-webpack-plugin": "^1.2.1",

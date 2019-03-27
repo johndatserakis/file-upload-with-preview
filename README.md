@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/v/file-upload-with-preview.svg" alt="NPM Version"></a>
-  <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/dt/file-upload-with-preview.svg" alt="NPM Downloads"></a>
+  <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/dm/file-upload-with-preview.svg" alt="NPM Downloads"></a>
   <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fpromosis%2Ffile-upload-with-preview&text=Check%20out%20file-upload-with-preview%20on%20GitHub&via=promosis">
   <img src="https://img.shields.io/twitter/url/https/github.com/promosis/file-upload-with-preview.svg?style=social" alt="Tweet"></a>
@@ -36,7 +36,7 @@ yarn add file-upload-with-preview
 Or you can include it through the browser at the bottom of your page. When using the browser version make sure update your target version as needed.
 
 ```html
-<script src="https://unpkg.com/file-upload-with-preview@3.3.0/dist/file-upload-with-preview.min.js"></script>
+<script src="https://unpkg.com/file-upload-with-preview@3.4.2/dist/file-upload-with-preview.min.js"></script>
 ```
 
 ### Usage
@@ -72,7 +72,7 @@ Or in your `<head></head>` if you're in the browser:
 
 ```html
 <!-- Browser -->
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.3.0/dist/file-upload-with-preview.min.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.4.2/dist/file-upload-with-preview.min.css">
 ```
 
 The JavaScript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the `custom-file-container` element with the uniqueId:
@@ -164,7 +164,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 <html>
     <head>
         ...
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.3.0/dist/file-upload-with-preview.min.css">
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.4.2/dist/file-upload-with-preview.min.css">
 
         <!-- You'll want to make sure to at least set a width on the -->
         <!-- .custom-file-container class... -->
@@ -187,7 +187,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
         ...
 
-        <script src="https://unpkg.com/file-upload-with-preview@3.3.0/dist/file-upload-with-preview.min.js"></script>
+        <script src="https://unpkg.com/file-upload-with-preview@3.4.2/dist/file-upload-with-preview.min.js"></script>
         <script>
             var upload = new FileUploadWithPreview('myUniqueUploadId', {showDeleteButtonOnImages: true, text: {chooseFile: 'Custom Placeholder Copy', browse: 'Custom Button Copy'}})
         </script>

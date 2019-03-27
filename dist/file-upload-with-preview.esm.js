@@ -209,7 +209,7 @@ FileUploadWithPreview.prototype.bindClickEvents = function bindClickEvents () {
 FileUploadWithPreview.prototype.deleteImageAtIndex = function deleteImageAtIndex (selectedFileIndex) {
     // check if index exists
     if (!this.cachedFileArray[selectedFileIndex]) {
-        console.log('There is no file at index', selectedFileIndex);
+        throw new TypeError('There is no file at index', selectedFileIndex)
     }
 
     // Remove the file from the array

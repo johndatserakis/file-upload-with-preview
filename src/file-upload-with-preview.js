@@ -1,6 +1,6 @@
 import './file-upload-with-preview.scss'
 
-// fixes matching issue in older ie versions
+// Fixes matching issue in older ie versions
 import './polyfill'
 
 export default class FileUploadWithPreview {
@@ -16,8 +16,9 @@ export default class FileUploadWithPreview {
         this.options.text = (this.options.hasOwnProperty('text')) ? this.options.text : { chooseFile: 'Choose file...' }
         this.options.text.chooseFile = (this.options.text.hasOwnProperty('chooseFile')) ? this.options.text.chooseFile : 'Choose file...'
         this.options.text.browse = (this.options.text.hasOwnProperty('browse')) ? this.options.text.browse : 'Browse'
+        this.options.text.selectedCount = (this.options.text.hasOwnProperty('selectedCount')) ? this.options.text.selectedCount : 'files selected'
         this.cachedFileArray = []
-        this.selectedFilesCount = 0
+        this.currentFileCount = 0
 
         // Grab the custom file container elements
         this.el = document.querySelector(`.custom-file-container[data-upload-id="${ this.uploadId }"]`)
@@ -48,6 +49,17 @@ export default class FileUploadWithPreview {
 
         // Let's set the placeholder image
         this.imagePreview.style.backgroundImage = `url("${ this.baseImage }")`
+
+        // Check for any preset files and process these if provided
+        this.options.presetFiles = (this.options.hasOwnProperty('presetFiles')) ? this.options.presetFiles : null
+        if (this.options.presetFiles) {
+            // Using thenable promises because we're in the constructor
+            this.addImagesFromPath(this.options.presetFiles).then(function () {
+            }).catch(function (error) {
+                console.log('Error - ' + error.toString())
+                console.log('Warning - An image you added from a path is not able to be added to the cachedFileArray.')
+            })
+        }
     }
 
     bindClickEvents() {
@@ -56,50 +68,7 @@ export default class FileUploadWithPreview {
 
         // Deal with the change event on the input
         self.input.addEventListener('change', function () {
-            // In this case, the user most likely had hit cancel - which does something
-            // a little strange if they had already selected a single or multiple images -
-            // it acts like they now have *no* files - which isn't true. We'll just check here
-            // for any cached images already captured,
-            // and proceed normally. If something *does* want
-            // to clear their images, they'll use the clear button on the label we provide.
-            if (this.files.length === 0) { return }
-
-            // If the input is set to allow multiple files, then we'll add to
-            // the existing file count and keep the cachedFileArray. If not,
-            // then we'll reset the file count and reset the cachedFileArray
-            if (self.input.multiple) {
-                self.selectedFilesCount += this.files.length
-            } else {
-                self.selectedFilesCount = this.files.length
-                self.cachedFileArray = []
-            }
-
-            // Now let's loop over the selected images and
-            // act accordingly based on there were multiple images or not
-            for (let x = 0; x < this.files.length; x++) {
-                // Grab this index's file
-                let file = this.files[x]
-
-                // To make sure each image can be treated individually, let's give
-                // each file a unique token
-                file.token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-
-                // File/files selected.
-                self.cachedFileArray.push(file)
-
-                // Process the image in our loop
-                self.processFile(file)
-            }
-
-            // Send out our event
-            let imageSelectedEvent = new CustomEvent('fileUploadWithPreview:imageSelected', {
-                detail: {
-                    uploadId: self.uploadId,
-                    cachedFileArray: self.cachedFileArray,
-                    selectedFilesCount: self.selectedFilesCount,
-                },
-            })
-            window.dispatchEvent(imageSelectedEvent)
+            self.addFiles(this.files)
         }, true)
 
         // Listen for the clear button
@@ -121,59 +90,71 @@ export default class FileUploadWithPreview {
                 // Get the index of the file
                 let selectedFileIndex = this.cachedFileArray.findIndex(x => x.token === fileToken)
 
-                this.deleteImageAtIndex(selectedFileIndex)
+                this.deleteFileAtIndex(selectedFileIndex)
             }
         })
     }
 
-    deleteImageAtIndex(selectedFileIndex) {
-        // check if index exists
-        if (!this.cachedFileArray[selectedFileIndex]) {
-            throw new TypeError('There is no file at index', selectedFileIndex)
+    // Populate the cachedFileArray with images as File objects
+    addFiles(files) {
+        // Grab the current instance
+        const self = this
+
+        // In this case, the user most likely had hit cancel - which does something
+        // a little strange if they had already selected a single or multiple images -
+        // it acts like they now have *no* files - which isn't true. We'll just check here
+        // for any cached images already captured,
+        // and proceed normally. If something *does* want
+        // to clear their images, they'll use the clear button on the label we provide.
+        if (files.length === 0) { return }
+
+        // If the input is set to allow multiple files, then we'll add to
+        // the existing file count and keep the cachedFileArray. If not,
+        // then we'll reset the file count and reset the cachedFileArray
+        if (self.input.multiple) {
+            self.currentFileCount += files.length
+        } else {
+            self.currentFileCount = files.length
+            self.cachedFileArray = []
         }
 
-        // Remove the file from the array
-        this.cachedFileArray.splice(selectedFileIndex, 1)
+        // Now let's loop over the added images and
+        // act accordingly based on there were multiple images or not
+        for (let x = 0; x < files.length; x++) {
+            // Grab this index's file
+            let file = files[x]
 
-        // Call function to reset the preview
-        this.resetImagePreviewPanel()
+            // To make sure each image can be treated individually, let's give
+            // each file a unique token
+            file.token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 
-        // If there's no images left after the latest deletion event,
-        // then let's reset the panel entirely
-        if (!this.cachedFileArray.length) {
-            this.clearImagePreviewPanel()
+            // File/files added.
+            self.cachedFileArray.push(file)
+
+            // Process file
+            self.processFile(file)
         }
 
-        // Send out our deletion event
-        let imageDeletedEvent = new CustomEvent('fileUploadWithPreview:imageDeleted', {
+        // Send out our event
+        let imagesAddedEvent = new CustomEvent('fileUploadWithPreview:imagesAdded', {
             detail: {
-                uploadId: this.uploadId,
-                cachedFileArray: this.cachedFileArray,
-                selectedFilesCount: this.selectedFilesCount,
+                uploadId: self.uploadId,
+                cachedFileArray: self.cachedFileArray,
+                addedFilesCount: files.length,
             },
         })
-        window.dispatchEvent(imageDeletedEvent)
+        window.dispatchEvent(imagesAddedEvent)
     }
 
-    resetImagePreviewPanel() {
-        // Clear the imagePreview pane
-        this.imagePreview.innerHTML = ''
-
-        // Reset our selectedFilesCount with the new proper count
-        this.selectedFilesCount = this.cachedFileArray.length
-
-        // Load back up the images in the pane with the new updated cachedFileArray
-        this.cachedFileArray.forEach(file => this.processFile(file))
-    }
-
+    // Take a single File object and append it to the image preview panel
     processFile(file) {
-        // Update our input label here based on instance selectedFilesCount
-        if (this.selectedFilesCount === 0) {
+        // Update our input label here based on instance currentFileCount
+        if (this.currentFileCount === 0) {
             this.inputLabel.innerHTML = this.options.text.chooseFile
-        } else if (this.selectedFilesCount === 1) {
+        } else if (this.currentFileCount === 1) {
             this.inputLabel.innerHTML = file.name
         } else {
-            this.inputLabel.innerHTML = `${ this.selectedFilesCount } files selected`
+            this.inputLabel.innerHTML = `${ this.currentFileCount } ${ this.options.text.selectedCount }`
         }
         this.addBrowseButton(this.options.text.browse)
 
@@ -221,6 +202,7 @@ export default class FileUploadWithPreview {
 
                 //If png, jpg/jpeg, gif, use the actual image
                 if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
+
                     if (this.options.showDeleteButtonOnImages) {
                         this.imagePreview.innerHTML += `
                             <div>
@@ -337,14 +319,129 @@ export default class FileUploadWithPreview {
         }
     }
 
+    // Take an array of image paths, convert them to File objects,
+    // and display them in the image preview panel
+    // https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
+    addImagesFromPath(files) {
+        return new Promise(async (resolve, reject) => {
+            let presetFiles = []
+
+            for (let x = 0; x < files.length; x++) {
+                /* eslint-disable no-await-in-loop */
+
+                let response
+                let blob
+                try {
+                    // Grab the file using fetch
+                    response = await fetch(files[x], { mode: 'cors' })
+
+                    // Create a blob of your file
+                    blob = await response.blob()
+                } catch (error) {
+                    reject(error)
+                    continue
+                }
+
+                /* eslint-enable no-await-in-loop */
+
+                // Create blob and added
+                let presetFile = new Blob([blob], {
+                    type: blob.type,
+                })
+
+                presetFile.name = files[x].split('/').pop()
+
+                presetFiles.push(presetFile)
+            }
+
+            this.addFiles(presetFiles)
+            resolve()
+        })
+    }
+
+    // Take an array of File objects and display them in the image preview panel
+    replaceFiles(files) {
+        if (!files.length) {
+            throw new Error('Array must contain at least one file.')
+        }
+
+        // Replace the cachedFileArray with the new files
+        this.cachedFileArray = files
+
+        // Call function to refresh the preview
+        this.refreshPreviewPanel()
+    }
+
+    // Take a single File object and index, replace existing file at that index
+    replaceFileAtIndex(file, index) {
+        if (!file) {
+            throw new Error('No file found.')
+        }
+
+        if (!this.cachedFileArray[index]) {
+            throw new Error('There is no file at index', index)
+        }
+
+        // Replace the cachedFileArray with the new files
+        this.cachedFileArray[index] = file
+
+        // Call function to refresh the preview
+        this.refreshPreviewPanel()
+    }
+
+    // Delete specified File from `cachedFileArray`
+    deleteFileAtIndex(index) {
+        // check if index exists
+        if (!this.cachedFileArray[index]) {
+            throw new Error('There is no file at index', index)
+        }
+
+        // Remove the file from the array
+        this.cachedFileArray.splice(index, 1)
+
+        // Call function to refresh the preview
+        this.refreshPreviewPanel()
+
+        // Send out our deletion event
+        let imageDeletedEvent = new CustomEvent('fileUploadWithPreview:imageDeleted', {
+            detail: {
+                uploadId: this.uploadId,
+                cachedFileArray: this.cachedFileArray,
+                currentFileCount: this.currentFileCount,
+            },
+        })
+        window.dispatchEvent(imageDeletedEvent)
+    }
+
+    // Refresh image preview panel with current cachedFileArray
+    refreshPreviewPanel() {
+        // Clear the imagePreview pane
+        this.imagePreview.innerHTML = ''
+
+        // Reset our currentFileCount with the new proper count
+        this.currentFileCount = this.cachedFileArray.length
+
+        // Load back up the images in the pane with the new updated cachedFileArray
+        this.cachedFileArray.forEach(file => this.processFile(file))
+
+        // If there's no images left after the latest deletion event,
+        // then let's reset the panel entirely
+        if (!this.cachedFileArray.length) {
+            this.clearImagePreviewPanel()
+        }
+    }
+
+    // Appends a browse button to input with custom button text
     addBrowseButton(text) {
         this.inputLabel.innerHTML += `<span class="custom-file-container__custom-file__custom-file-control__button"> ${ text } </span>`
     }
 
-    selectImage() {
+    // Open the image browser
+    emulateInputSelection() {
         this.input.click()
     }
 
+    // Clear the cachedFileArray
     clearImagePreviewPanel() {
         this.input.value = ''
         this.inputLabel.innerHTML = this.options.text.chooseFile
@@ -353,6 +450,6 @@ export default class FileUploadWithPreview {
         this.imagePreview.classList.remove('custom-file-container__image-preview--active')
         this.cachedFileArray = []
         this.imagePreview.innerHTML = ''
-        this.selectedFilesCount = 0
+        this.currentFileCount = 0
     }
 }

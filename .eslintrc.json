@@ -20,7 +20,11 @@
         "template-curly-spacing": [1, "always"],
         "spaced-comment": "off",
         "no-lonely-if": "off",
-        "global-require": "off"
+        "global-require": "off",
+        "no-restricted-syntax": "off",
+        "no-continue": "off",
+        "class-methods-use-this": "off",
+        "prefer-template": "off"
     },
     "env": {
         "browser": true,

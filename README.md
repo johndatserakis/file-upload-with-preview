@@ -36,7 +36,7 @@ yarn add file-upload-with-preview
 Or you can include it through the browser at the bottom of your page. When using the browser version make sure update your target version as needed.
 
 ```html
-<script src="https://unpkg.com/file-upload-with-preview@3.4.3/dist/file-upload-with-preview.min.js"></script>
+<script src="https://unpkg.com/file-upload-with-preview@4.0.0/dist/file-upload-with-preview.min.js"></script>
 ```
 
 ### Usage
@@ -72,10 +72,11 @@ Or in your `<head></head>` if you're in the browser:
 
 ```html
 <!-- Browser -->
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.4.3/dist/file-upload-with-preview.min.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.0/dist/file-upload-with-preview.min.css">
 ```
 
 The JavaScript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the `custom-file-container` element with the uniqueId:
+
 
 ```html
 <div class="custom-file-container" data-upload-id="myUniqueUploadId">
@@ -98,21 +99,21 @@ upload.cachedFileArray
 You can optionally trigger image browser and clear selected images by script code:
 
 ```javascript
-upload.selectImage(); // to open image browser
-upload.clearPreviewImage(); // clear all selected images
+upload.emulateInputSelection() // to open image browser
+upload.clearImagePreviewPanel() // clear all selected images
 ```
 
 You may also want to capture the event that an image is selected:
 
 ```javascript
-window.addEventListener('fileUploadWithPreview:imageSelected', function(e) {
+window.addEventListener('fileUploadWithPreview:imagesAdded', function(e) {
     // e.detail.uploadId
     // e.detail.cachedFileArray
-    // e.detail.selectedFilesCount
+    // e.detail.addedFilesCount
     // Use e.detail.uploadId to match up to your specific input
     if (e.detail.uploadId === 'mySecondImage') {
         console.log(e.detail.cachedFileArray)
-        console.log(e.detail.selectedFilesCount)
+        console.log(e.detail.addedFilesCount)
     }
 })
 ```
@@ -132,7 +133,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 | inputLabel | Element | The label for the image name/count |
 | uploadId | String | The id you set for the instance |
 | cachedFileArray | Array | The current selected files |
-| selectedFilesCount | Number | The count of the currently selected files |
+| currentFileCount | Number | The count of the currently selected files |
 | clearButton | Element | The button to reset the instance |
 | imagePreview | Element | The display panel for the images |
 | options.images.baseImage | String | Replace placeholder image. |
@@ -140,24 +141,34 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 | options.images.successFileAltImage | String | Replace successful alternate file upload image. |
 | options.images.successPdfImage | String | Replace successful PDF upload image. |
 | options.images.successVideoImage | String | Replace successful video upload image. |
+| options.presetFiles | Array | Provide an array of image paths to be automatically uploaded and displayed on page load (can be images hosted on server or URLs) |
 | options.showDeleteButtonOnImages | Boolean | Show a delete button on images in the grid. Default `true` |
 | options.text.browse | String | Edit button text. Default `'Browse'`|
 | options.text.chooseFile | String | Edit input placeholder text. Default `'Choose file...'`|
+| options.text.selectedCount | String | Edit input text when multiple files have been selected in one input. Default `${ n } 'files selected'` |
 
 ### Methods
 
 | method | parameters | description |
 |---|---|---|
-| selectImage | none | Open the image browser |
-| clearPreviewImage | none | Clear the `cachedFileArray` |
-| deleteImageAtIndex | selectedFileIndex (Number) | Delete specified file from `cachedFileArray` |
+| addFiles | array of file objects | Populate the `cachedFileArray` with images as File objects |
+| processFile | file object | Take a single File object and append it to the image preview panel |
+| addImagesFromPath | array of image paths | Take an array of image paths, convert them to File objects, and display them in the image preview panel (can be paths to images on the server or urls) |
+| replaceFiles | array of file objects | Replace files in `cachedFileArray` and image preview panel with array of file objects |
+| replaceFileAtIndex | file object, index (Number) | Take a single file object and index, replace existing file at that index |
+| deleteFileAtIndex | index (Number) | Delete specified file from `cachedFileArray` |
+| refreshPreviewPanel | none | Refresh image preview panel with current `cachedFileArray` |
+| addBrowseButton | text | Appends browse button to input with custom button text |
+| emulateInputSelection | none | Open the image browser programmatically |
+| clearImagePreviewPanel | none | Clear the `cachedFileArray` |
+
 
 ### Events
 
 | event | value | description |
 |---|---|---|
-| fileUploadWithPreview:imageSelected | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.selectedFilesCount) | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `selectedFilesCount` for the event. |
-| fileUploadWithPreview:imageDeleted | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.selectedFilesCount) | Triggered each time a file is deleted. Delivers the `uploadId`, updated `cachedFilesArray`, and `selectedFilesCount` for the event. |
+| fileUploadWithPreview:imagesAdded | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.addedFilesCount) | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `addedFilesCount` for the event. |
+| fileUploadWithPreview:imageDeleted | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.currentFileCount) | Triggered each time a file is deleted. Delivers the `uploadId`, updated `cachedFilesArray`, and `currentFileCount` for the event. |
 
 ### Full Example
 
@@ -165,7 +176,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 <html>
     <head>
         ...
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@3.4.3/dist/file-upload-with-preview.min.css">
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.0/dist/file-upload-with-preview.min.css">
 
         <!-- You'll want to make sure to at least set a width on the -->
         <!-- .custom-file-container class... -->
@@ -188,9 +199,24 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
         ...
 
-        <script src="https://unpkg.com/file-upload-with-preview@3.4.3/dist/file-upload-with-preview.min.js"></script>
+        <script src="https://unpkg.com/file-upload-with-preview@4.0.0/dist/file-upload-with-preview.min.js"></script>
+
         <script>
-            var upload = new FileUploadWithPreview('myUniqueUploadId', {showDeleteButtonOnImages: true, text: {chooseFile: 'Custom Placeholder Copy', browse: 'Custom Button Copy'}})
+            var upload = new FileUploadWithPreview('myUniqueUploadId', {
+                showDeleteButtonOnImages: true,
+                text: {
+                    chooseFile: 'Custom Placeholder Copy',
+                    browse: 'Custom Button Copy',
+                    selectedCount: 'Custom Files Selected Copy',
+                },
+                images: {
+                    baseImage: importedBaseImage,
+                },
+                presetFiles: [
+                    '../public/logo-promosis.png',
+                    'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+                ],
+            })
         </script>
 
     </body>
@@ -204,7 +230,6 @@ In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accep
 <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
 ```
 
-
 ### Browser Example
 
 [See on CodePen](https://codepen.io/johndatserakis/pen/PLdYEa)
@@ -214,6 +239,17 @@ In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accep
 View the Vue example on codesandbox:
 
 [![Edit Vue Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/3z15v4106)
+
+### Browser Support
+
+
+ If you are supporting a browser like IE11, you'll need a polyfill for `fetch` and `promise` at the bottom of your `index.html`:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+```
+Or, you can install babel-polyfill and import that in the main script of your app. You can read more about babel-polyfill [here](https://babeljs.io/docs/en/babel-polyfill). In the example folder, I use the external script method.
 
 ### Testing
 

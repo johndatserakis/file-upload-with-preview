@@ -46,7 +46,7 @@ describe('Module Actions', () => {
 
         const upload = new FileUploadWithPreview('myTestImage')
 
-        //Creat a fake file
+        //Create a fake file
         let file = new Blob([""], { type: 'text/html' });
         file["lastModifiedDate"] = "";
         file["name"] = "filename";

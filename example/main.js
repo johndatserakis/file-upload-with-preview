@@ -17,30 +17,33 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
     text: {
         chooseFile: 'Custom Placeholder Copy',
         browse: 'Custom Button Copy',
+        selectedCount: 'Custom Files Selected Copy',
     },
     images: {
         baseImage: importedBaseImage,
     },
+    presetFiles: [
+        '../public/badge.png',
+        'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+    ],
 })
-
 const secondUploadInfoButton = document.querySelector('.upload-info-button--second')
 secondUploadInfoButton.addEventListener('click', function () {
     console.log('Second upload:', secondUpload, secondUpload.cachedFileArray)
 })
 
-// Image selected event listener
-window.addEventListener('fileUploadWithPreview:imageSelected', function (e) {
+window.addEventListener('fileUploadWithPreview:imagesAdded', function (e) {
     // e.detail.uploadId
     // e.detail.cachedFileArray
     // e.detail.selectedFilesCount
     // Use `e.detail.uploadId` to match up to your specific input
     if (e.detail.uploadId === 'myFirstImage') {
-        console.log(e.detail.selectedFilesCount)
+        console.log(e.detail.addedFilesCount)
         console.log(e.detail.cachedFileArray)
     }
 
     if (e.detail.uploadId === 'mySecondImage') {
-        console.log(e.detail.selectedFilesCount)
+        console.log(e.detail.addedFilesCount)
         console.log(e.detail.cachedFileArray)
     }
 })
@@ -48,7 +51,7 @@ window.addEventListener('fileUploadWithPreview:imageSelected', function (e) {
 // Image deleted event listener
 window.addEventListener('fileUploadWithPreview:imageDeleted', function (e) {
     if (e.detail.uploadId === 'mySecondImage') {
-        console.log(e.detail.selectedFilesCount)
+        console.log(e.detail.currentFileCount)
         console.log(e.detail.cachedFileArray)
     }
 })

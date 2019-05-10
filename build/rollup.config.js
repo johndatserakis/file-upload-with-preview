@@ -1,5 +1,5 @@
 import scss from 'rollup-plugin-scss'
-import buble from 'rollup-plugin-buble'
+import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
@@ -21,7 +21,10 @@ const config = {
             main: true
         }),
         commonjs(),
-        buble()
+        babel({
+            exclude: 'node_modules/**',
+            runtimeHelpers: true
+        })
     ]
 }
 

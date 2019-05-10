@@ -953,7 +953,7 @@ function () {
       }, true); // Listen for the clear button
 
       this.clearButton.addEventListener('click', function () {
-        _this.clearImagePreviewPanel();
+        _this.clearPreviewPanel();
       }, true); // Listen for individual clear buttons on images
 
       this.imagePreview.addEventListener('click', function (event) {
@@ -1266,7 +1266,7 @@ function () {
       // then let's reset the panel entirely
 
       if (!this.cachedFileArray.length) {
-        this.clearImagePreviewPanel();
+        this.clearPreviewPanel();
       }
     } // Appends a browse button to input with custom button text
 
@@ -1280,11 +1280,11 @@ function () {
     key: "emulateInputSelection",
     value: function emulateInputSelection() {
       this.input.click();
-    } // Clear the cachedFileArray
+    } // Clear the cachedFileArray and a
 
   }, {
-    key: "clearImagePreviewPanel",
-    value: function clearImagePreviewPanel() {
+    key: "clearPreviewPanel",
+    value: function clearPreviewPanel() {
       this.input.value = '';
       this.inputLabel.innerHTML = this.options.text.chooseFile;
       this.addBrowseButton(this.options.text.browse);

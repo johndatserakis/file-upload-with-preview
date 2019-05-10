@@ -1,6 +1,8 @@
 <p align="center"><a href="" target="_blank"><img src="public/file-upload-with-preview-animated.gif"></a></p>
 
-<p align="center">
+# file-upload-with-preview
+
+<p align="left">
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/v/file-upload-with-preview.svg" alt="NPM Version"></a>
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/dm/file-upload-with-preview.svg" alt="NPM Downloads"></a>
   <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
@@ -8,7 +10,15 @@
   <img src="https://img.shields.io/twitter/url/https/github.com/promosis/file-upload-with-preview.svg?style=social" alt="Tweet"></a>
 </p>
 
-# file-upload-with-preview
+### Links
+
+[View demo](https://promosis.github.io/file-upload-with-preview/)
+
+[View on npm](https://www.npmjs.com/package/file-upload-with-preview)
+
+[View on GitHub](https://github.com/promosis/file-upload-with-preview#readme)
+
+### About
 
 This is a simple frontend utility to help the file-upload process on your website. It is written in pure JavaScript, has no dependencies, and is a small 13.55 kB (gzipped). You can check out the live demo [here](https://promosis.github.io/file-upload-with-preview/).
 
@@ -100,10 +110,10 @@ You can optionally trigger image browser and clear selected images by script cod
 
 ```javascript
 upload.emulateInputSelection() // to open image browser
-upload.clearImagePreviewPanel() // clear all selected images
+upload.clearPreviewPanel() // clear all selected images
 ```
 
-You may also want to capture the event that an image is selected:
+You may also want to capture the event when an image is selected:
 
 ```javascript
 window.addEventListener('fileUploadWithPreview:imagesAdded', function(e) {
@@ -151,16 +161,16 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
 | method | parameters | description |
 |---|---|---|
-| addFiles | array of file objects | Populate the `cachedFileArray` with images as File objects |
+| addFiles | array of File objects | Populate the `cachedFileArray` with images as File objects |
 | processFile | file object | Take a single File object and append it to the image preview panel |
 | addImagesFromPath | array of image paths | Take an array of image paths, convert them to File objects, and display them in the image preview panel (can be paths to images on the server or urls) |
-| replaceFiles | array of file objects | Replace files in `cachedFileArray` and image preview panel with array of file objects |
+| replaceFiles | array of File objects | Replace files in `cachedFileArray` and image preview panel with array of File objects |
 | replaceFileAtIndex | file object, index (Number) | Take a single file object and index, replace existing file at that index |
 | deleteFileAtIndex | index (Number) | Delete specified file from `cachedFileArray` |
 | refreshPreviewPanel | none | Refresh image preview panel with current `cachedFileArray` |
 | addBrowseButton | text | Appends browse button to input with custom button text |
 | emulateInputSelection | none | Open the image browser programmatically |
-| clearImagePreviewPanel | none | Clear the `cachedFileArray` |
+| clearPreviewPanel | none | Clear the `cachedFileArray` |
 
 
 ### Events
@@ -242,14 +252,13 @@ View the Vue example on codesandbox:
 
 ### Browser Support
 
-
  If you are supporting a browser like IE11, you'll need a polyfill for `fetch` and `promise` at the bottom of your `index.html`:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
 ```
-Or, you can install babel-polyfill and import that in the main script of your app. You can read more about babel-polyfill [here](https://babeljs.io/docs/en/babel-polyfill). In the example folder, I use the external script method.
+Or, you can install babel-polyfill and import that in the main script of your app. You can read more about babel-polyfill [here](https://babeljs.io/docs/en/babel-polyfill). In the example folder, we use the external script method.
 
 ### Testing
 
@@ -260,12 +269,13 @@ Use `npm run test` to run the tests.
 Clone the repo, then use the following to work on the project locally:
 
 ```bash
+# Install dependencies
 npm install
 
-# watch changes
+# Watch changes
 npm run watch
 
-# when done working
+# When done working
 npm run build
 ```
 

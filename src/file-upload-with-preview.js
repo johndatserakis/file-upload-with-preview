@@ -73,7 +73,7 @@ export default class FileUploadWithPreview {
 
         // Listen for the clear button
         this.clearButton.addEventListener('click', () => {
-            this.clearImagePreviewPanel()
+            this.clearPreviewPanel()
         }, true)
 
         // Listen for individual clear buttons on images
@@ -427,7 +427,7 @@ export default class FileUploadWithPreview {
         // If there's no images left after the latest deletion event,
         // then let's reset the panel entirely
         if (!this.cachedFileArray.length) {
-            this.clearImagePreviewPanel()
+            this.clearPreviewPanel()
         }
     }
 
@@ -441,8 +441,8 @@ export default class FileUploadWithPreview {
         this.input.click()
     }
 
-    // Clear the cachedFileArray
-    clearImagePreviewPanel() {
+    // Clear the cachedFileArray and a
+    clearPreviewPanel() {
         this.input.value = ''
         this.inputLabel.innerHTML = this.options.text.chooseFile
         this.addBrowseButton(this.options.text.browse)

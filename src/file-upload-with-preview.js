@@ -205,113 +205,93 @@ export default class FileUploadWithPreview {
 
                     if (this.options.showDeleteButtonOnImages) {
                         this.imagePreview.innerHTML += `
-                            <div>
-                                <span
-                                    class="custom-file-container__image-multi-preview"
-                                    style="background-image: url('${ reader.result }'); "
-                                >
-                                    <span class="custom-file-container__image-multi-preview__single-image-clear">
-                                        <span
-                                            class="custom-file-container__image-multi-preview__single-image-clear__icon"
-                                            data-upload-token="${ file.token }"
-                                        >&times;</span>
-                                    </span>
+                            <div
+                                class="custom-file-container__image-multi-preview"
+                                style="background-image: url('${ reader.result }'); "
+                            >
+                                <span class="custom-file-container__image-multi-preview__single-image-clear">
+                                    <span
+                                        class="custom-file-container__image-multi-preview__single-image-clear__icon"
+                                        data-upload-token="${ file.token }"
+                                    >&times;</span>
                                 </span>
-
                             </div>
                         `
                     } else {
                         this.imagePreview.innerHTML += `
-                            <div>
-                                <span
-                                    class="custom-file-container__image-multi-preview"
-                                    style="background-image: url('${ reader.result }'); "
-                                ></span>
-                            </div>
+                            <div
+                                class="custom-file-container__image-multi-preview"
+                                style="background-image: url('${ reader.result }'); "
+                            ></div>
                         `
                     }
                 } else if (file.type.match('application/pdf')) { //PDF Upload
                     if (this.options.showDeleteButtonOnImages) {
                         this.imagePreview.innerHTML += `
-                            <div>
-                                <span
-                                    class="custom-file-container__image-multi-preview"
-                                    style="background-image: url('${ this.successPdfImage }'); "
-                                >
-                                    <span class="custom-file-container__image-multi-preview__single-image-clear">
-                                        <span
-                                            class="custom-file-container__image-multi-preview__single-image-clear__icon"
-                                            data-upload-token="${ file.token }"
-                                        >&times;</span>
-                                    </span>
+                            <div
+                                class="custom-file-container__image-multi-preview"
+                                style="background-image: url('${ this.successPdfImage }'); "
+                            >
+                                <span class="custom-file-container__image-multi-preview__single-image-clear">
+                                    <span
+                                        class="custom-file-container__image-multi-preview__single-image-clear__icon"
+                                        data-upload-token="${ file.token }"
+                                    >&times;</span>
                                 </span>
-
                             </div>
                         `
                     } else {
                         this.imagePreview.innerHTML += `
-                            <div>
-                                <span
-                                    class="custom-file-container__image-multi-preview"
-                                    style="background-image: url('${ this.successPdfImage }'); "
-                                ></span>
-                            </div>
+                            <div
+                                class="custom-file-container__image-multi-preview"
+                                style="background-image: url('${ this.successPdfImage }'); "
+                            ></div>
                         `
                     }
                 } else if (file.type.match('video/*')) { //Video upload
                     if (this.options.showDeleteButtonOnImages) {
                         this.imagePreview.innerHTML += `
-                            <div>
-                                <span
-                                    class="custom-file-container__image-multi-preview"
-                                    style="background-image: url('${ this.successVideoImage }'); "
-                                >
-                                    <span class="custom-file-container__image-multi-preview__single-image-clear">
-                                        <span
-                                            class="custom-file-container__image-multi-preview__single-image-clear__icon"
-                                            data-upload-token="${ file.token }"
-                                        >&times;</span>
-                                    </span>
+                            <div
+                                class="custom-file-container__image-multi-preview"
+                                style="background-image: url('${ this.successVideoImage }'); "
+                            >
+                                <span class="custom-file-container__image-multi-preview__single-image-clear">
+                                    <span
+                                        class="custom-file-container__image-multi-preview__single-image-clear__icon"
+                                        data-upload-token="${ file.token }"
+                                    >&times;</span>
                                 </span>
-
                             </div>
                         `
                     } else {
                         this.imagePreview.innerHTML += `
-                            <div>
-                                <span
-                                    class="custom-file-container__image-multi-preview"
-                                    style="background-image: url('${ this.successVideoImage }'); "
-                                ></span>
-                            </div>
+                            <div
+                                class="custom-file-container__image-multi-preview"
+                                style="background-image: url('${ this.successVideoImage }'); "
+                            ></div>
                         `
                     }
                 } else { //Everything else
                     if (this.options.showDeleteButtonOnImages) {
                         this.imagePreview.innerHTML += `
-                            <div>
-                                <span
-                                    class="custom-file-container__image-multi-preview"
-                                    style="background-image: url('${ this.successFileAltImage }'); "
-                                >
-                                    <span class="custom-file-container__image-multi-preview__single-image-clear">
-                                        <span
-                                            class="custom-file-container__image-multi-preview__single-image-clear__icon"
-                                            data-upload-token="${ file.token }"
-                                        >&times;</span>
-                                    </span>
+                            <div
+                                class="custom-file-container__image-multi-preview"
+                                style="background-image: url('${ this.successFileAltImage }'); "
+                            >
+                                <span class="custom-file-container__image-multi-preview__single-image-clear">
+                                    <span
+                                        class="custom-file-container__image-multi-preview__single-image-clear__icon"
+                                        data-upload-token="${ file.token }"
+                                    >&times;</span>
                                 </span>
-
                             </div>
                         `
                     } else {
                         this.imagePreview.innerHTML += `
-                            <div>
-                                <span
-                                    class="custom-file-container__image-multi-preview"
-                                    style="background-image: url('${ this.successFileAltImage }'); "
-                                ></span>
-                            </div>
+                            <div
+                                class="custom-file-container__image-multi-preview"
+                                style="background-image: url('${ this.successFileAltImage }'); "
+                            ></div>
                         `
                     }
                 }

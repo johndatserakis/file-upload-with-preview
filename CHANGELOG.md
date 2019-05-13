@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 4.0.1
+
+- Removing unneeded wrapper divs in preview panels
+
 ## 4.0.0
 
 - Refactor of basically entire library. Many methods changed, properties changed. Please read the README and update your code accordingly. This refactoring was necessary due to the need for additional methods that allow for more control and replacement of the `cachedFileArray`.

@@ -246,9 +246,7 @@ In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accep
 
 ### Vue Example
 
-View the Vue example on codesandbox:
-
-[![Edit Vue Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/3z15v4106)
+[See on CodePen](https://codepen.io/johndatserakis/pen/vMRPwa)
 
 ### Browser Support
 

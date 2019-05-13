@@ -46,7 +46,7 @@ yarn add file-upload-with-preview
 Or you can include it through the browser at the bottom of your page. When using the browser version make sure update your target version as needed.
 
 ```html
-<script src="https://unpkg.com/file-upload-with-preview@4.0.0/dist/file-upload-with-preview.min.js"></script>
+<script src="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.js"></script>
 ```
 
 ### Usage
@@ -82,7 +82,7 @@ Or in your `<head></head>` if you're in the browser:
 
 ```html
 <!-- Browser -->
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.0/dist/file-upload-with-preview.min.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.css">
 ```
 
 The JavaScript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the `custom-file-container` element with the uniqueId:
@@ -186,7 +186,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 <html>
     <head>
         ...
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.0/dist/file-upload-with-preview.min.css">
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.css">
 
         <!-- You'll want to make sure to at least set a width on the -->
         <!-- .custom-file-container class... -->
@@ -209,7 +209,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
         ...
 
-        <script src="https://unpkg.com/file-upload-with-preview@4.0.0/dist/file-upload-with-preview.min.js"></script>
+        <script src="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.js"></script>
 
         <script>
             var upload = new FileUploadWithPreview('myUniqueUploadId', {
@@ -247,6 +247,10 @@ In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accep
 ### Vue Example
 
 [See on CodePen](https://codepen.io/johndatserakis/pen/vMRPwa)
+
+### jQuery Sort Example
+
+[See on CodePen](https://codepen.io/johndatserakis/pen/WBwJVr)
 
 ### Browser Support
 

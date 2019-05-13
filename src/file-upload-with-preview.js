@@ -207,6 +207,7 @@ export default class FileUploadWithPreview {
                         this.imagePreview.innerHTML += `
                             <div
                                 class="custom-file-container__image-multi-preview"
+                                data-upload-token="${ file.token }"
                                 style="background-image: url('${ reader.result }'); "
                             >
                                 <span class="custom-file-container__image-multi-preview__single-image-clear">
@@ -221,6 +222,7 @@ export default class FileUploadWithPreview {
                         this.imagePreview.innerHTML += `
                             <div
                                 class="custom-file-container__image-multi-preview"
+                                data-upload-token="${ file.token }"
                                 style="background-image: url('${ reader.result }'); "
                             ></div>
                         `
@@ -230,6 +232,7 @@ export default class FileUploadWithPreview {
                         this.imagePreview.innerHTML += `
                             <div
                                 class="custom-file-container__image-multi-preview"
+                                data-upload-token="${ file.token }"
                                 style="background-image: url('${ this.successPdfImage }'); "
                             >
                                 <span class="custom-file-container__image-multi-preview__single-image-clear">
@@ -244,6 +247,7 @@ export default class FileUploadWithPreview {
                         this.imagePreview.innerHTML += `
                             <div
                                 class="custom-file-container__image-multi-preview"
+                                data-upload-token="${ file.token }"
                                 style="background-image: url('${ this.successPdfImage }'); "
                             ></div>
                         `
@@ -254,6 +258,7 @@ export default class FileUploadWithPreview {
                             <div
                                 class="custom-file-container__image-multi-preview"
                                 style="background-image: url('${ this.successVideoImage }'); "
+                                data-upload-token="${ file.token }"
                             >
                                 <span class="custom-file-container__image-multi-preview__single-image-clear">
                                     <span
@@ -268,6 +273,7 @@ export default class FileUploadWithPreview {
                             <div
                                 class="custom-file-container__image-multi-preview"
                                 style="background-image: url('${ this.successVideoImage }'); "
+                                data-upload-token="${ file.token }"
                             ></div>
                         `
                     }
@@ -277,6 +283,7 @@ export default class FileUploadWithPreview {
                             <div
                                 class="custom-file-container__image-multi-preview"
                                 style="background-image: url('${ this.successFileAltImage }'); "
+                                data-upload-token="${ file.token }"
                             >
                                 <span class="custom-file-container__image-multi-preview__single-image-clear">
                                     <span
@@ -291,6 +298,7 @@ export default class FileUploadWithPreview {
                             <div
                                 class="custom-file-container__image-multi-preview"
                                 style="background-image: url('${ this.successFileAltImage }'); "
+                                data-upload-token="${ file.token }"
                             ></div>
                         `
                     }

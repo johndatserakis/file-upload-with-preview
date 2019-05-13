@@ -1,8 +1,9 @@
 # CHANGELOG.md
 
-## 4.0.1
+## 4.0.1, 4.0.2
 
 - Removing unneeded wrapper divs in preview panels
+- Adding `token` attribute on each preview panel
 
 ## 4.0.0
 

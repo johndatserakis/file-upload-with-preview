@@ -17,7 +17,7 @@ export default class FileUploadWithPreview {
         this.options.text.chooseFile = (this.options.text.hasOwnProperty('chooseFile')) ? this.options.text.chooseFile : 'Choose file...'
         this.options.text.browse = (this.options.text.hasOwnProperty('browse')) ? this.options.text.browse : 'Browse'
         this.options.text.selectedCount = (this.options.text.hasOwnProperty('selectedCount')) ? this.options.text.selectedCount : 'files selected'
-		this.options.maxFileCount = (this.options.hasOwnProperty('maxFileCount')) ? this.options.maxFileCount : 0;
+        this.options.maxFileCount = (this.options.hasOwnProperty('maxFileCount')) ? this.options.maxFileCount : 0
         this.cachedFileArray = []
         this.currentFileCount = 0
 
@@ -109,16 +109,14 @@ export default class FileUploadWithPreview {
         // to clear their images, they'll use the clear button on the label we provide.
         if (files.length === 0) { return }
 
-		// Check for file count limit
-		var fileLimit= files.length;
-		if(self.options.maxFileCount>0)
-		{
-			if((files.length+self.cachedFileArray.length)>self.options.maxFileCount)
-			{
-				// Limit exceeded.  Truncate list.
-				fileLimit= self.options.maxFileCount-self.cachedFileArray.length;
-			}
-		}
+        // Check for file count limit
+        let fileLimit = files.length
+        if (self.options.maxFileCount > 0) {
+            if ((files.length + self.cachedFileArray.length) > self.options.maxFileCount) {
+                // Limit exceeded.  Truncate list.
+                fileLimit = self.options.maxFileCount - self.cachedFileArray.length
+            }
+        }
 
         // If the input is set to allow multiple files, then we'll add to
         // the existing file count and keep the cachedFileArray. If not,

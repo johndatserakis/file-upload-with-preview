@@ -156,6 +156,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 | options.text.browse | String | Edit button text. Default `'Browse'`|
 | options.text.chooseFile | String | Edit input placeholder text. Default `'Choose file...'`|
 | options.text.selectedCount | String | Edit input text when multiple files have been selected in one input. Default `${ n } 'files selected'` |
+| options.maxFileCount | Number | Set a maximum number of files you'd like the component to deal with. Must be `> 1` if set. By default there is no limit. |
 
 ### Methods
 

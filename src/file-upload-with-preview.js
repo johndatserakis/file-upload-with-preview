@@ -109,12 +109,14 @@ export default class FileUploadWithPreview {
         // to clear their images, they'll use the clear button on the label we provide.
         if (files.length === 0) { return }
 
+        console.log(self)
+
         // Check for file count limit
-        let fileLimit = files.length
+        let adjustedFilesLength = files.length
         if (self.options.maxFileCount > 0) {
             if ((files.length + self.cachedFileArray.length) > self.options.maxFileCount) {
                 // Limit exceeded.  Truncate list.
-                fileLimit = self.options.maxFileCount - self.cachedFileArray.length
+                adjustedFilesLength = self.options.maxFileCount - self.cachedFileArray.length
             }
         }
 
@@ -122,15 +124,15 @@ export default class FileUploadWithPreview {
         // the existing file count and keep the cachedFileArray. If not,
         // then we'll reset the file count and reset the cachedFileArray
         if (self.input.multiple) {
-            self.currentFileCount += fileLimit
+            self.currentFileCount += adjustedFilesLength
         } else {
-            self.currentFileCount = fileLimit
+            self.currentFileCount = adjustedFilesLength
             self.cachedFileArray = []
         }
 
         // Now let's loop over the added images and
         // act accordingly based on there were multiple images or not
-        for (let x = 0; x < fileLimit; x++) {
+        for (let x = 0; x < adjustedFilesLength; x++) {
             // Grab this index's file
             let file = files[x]
 
@@ -150,7 +152,7 @@ export default class FileUploadWithPreview {
             detail: {
                 uploadId: self.uploadId,
                 cachedFileArray: self.cachedFileArray,
-                addedFilesCount: fileLimit,
+                addedFilesCount: adjustedFilesLength,
             },
         })
         window.dispatchEvent(imagesAddedEvent)

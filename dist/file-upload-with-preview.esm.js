@@ -987,15 +987,16 @@ function () {
 
       if (files.length === 0) {
         return;
-      } // Check for file count limit
+      }
 
+      console.log(self); // Check for file count limit
 
-      var fileLimit = files.length;
+      var adjustedFilesLength = files.length;
 
       if (self.options.maxFileCount > 0) {
         if (files.length + self.cachedFileArray.length > self.options.maxFileCount) {
           // Limit exceeded.  Truncate list.
-          fileLimit = self.options.maxFileCount - self.cachedFileArray.length;
+          adjustedFilesLength = self.options.maxFileCount - self.cachedFileArray.length;
         }
       } // If the input is set to allow multiple files, then we'll add to
       // the existing file count and keep the cachedFileArray. If not,
@@ -1003,15 +1004,15 @@ function () {
 
 
       if (self.input.multiple) {
-        self.currentFileCount += fileLimit;
+        self.currentFileCount += adjustedFilesLength;
       } else {
-        self.currentFileCount = fileLimit;
+        self.currentFileCount = adjustedFilesLength;
         self.cachedFileArray = [];
       } // Now let's loop over the added images and
       // act accordingly based on there were multiple images or not
 
 
-      for (var x = 0; x < fileLimit; x++) {
+      for (var x = 0; x < adjustedFilesLength; x++) {
         // Grab this index's file
         var file = files[x]; // To make sure each image can be treated individually, let's give
         // each file a unique token
@@ -1028,7 +1029,7 @@ function () {
         detail: {
           uploadId: self.uploadId,
           cachedFileArray: self.cachedFileArray,
-          addedFilesCount: fileLimit
+          addedFilesCount: adjustedFilesLength
         }
       });
       window.dispatchEvent(imagesAddedEvent);

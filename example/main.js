@@ -19,6 +19,7 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
         browse: 'Custom Button Copy',
         selectedCount: 'Custom Files Selected Copy',
     },
+    maxFileCount: 5,
     images: {
         baseImage: importedBaseImage,
     },

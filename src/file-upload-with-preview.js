@@ -150,6 +150,7 @@ export default class FileUploadWithPreview {
         // Send out our event
         let imagesAddedEvent = new CustomEvent('fileUploadWithPreview:imagesAdded', {
             detail: {
+                files,
                 uploadId: self.uploadId,
                 cachedFileArray: self.cachedFileArray,
                 addedFilesCount: adjustedFilesLength,
@@ -405,6 +406,7 @@ export default class FileUploadWithPreview {
         // Send out our deletion event
         let imageDeletedEvent = new CustomEvent('fileUploadWithPreview:imageDeleted', {
             detail: {
+                index,
                 uploadId: this.uploadId,
                 cachedFileArray: this.cachedFileArray,
                 currentFileCount: this.currentFileCount,

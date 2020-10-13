@@ -975,7 +975,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
 
       this.clearButton.addEventListener('click', function () {
         _this.clearPreviewPanel();
-      }, true); // Listen for individual clear buttons on images
+      }, true); // Listen for click on images
 
       this.imagePreview.addEventListener('click', function (event) {
         // Listen for the specific click of a clear button
@@ -990,6 +990,27 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
           });
 
           _this.deleteFileAtIndex(selectedFileIndex);
+        } // on image click
+
+
+        if (event.target.matches('.custom-file-container__image-multi-preview')) {
+          // Get its token
+          var _fileToken = event.target.querySelector('.custom-file-container__image-multi-preview__single-image-clear__icon').getAttribute('data-upload-token'); // Get the index of the file
+
+
+          var _selectedFileIndex = _this.cachedFileArray.findIndex(function (x) {
+            return x.token === _fileToken;
+          }); // Send out our event
+
+
+          var imageClickedEvent = new CustomEvent('fileUploadWithPreview:imageClicked', {
+            detail: {
+              index: _selectedFileIndex,
+              file: self.cachedFileArray[_selectedFileIndex],
+              cachedFileArray: self.cachedFileArray
+            }
+          });
+          window.dispatchEvent(imageClickedEvent);
         }
       });
     } // Populate the cachedFileArray with images as File objects
@@ -1007,9 +1028,8 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
 
       if (files.length === 0) {
         return;
-      }
+      } // Check for file count limit
 
-      console.log(self); // Check for file count limit
 
       var adjustedFilesLength = files.length;
 
@@ -1115,7 +1135,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
 
           if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
             if (_this2.options.showDeleteButtonOnImages) {
-              _this2.imagePreview.innerHTML += "\n                            <div\n                                class=\"custom-file-container__image-multi-preview\"\n                                data-upload-token=\"".concat(file.token, "\"\n                                style=\"background-image: url('").concat(reader.result, "'); \"\n                            >\n                                <span class=\"custom-file-container__image-multi-preview__single-image-clear\">\n                                    <span\n                                        class=\"custom-file-container__image-multi-preview__single-image-clear__icon\"\n                                        data-upload-token=\"").concat(file.token, "\"\n                                    >&times;</span>\n                                </span>\n                            </div>\n                        ");
+              _this2.imagePreview.innerHTML += "\n                            <div\n                                class=\"custom-file-container__image-multi-preview\"\n                                data-upload-token=\"".concat(file.token, "\"\n                                style=\"background-image: url('").concat(reader.result, "'); \"\n                            >\n                                <span class=\"custom-file-container__image-multi-preview__single-image-clear\">\n                                    <span\n                                        class=\"custom-file-container__image-multi-preview__single-image-clear__icon\"\n                                        data-upload-token=\"").concat(file.token, "\"\n                                        >&times;</span>\n                                </span>\n                            </div>\n                        ");
             } else {
               _this2.imagePreview.innerHTML += "\n                            <div\n                                class=\"custom-file-container__image-multi-preview\"\n                                data-upload-token=\"".concat(file.token, "\"\n                                style=\"background-image: url('").concat(reader.result, "'); \"\n                            ></div>\n                        ");
             }

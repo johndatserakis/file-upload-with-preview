@@ -77,12 +77,11 @@ export default class FileUploadWithPreview {
             this.clearPreviewPanel()
         }, true)
 
-        // Listen for individual clear buttons on images
+        // Listen for click on images
         this.imagePreview.addEventListener('click', (event) => {
-
             // Listen for the specific click of a clear button
             if (event.target.matches('.custom-file-container__image-multi-preview__single-image-clear__icon')) {
-                // Grab the clicked function
+            // Grab the clicked function
                 let clearFileButton = event.target
 
                 // Get its token
@@ -92,6 +91,26 @@ export default class FileUploadWithPreview {
                 let selectedFileIndex = this.cachedFileArray.findIndex(x => x.token === fileToken)
 
                 this.deleteFileAtIndex(selectedFileIndex)
+            }
+
+            // on image click
+            if (event.target.matches('.custom-file-container__image-multi-preview')) {
+                // Get its token
+                let fileToken = event.target.querySelector('.custom-file-container__image-multi-preview__single-image-clear__icon').getAttribute('data-upload-token')
+
+                // Get the index of the file
+                let selectedFileIndex = this.cachedFileArray.findIndex(x => x.token === fileToken)
+
+                // Send out our event
+                let imageClickedEvent = new CustomEvent('fileUploadWithPreview:imageClicked', {
+                    detail: {
+                        index: selectedFileIndex,
+                        file: self.cachedFileArray[selectedFileIndex],
+                        cachedFileArray: self.cachedFileArray,
+                    },
+                })
+
+                window.dispatchEvent(imageClickedEvent)
             }
         })
     }
@@ -108,8 +127,6 @@ export default class FileUploadWithPreview {
         // and proceed normally. If something *does* want
         // to clear their images, they'll use the clear button on the label we provide.
         if (files.length === 0) { return }
-
-        console.log(self)
 
         // Check for file count limit
         let adjustedFilesLength = files.length
@@ -227,7 +244,7 @@ export default class FileUploadWithPreview {
                                     <span
                                         class="custom-file-container__image-multi-preview__single-image-clear__icon"
                                         data-upload-token="${ file.token }"
-                                    >&times;</span>
+                                        >&times;</span>
                                 </span>
                             </div>
                         `

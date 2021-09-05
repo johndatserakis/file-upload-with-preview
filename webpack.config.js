@@ -91,7 +91,6 @@ const config = {
         }),
         new CopyWebpackPlugin([
             { from: path.resolve(__dirname, 'public', 'favicon.png'), to: './favicon.png' },
-            { from: path.resolve(__dirname, 'public', 'badge.png'), to: './badge.png' },
         ]),
     ],
     resolve: {

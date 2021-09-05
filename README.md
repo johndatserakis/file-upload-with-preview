@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="public/file-upload-with-preview-animated.gif"></a></p>
+<p align="center"><a href="" target="_blank"><img src="public/multiple-file-upload-with-preview.png"></a></p>
 
 # file-upload-with-preview
 
@@ -321,7 +321,7 @@ Clone the repo, then use the following to work on the project locally:
 yarn
 
 # Watch changes
-yarn watch
+yarn start
 
 # When done working
 yarn build

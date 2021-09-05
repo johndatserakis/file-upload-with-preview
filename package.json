@@ -23,7 +23,7 @@
   "module": "dist/file-upload-with-preview.esm.js",
   "unpkg": "dist/file-upload-with-preview.min.js",
   "scripts": {
-    "watch": "cross-env NODE_ENV=development webpack-dev-server --open --hot --display-error-details",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot --display-error-details",
     "build": "npm run test && npm run build:example && npm run build:library",
     "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/file-upload-with-preview.umd.js",
     "build:es": "rollup --config build/rollup.config.js --format es --file dist/file-upload-with-preview.esm.js",

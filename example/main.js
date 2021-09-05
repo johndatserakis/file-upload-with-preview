@@ -24,7 +24,6 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
         baseImage: importedBaseImage,
     },
     presetFiles: [
-        './badge.png',
         'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     ],
 })
@@ -54,5 +53,13 @@ window.addEventListener('fileUploadWithPreview:imageDeleted', function (e) {
     if (e.detail.uploadId === 'mySecondImage') {
         console.log(e.detail.currentFileCount)
         console.log(e.detail.cachedFileArray)
+    }
+})
+
+// Clear button event listener
+window.addEventListener('fileUploadWithPreview:clearButtonClicked', function (e) {
+    if (e.detail.uploadId === 'mySecondImage') {
+        console.log('clearButtonClicked')
+        console.log(e.detail.uploadId)
     }
 })

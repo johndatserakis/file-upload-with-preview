@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="public/file-upload-with-preview-animated.gif"></a></p>
+<p align="center"><a href="" target="_blank"><img src="public/multiple-file-upload-with-preview.png"></a></p>
 
 # file-upload-with-preview
 
@@ -6,21 +6,21 @@
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/v/file-upload-with-preview.svg" alt="NPM Version"></a>
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/dm/file-upload-with-preview.svg" alt="NPM Downloads"></a>
   <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fpromosis%2Ffile-upload-with-preview&text=Check%20out%20file-upload-with-preview%20on%20GitHub&via=promosis">
-  <img src="https://img.shields.io/twitter/url/https/github.com/promosis/file-upload-with-preview.svg?style=social" alt="Tweet"></a>
+  <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%johndatserakis%2Ffile-upload-with-preview&text=Check%20out%20file-upload-with-preview%20on%20GitHub&via=johndatserakis">
+  <img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/file-upload-with-preview.svg?style=social" alt="Tweet"></a>
 </p>
 
 ### Links
 
-[View demo](https://promosis.github.io/file-upload-with-preview/)
+[View demo](https://johndatserakis.github.io/file-upload-with-preview)
 
 [View on npm](https://www.npmjs.com/package/file-upload-with-preview)
 
-[View on GitHub](https://github.com/promosis/file-upload-with-preview#readme)
+[View on GitHub](https://github.com/johndatserakis/file-upload-with-preview#readme)
 
 ### About
 
-This is a simple frontend utility to help the file-upload process on your website. It is written in pure JavaScript, has no dependencies, and is a small 13.55 kB (gzipped). You can check out the live demo [here](https://promosis.github.io/file-upload-with-preview/).
+This is a simple frontend utility to help the file-upload process on your website. It is written in pure JavaScript, has no dependencies, and is a small 13.55 kB (gzipped). You can check out the live demo [here](https://johndatserakis.github.io/file-upload-with-preview).
 
 For the most part, browsers do a good job of handling image-uploads. That being said - we find that the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.
 
@@ -197,10 +197,11 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
 ### Events
 
-| event                              | value                                                                        | description                                                                                                                            |
-| ---------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| fileUploadWithPreview:imagesAdded  | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.addedFilesCount)  | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `addedFilesCount` for the event. |
-| fileUploadWithPreview:imageDeleted | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.currentFileCount) | Triggered each time a file is deleted. Delivers the `uploadId`, updated `cachedFilesArray`, and `currentFileCount` for the event.      |
+| event                                    | value                                                                        | description                                                                                                                            |
+| ---------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| fileUploadWithPreview:imagesAdded        | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.addedFilesCount)  | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `addedFilesCount` for the event. |
+| fileUploadWithPreview:imageDeleted       | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.currentFileCount) | Triggered each time a file is deleted. Delivers the `uploadId`, updated `cachedFilesArray`, and `currentFileCount` for the event.      |
+| fileUploadWithPreview:clearButtonClicked | `e` (e.detail.uploadId)                                                      | Triggered when the clear button is clicked. Delivers the `uploadId`.                                                                   |
 
 ### Full Example
 
@@ -264,7 +265,6 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
                     baseImage: importedBaseImage,
                 },
                 presetFiles: [
-                    "../public/logo-promosis.png",
                     "https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
                 ],
             });
@@ -310,7 +310,7 @@ Or, you can install babel-polyfill and import that in the main script of your ap
 
 ### Testing
 
-Use `npm run test` to run the tests.
+Use `yarn test` to run the tests.
 
 ### Development
 
@@ -318,13 +318,13 @@ Clone the repo, then use the following to work on the project locally:
 
 ```bash
 # Install dependencies
-npm install
+yarn
 
 # Watch changes
-npm run watch
+yarn start
 
 # When done working
-npm run build
+yarn build
 ```
 
 ### Other
@@ -332,7 +332,5 @@ npm run build
 Go ahead and fork the project! Submit an issue if needed. Have fun!
 
 ### License
-
-Copywrite 2017 [Promosis](https://promosis.com)
 
 [MIT](http://opensource.org/licenses/MIT)

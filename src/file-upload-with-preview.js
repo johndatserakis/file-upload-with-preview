@@ -74,6 +74,14 @@ export default class FileUploadWithPreview {
 
         // Listen for the clear button
         this.clearButton.addEventListener('click', () => {
+            // Send out our deletion event
+            const clearButtonClickedEvent = new CustomEvent('fileUploadWithPreview:clearButtonClicked', {
+                detail: {
+                    uploadId: this.uploadId,
+                },
+            })
+            window.dispatchEvent(clearButtonClickedEvent)
+
             this.clearPreviewPanel()
         }, true)
 
@@ -83,13 +91,13 @@ export default class FileUploadWithPreview {
             // Listen for the specific click of a clear button
             if (event.target.matches('.custom-file-container__image-multi-preview__single-image-clear__icon')) {
                 // Grab the clicked function
-                let clearFileButton = event.target
+                const clearFileButton = event.target
 
                 // Get its token
-                let fileToken = clearFileButton.getAttribute('data-upload-token')
+                const fileToken = clearFileButton.getAttribute('data-upload-token')
 
                 // Get the index of the file
-                let selectedFileIndex = this.cachedFileArray.findIndex(x => x.token === fileToken)
+                const selectedFileIndex = this.cachedFileArray.findIndex(x => x.token === fileToken)
 
                 this.deleteFileAtIndex(selectedFileIndex)
             }
@@ -108,8 +116,6 @@ export default class FileUploadWithPreview {
         // and proceed normally. If something *does* want
         // to clear their images, they'll use the clear button on the label we provide.
         if (files.length === 0) { return }
-
-        console.log(self)
 
         // Check for file count limit
         let adjustedFilesLength = files.length
@@ -131,10 +137,10 @@ export default class FileUploadWithPreview {
         }
 
         // Now let's loop over the added images and
-        // act accordingly based on there were multiple images or not
+        // act accordingly based on if there were multiple images or not
         for (let x = 0; x < adjustedFilesLength; x++) {
             // Grab this index's file
-            let file = files[x]
+            const file = files[x]
 
             // To make sure each image can be treated individually, let's give
             // each file a unique token
@@ -148,7 +154,7 @@ export default class FileUploadWithPreview {
         }
 
         // Send out our event
-        let imagesAddedEvent = new CustomEvent('fileUploadWithPreview:imagesAdded', {
+        const imagesAddedEvent = new CustomEvent('fileUploadWithPreview:imagesAdded', {
             detail: {
                 files,
                 uploadId: self.uploadId,
@@ -165,7 +171,7 @@ export default class FileUploadWithPreview {
         if (this.currentFileCount === 0) {
             this.inputLabel.innerHTML = this.options.text.chooseFile
         } else if (this.currentFileCount === 1) {
-            this.inputLabel.innerHTML = file.name
+            this.inputLabel.textContent = file.name
         } else {
             this.inputLabel.innerHTML = `${ this.currentFileCount } ${ this.options.text.selectedCount }`
         }
@@ -175,7 +181,7 @@ export default class FileUploadWithPreview {
         this.imagePreview.classList.add('custom-file-container__image-preview--active')
 
         // Set up our reader
-        let reader = new FileReader()
+        const reader = new FileReader()
         reader.readAsDataURL(file)
 
         // Check the file and act accordingly
@@ -325,7 +331,7 @@ export default class FileUploadWithPreview {
     // https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
     addImagesFromPath(files) {
         return new Promise(async (resolve, reject) => {
-            let presetFiles = []
+            const presetFiles = []
 
             for (let x = 0; x < files.length; x++) {
                 /* eslint-disable no-await-in-loop */
@@ -346,7 +352,7 @@ export default class FileUploadWithPreview {
                 /* eslint-enable no-await-in-loop */
 
                 // Create blob and added
-                let presetFile = new Blob([blob], {
+                const presetFile = new Blob([blob], {
                     type: blob.type,
                 })
 
@@ -404,7 +410,7 @@ export default class FileUploadWithPreview {
         this.refreshPreviewPanel()
 
         // Send out our deletion event
-        let imageDeletedEvent = new CustomEvent('fileUploadWithPreview:imageDeleted', {
+        const imageDeletedEvent = new CustomEvent('fileUploadWithPreview:imageDeleted', {
             detail: {
                 index,
                 uploadId: this.uploadId,
@@ -443,7 +449,7 @@ export default class FileUploadWithPreview {
         this.input.click()
     }
 
-    // Clear the cachedFileArray and a
+    // Clear the cachedFileArray and reset
     clearPreviewPanel() {
         this.input.value = ''
         this.inputLabel.innerHTML = this.options.text.chooseFile

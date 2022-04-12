@@ -1,6 +1,89 @@
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
+
+var asyncToGenerator = createCommonjsModule(function (module) {
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
+});
+
+var _asyncToGenerator = unwrapExports(asyncToGenerator);
+
+var classCallCheck = createCommonjsModule(function (module) {
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+});
+
+var _classCallCheck = unwrapExports(classCallCheck);
+
+var createClass = createCommonjsModule(function (module) {
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
+
+module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
+});
+
+var _createClass = unwrapExports(createClass);
 
 var runtime_1 = createCommonjsModule(function (module) {
 /**
@@ -90,9 +173,9 @@ var runtime = (function (exports) {
   // This is a polyfill for %IteratorPrototype% for environments that
   // don't natively support it.
   var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
+  define(IteratorPrototype, iteratorSymbol, function () {
     return this;
-  };
+  });
 
   var getProto = Object.getPrototypeOf;
   var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
@@ -106,8 +189,9 @@ var runtime = (function (exports) {
 
   var Gp = GeneratorFunctionPrototype.prototype =
     Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunction.prototype = GeneratorFunctionPrototype;
+  define(Gp, "constructor", GeneratorFunctionPrototype);
+  define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
   GeneratorFunction.displayName = define(
     GeneratorFunctionPrototype,
     toStringTagSymbol,
@@ -221,9 +305,9 @@ var runtime = (function (exports) {
   }
 
   defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+  define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
     return this;
-  };
+  });
   exports.AsyncIterator = AsyncIterator;
 
   // Note that simple async functions are implemented on top of
@@ -416,13 +500,13 @@ var runtime = (function (exports) {
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
   // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
+  define(Gp, iteratorSymbol, function() {
     return this;
-  };
+  });
 
-  Gp.toString = function() {
+  define(Gp, "toString", function() {
     return "[object Generator]";
-  };
+  });
 
   function pushTryEntry(locs) {
     var entry = { tryLoc: locs[0] };
@@ -741,82 +825,23 @@ try {
 } catch (accidentalStrictMode) {
   // This module should not be running in strict mode, so the above
   // assignment should always work unless something is misconfigured. Just
-  // in case runtime.js accidentally runs in strict mode, we can escape
+  // in case runtime.js accidentally runs in strict mode, in modern engines
+  // we can explicitly access globalThis. In older engines we can escape
   // strict mode using a global Function call. This could conceivably fail
   // if a Content Security Policy forbids using Function, but in that case
   // the proper solution is to fix the accidental strict mode problem. If
   // you've misconfigured your bundler to force strict mode and applied a
   // CSP to forbid Function, and you're not willing to fix either of those
   // problems, please detail your unique predicament in a GitHub issue.
-  Function("r", "regeneratorRuntime = r")(runtime);
+  if (typeof globalThis === "object") {
+    globalThis.regeneratorRuntime = runtime;
+  } else {
+    Function("r", "regeneratorRuntime = r")(runtime);
+  }
 }
 });
 
 var regenerator = runtime_1;
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
-
-var asyncToGenerator = _asyncToGenerator;
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-var classCallCheck = _classCallCheck;
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-var createClass = _createClass;
 
 /* eslint-disable */
 // this is for matches in older ie browsers
@@ -899,7 +924,7 @@ if (!Array.prototype.findIndex) {
 
 var FileUploadWithPreview = /*#__PURE__*/function () {
   function FileUploadWithPreview(uploadId, options) {
-    classCallCheck(this, FileUploadWithPreview);
+    _classCallCheck(this, FileUploadWithPreview);
 
     // Make sure uploadId was specified
     if (!uploadId) {
@@ -961,7 +986,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
     }
   }
 
-  createClass(FileUploadWithPreview, [{
+  _createClass(FileUploadWithPreview, [{
     key: "bindClickEvents",
     value: function bindClickEvents() {
       var _this = this;
@@ -974,6 +999,14 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
       }, true); // Listen for the clear button
 
       this.clearButton.addEventListener('click', function () {
+        // Send out our deletion event
+        var clearButtonClickedEvent = new CustomEvent('fileUploadWithPreview:clearButtonClicked', {
+          detail: {
+            uploadId: _this.uploadId
+          }
+        });
+        window.dispatchEvent(clearButtonClickedEvent);
+
         _this.clearPreviewPanel();
       }, true); // Listen for click on images
 
@@ -1049,7 +1082,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
         self.currentFileCount = adjustedFilesLength;
         self.cachedFileArray = [];
       } // Now let's loop over the added images and
-      // act accordingly based on there were multiple images or not
+      // act accordingly based on if there were multiple images or not
 
 
       for (var x = 0; x < adjustedFilesLength; x++) {
@@ -1085,7 +1118,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
       if (this.currentFileCount === 0) {
         this.inputLabel.innerHTML = this.options.text.chooseFile;
       } else if (this.currentFileCount === 1) {
-        this.inputLabel.innerHTML = file.name;
+        this.inputLabel.textContent = file.name;
       } else {
         this.inputLabel.innerHTML = "".concat(this.currentFileCount, " ").concat(this.options.text.selectedCount);
       }
@@ -1173,7 +1206,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
       var _this3 = this;
 
       return new Promise( /*#__PURE__*/function () {
-        var _ref = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(resolve, reject) {
+        var _ref = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(resolve, reject) {
           var presetFiles, x, response, blob, presetFile;
           return regenerator.wrap(function _callee$(_context) {
             while (1) {
@@ -1330,7 +1363,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
     key: "emulateInputSelection",
     value: function emulateInputSelection() {
       this.input.click();
-    } // Clear the cachedFileArray and a
+    } // Clear the cachedFileArray and reset
 
   }, {
     key: "clearPreviewPanel",

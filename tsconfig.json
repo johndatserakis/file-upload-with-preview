@@ -3,18 +3,20 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationDir": "dist/types",
+    "declarationMap": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "sourceMap": true,
     "strict": true,
-    "target": "esnext"
+    "target": "ES6"
   },
-  // Must include .ts and .tsx it seems? https://stackoverflow.com/a/68369960/8014660
-  "include": ["src/**/*", "**/*.ts", "**/*.tsx"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "docs"]
 }

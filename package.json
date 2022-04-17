@@ -52,12 +52,13 @@
     "build:example": "rimraf ./docs && vite build",
     "build:library": "rimraf ./dist && rollup -c",
     "build:types": "tsc --emitDeclarationOnly",
-    "build": "yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:library",
+    "build": "yarn typescript:check-type && yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:library",
     "dev": "vite",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint .",
     "prettier:format": "prettier 'src/**/*.ts' --write",
-    "test": "jest"
+    "test": "jest",
+    "typescript:check-types": "tsc --noEmit"
   },
   "sideEffects": false,
   "version": "5.0.0"

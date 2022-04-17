@@ -1,0 +1,6 @@
+{
+  "compilerOptions": { "emitDeclarationOnly": true },
+  "exclude": ["example/**/*.ts"],
+  "extends": "../tsconfig.base.json",
+  "include": ["."]
+}

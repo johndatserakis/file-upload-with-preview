@@ -1,22 +1,8 @@
+// https://shopify.engineering/migrating-large-typescript-codebases-project-references
+// https://stackoverflow.com/a/64637923/8014660
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "declarationDir": "dist/types",
-    "declarationMap": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "ES6"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "docs"]
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [{ "path": "./src" }, { "path": "./example" }]
 }

@@ -71,7 +71,7 @@ export class FileUploadWithPreview {
     // Base options
     const { images, maxFileCount, presetFiles, showDeleteButtonOnImages, text } = options;
     this.options.showDeleteButtonOnImages = showDeleteButtonOnImages ?? true;
-    this.options.maxFileCount = maxFileCount ?? 0;
+    this.options.maxFileCount = maxFileCount ?? 'wow';
     this.cachedFileArray = [];
     this.currentFileCount = 0;
     this.options.presetFiles = presetFiles ?? [];

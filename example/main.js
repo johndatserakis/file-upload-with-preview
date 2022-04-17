@@ -1,5 +1,5 @@
 import './main.scss';
-import FileUploadWithPreview from '../src/index';
+import FileUploadWithPreview from '../src/index.ts';
 import '../src/index.scss';
 
 const importedBaseImage = require('./custom-image.svg');

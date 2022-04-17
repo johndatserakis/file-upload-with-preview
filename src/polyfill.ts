@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /* eslint-disable */
 
 // this is for matches in older ie browsers

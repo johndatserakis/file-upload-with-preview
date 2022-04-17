@@ -30,18 +30,6 @@
     "typescript": "^4.4.4",
     "vite": "^2.9.5"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/example/$1"
-    },
-    "transform": {
-      "^.+\\.(scss|less|svg|png)$": "./test/styleMock.js",
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    }
-  },
   "keywords": [
     "upload",
     "uploader",
@@ -64,10 +52,11 @@
     "build:example": "rimraf ./docs && vite build",
     "build:library": "rimraf ./dist && rollup -c",
     "build:types": "tsc --emitDeclarationOnly",
-    "build": "yarn test && yarn build:example && yarn build:library",
+    "build": "yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:library",
     "dev": "vite",
-    "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint .",
+    "prettier:format": "prettier 'src/**/*.ts' --write",
     "test": "jest"
   },
   "sideEffects": false,

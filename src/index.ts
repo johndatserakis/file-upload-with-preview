@@ -28,12 +28,14 @@ interface Images {
   successVideoImage?: string;
 }
 
+type PresetFiles = string[];
+
 interface Options {
   showDeleteButtonOnImages?: boolean;
   text: Text;
   maxFileCount?: number;
   images: Images;
-  presetFiles?: string[];
+  presetFiles?: PresetFiles;
 }
 
 type FileWithProps = File & {
@@ -42,6 +44,8 @@ type FileWithProps = File & {
 
 export class FileUploadWithPreview {
   uploadId: string;
+  cachedFileArray: FileWithProps[];
+  currentFileCount: number;
   options: Required<Options> = {
     showDeleteButtonOnImages: true,
     text: {},
@@ -49,8 +53,6 @@ export class FileUploadWithPreview {
     images: {},
     presetFiles: [],
   };
-  cachedFileArray: FileWithProps[];
-  currentFileCount: number;
   el: Element | null;
   input: HTMLInputElement | null;
   inputLabel: Element | null;
@@ -136,6 +138,8 @@ export class FileUploadWithPreview {
         (e) => {
           const target = e.target as HTMLInputElement;
           const { files } = target;
+          if (files == null) return;
+
           this.addFiles(files);
         },
         true,
@@ -150,6 +154,7 @@ export class FileUploadWithPreview {
             'fileUploadWithPreview:clearButtonClicked',
             {
               detail: {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 uploadId: e.target.uploadId,
               },
@@ -181,8 +186,8 @@ export class FileUploadWithPreview {
 
   // Populate the cachedFileArray with images as File objects
   addFiles(files: FileList) {
-    // Grab the current instance
-    const self = this;
+    // // Grab the current instance
+    // const self = this;
 
     // In this case, the user most likely had hit cancel - which does something
     // a little strange if they had already selected a single or multiple images -
@@ -194,47 +199,36 @@ export class FileUploadWithPreview {
 
     let adjustedFilesLength = files.length;
     if (
-      self.options.maxFileCount > 0 &&
-      files.length + self.cachedFileArray.length > self.options.maxFileCount
+      this.options.maxFileCount > 0 &&
+      files.length + this.cachedFileArray.length > this.options.maxFileCount
     ) {
-      adjustedFilesLength = self.options.maxFileCount - self.cachedFileArray.length;
+      adjustedFilesLength = this.options.maxFileCount - this.cachedFileArray.length;
     }
 
     // If the input is set to allow multiple files, then we'll add to
     // the existing file count and keep the cachedFileArray. If not,
     // then we'll reset the file count and reset the cachedFileArray
-    if (self.input && self.input.multiple) {
-      self.currentFileCount += adjustedFilesLength;
+    if (this.input && this.input.multiple) {
+      this.currentFileCount += adjustedFilesLength;
     } else {
-      self.currentFileCount = adjustedFilesLength;
-      self.cachedFileArray = [];
+      this.currentFileCount = adjustedFilesLength;
+      this.cachedFileArray = [];
     }
 
-    // // Now let's loop over the added images and
-    // // act accordingly based on if there were multiple images or not
-    // // eslint-disable-next-line no-plusplus
-    // for (let x = 0; x < adjustedFilesLength; x++) {
-    //   // Grab this index's file
-    //   const file = files[x];
+    Array.from(files).forEach((file) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      file.token =
+        Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      this.cachedFileArray.push(file as FileWithProps);
+      this.renderFile(file as FileWithProps);
+    });
 
-    //   // To make sure each image can be treated individually, let's give
-    //   // each file a unique token
-    //   file.token =
-    //     Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-
-    //   // File/files added.
-    //   self.cachedFileArray.push(file);
-
-    //   // Process file
-    //   self.processFile(file);
-    // }
-
-    // Send out our event
     const imagesAddedEvent = new CustomEvent('fileUploadWithPreview:imagesAdded', {
       detail: {
         files,
-        uploadId: self.uploadId,
-        cachedFileArray: self.cachedFileArray,
+        uploadId: this.uploadId,
+        cachedFileArray: this.cachedFileArray,
         addedFilesCount: adjustedFilesLength,
       },
     });
@@ -242,21 +236,20 @@ export class FileUploadWithPreview {
   }
 
   // Take a single File object and append it to the image preview panel
-  processFile(file) {
-    // Update our input label here based on instance currentFileCount
+  renderFile(file: FileWithProps) {
+    if (!this.inputLabel || !this.imagePreview) return;
+
     if (this.currentFileCount === 0) {
-      this.inputLabel.innerHTML = this.options.text.chooseFile;
+      this.inputLabel.innerHTML = this.options.text.chooseFile || DEFAULT_CHOOSE_FILE_TEXT;
     } else if (this.currentFileCount === 1) {
       this.inputLabel.textContent = file.name;
     } else {
       this.inputLabel.innerHTML = `${this.currentFileCount} ${this.options.text.selectedCount}`;
     }
-    this.addBrowseButton(this.options.text.browse);
 
-    // Apply the 'custom-file-container__image-preview--active' class
+    this.addBrowseButton(this.options.text.browse || DEFAULT_BROWSE_TEXT);
     this.imagePreview.classList.add('custom-file-container__image-preview--active');
 
-    // Set up our reader
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -265,7 +258,7 @@ export class FileUploadWithPreview {
       // We'll pivot here and go through our cases.
       // The logic we've set is basically as follows:
       // If this is an input that only accepts a single image, then just show
-      // back that single image each time, and their file count is always 1.
+      // back that single image each time and their file count is always 1.
       // If they have `multiple` set on the input, then what we'll do is ADD
       // images to the `cachedImageArray`. We'll show the images in a grid style at all times when
       // `multiple` is set on the input. If the user wants to get rid of all the
@@ -274,9 +267,9 @@ export class FileUploadWithPreview {
       // //////////////////////////////////////////////////
       // First, we'll deal with a single selected image //
       // //////////////////////////////////////////////////
-      if (!this.input.multiple) {
-        // If png, jpg/jpeg, gif, use the actual image
+      if (this.input && !this.input.multiple && this.imagePreview) {
         if (
+          // If png, jpg/jpeg, gif, use the actual image
           file.type.match('image/png') ||
           file.type.match('image/jpeg') ||
           file.type.match('image/gif')
@@ -284,23 +277,25 @@ export class FileUploadWithPreview {
           this.imagePreview.style.backgroundImage = `url("${reader.result}")`;
         } else if (file.type.match('application/pdf')) {
           // PDF Upload
-          this.imagePreview.style.backgroundImage = `url("${this.successPdfImage}")`;
+          this.imagePreview.style.backgroundImage = `url("${this.options.images.successPdfImage}")`;
         } else if (file.type.match('video/*')) {
           // Video upload
-          this.imagePreview.style.backgroundImage = `url("${this.successVideoImage}")`;
+          this.imagePreview.style.backgroundImage = `url("${this.options.images.successVideoImage}")`;
         } else {
           // Everything else
-          this.imagePreview.style.backgroundImage = `url("${this.successFileAltImage}")`;
+          this.imagePreview.style.backgroundImage = `url("${this.options.images.successFileAltImage}")`;
         }
+
+        return;
       }
 
       // ////////////////////////////////////////////////////////
       // The next logic set is for a multiple situation, and  //
       // they want to show multiple images                    //
       // ////////////////////////////////////////////////////////
-      if (this.input.multiple) {
+      if (this.input && this.input.multiple && this.imagePreview) {
         // Set the main panel's background image to the blank one here
-        this.imagePreview.style.backgroundImage = `url("${this.backgroundImage}")`;
+        this.imagePreview.style.backgroundImage = `url("${this.options.images.backgroundImage}")`;
 
         // If png, jpg/jpeg, gif, use the actual image
         if (
@@ -331,7 +326,7 @@ export class FileUploadWithPreview {
                 class="custom-file-container__image-multi-preview"
                 data-upload-token="${file.token}"
                 style="background-image: url('${reader.result}'); "
-              ></div>
+              />
             `;
           }
         } else if (file.type.match('application/pdf')) {
@@ -341,7 +336,7 @@ export class FileUploadWithPreview {
               <div
                 class="custom-file-container__image-multi-preview"
                 data-upload-token="${file.token}"
-                style="background-image: url('${this.successPdfImage}'); "
+                style="background-image: url('${this.options.images.successPdfImage}'); "
               >
                 <span class="custom-file-container__image-multi-preview__single-image-clear">
                   <span
@@ -356,8 +351,8 @@ export class FileUploadWithPreview {
               <div
                 class="custom-file-container__image-multi-preview"
                 data-upload-token="${file.token}"
-                style="background-image: url('${this.successPdfImage}'); "
-              ></div>
+                style="background-image: url('${this.options.images.successPdfImage}'); "
+              />
             `;
           }
         } else if (file.type.match('video/*')) {
@@ -366,7 +361,7 @@ export class FileUploadWithPreview {
             this.imagePreview.innerHTML += `
               <div
                 class="custom-file-container__image-multi-preview"
-                style="background-image: url('${this.successVideoImage}'); "
+                style="background-image: url('${this.options.images.successVideoImage}'); "
                 data-upload-token="${file.token}"
               >
                 <span class="custom-file-container__image-multi-preview__single-image-clear">
@@ -381,9 +376,9 @@ export class FileUploadWithPreview {
             this.imagePreview.innerHTML += `
               <div
                 class="custom-file-container__image-multi-preview"
-                style="background-image: url('${this.successVideoImage}'); "
+                style="background-image: url('${this.options.images.successVideoImage}'); "
                 data-upload-token="${file.token}"
-              ></div>
+              />
             `;
           }
         } else {
@@ -393,7 +388,7 @@ export class FileUploadWithPreview {
             this.imagePreview.innerHTML += `
               <div
                 class="custom-file-container__image-multi-preview"
-                style="background-image: url('${this.successFileAltImage}'); "
+                style="background-image: url('${this.options.images.successFileAltImage}'); "
                 data-upload-token="${file.token}"
               >
                 <span class="custom-file-container__image-multi-preview__single-image-clear">
@@ -408,9 +403,9 @@ export class FileUploadWithPreview {
             this.imagePreview.innerHTML += `
               <div
                 class="custom-file-container__image-multi-preview"
-                style="background-image: url('${this.successFileAltImage}'); "
+                style="background-image: url('${this.options.images.successFileAltImage}'); "
                 data-upload-token="${file.token}"
-              ></div>
+              />
             `;
           }
         }
@@ -421,46 +416,41 @@ export class FileUploadWithPreview {
   // Take an array of image paths, convert them to File objects,
   // and display them in the image preview panel
   // https://stackoverflow.com/questions/25046301/convert-url-to-file-or-blob-for-filereader-readasdataurl
-  addImagesFromPath(files) {
-    return new Promise(async (resolve, reject) => {
-      const presetFiles = [];
+  addImagesFromPath(files: PresetFiles) {
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise<void>(async (resolve, reject) => {
+      const presetFiles: Blob[] | FileList = [];
 
-      // eslint-disable-next-line no-plusplus
-      for (let x = 0; x < files.length; x++) {
-        /* eslint-disable no-await-in-loop */
-
+      files.forEach(async (file) => {
         let response;
-        let blob;
+        let blob: Blob;
         try {
-          // Grab the file using fetch
-          response = await fetch(files[x], { mode: 'cors' });
-
-          // Create a blob of your file
+          response = await fetch(file, { mode: 'cors' });
           blob = await response.blob();
         } catch (error) {
           reject(error);
-          // eslint-disable-next-line no-continue
-          continue;
         }
 
-        /* eslint-enable no-await-in-loop */
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        if (blob) {
+          const presetFile = new Blob([blob], {
+            type: blob.type,
+          });
 
-        // Create blob and added
-        const presetFile = new Blob([blob], {
-          type: blob.type,
-        });
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          presetFile.name = file.split('/').pop();
+          presetFiles.push(presetFile);
+        }
+      });
 
-        presetFile.name = files[x].split('/').pop();
-        presetFiles.push(presetFile);
-      }
-
-      this.addFiles(presetFiles);
+      this.addFiles(presetFiles as unknown as FileList);
       resolve();
     });
   }
 
-  // Take an array of File objects and display them in the image preview panel
-  replaceFiles(files) {
+  replaceFiles(files: FileWithProps[]) {
     if (!files.length) {
       throw new Error('Array must contain at least one file.');
     }
@@ -470,13 +460,13 @@ export class FileUploadWithPreview {
   }
 
   // Take a single File object and index, replace existing file at that index
-  replaceFileAtIndex(file, index) {
+  replaceFileAtIndex(file: FileWithProps, index: number) {
     if (!file) {
       throw new Error('No file found.');
     }
 
     if (!this.cachedFileArray[index]) {
-      throw new Error('There is no file at index', index);
+      throw new Error(`There is no file at index: ${index}`);
     }
 
     this.cachedFileArray[index] = file;
@@ -491,7 +481,6 @@ export class FileUploadWithPreview {
     this.cachedFileArray.splice(index, 1);
     this.refreshPreviewPanel();
 
-    // Send out our deletion event
     const imageDeletedEvent = new CustomEvent('fileUploadWithPreview:imageDeleted', {
       detail: {
         index,
@@ -509,7 +498,7 @@ export class FileUploadWithPreview {
     }
 
     this.currentFileCount = this.cachedFileArray.length;
-    this.cachedFileArray.forEach((file) => this.processFile(file));
+    this.cachedFileArray.forEach((file) => this.renderFile(file));
 
     // If there's no images left after the latest deletion event,
     // then let's reset the panel entirely

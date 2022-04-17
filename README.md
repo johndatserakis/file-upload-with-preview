@@ -38,10 +38,6 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 ### Installation
 
 ```bash
-# npm
-npm i file-upload-with-preview
-
-# yarn
 yarn add file-upload-with-preview
 ```
 
@@ -310,10 +306,10 @@ Clone the repo, then use the following to work on the project locally:
 # Install dependencies
 yarn
 
-# Watch changes
+# Watch changes during local development
 yarn dev
 
-# When done working
+# Build library
 yarn build
 ```
 

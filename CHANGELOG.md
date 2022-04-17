@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 4.3.0
+
+-   Added image click event and updated deps. Thanks @tasinttttttt.
+
 ## 4.1.0
 
 -   Added index on delete event. Updates deps. Thank you @tasinttttttt.

@@ -104,13 +104,13 @@ export default class FileUploadWithPreview {
             // on image click
             if (event.target.matches('.custom-file-container__image-multi-preview')) {
                 // Get its token
-                let fileToken = event.target.querySelector('.custom-file-container__image-multi-preview__single-image-clear__icon').getAttribute('data-upload-token')
+                const fileToken = event.target.querySelector('.custom-file-container__image-multi-preview__single-image-clear__icon').getAttribute('data-upload-token')
 
                 // Get the index of the file
-                let selectedFileIndex = this.cachedFileArray.findIndex(x => x.token === fileToken)
+                const selectedFileIndex = this.cachedFileArray.findIndex(x => x.token === fileToken)
 
                 // Send out our event
-                let imageClickedEvent = new CustomEvent('fileUploadWithPreview:imageClicked', {
+                const imageClickedEvent = new CustomEvent('fileUploadWithPreview:imageClicked', {
                     detail: {
                         index: selectedFileIndex,
                         file: self.cachedFileArray[selectedFileIndex],

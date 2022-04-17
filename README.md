@@ -28,12 +28,12 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 
 ### Features
 
--   Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a _success-image_ in the case of an uploaded .pdf file, uploaded video, or other unrenderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user's selected images will be shown in a grid.
--   Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
--   Allows the user to clear their upload, and clear individual images in the `multiple` grid.
--   Looks great - styling based on Bootstrap 4's [custom file-upload](https://getbootstrap.com/docs/4.0/components/forms/#file-browser) style.
--   Framework agnostic - to access the uploaded file/files just use the `cachedFileArray` (always will be an array) property of your `FileUploadWithPreview` object.
--   For every file-group you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a `multiple` property to allow multiple files on the same input.
+- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a _success-image_ in the case of an uploaded .pdf file, uploaded video, or other unrenderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user's selected images will be shown in a grid.
+- Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
+- Allows the user to clear their upload, and clear individual images in the `multiple` grid.
+- Looks great - styling based on Bootstrap 4's [custom file-upload](https://getbootstrap.com/docs/4.0/components/forms/#file-browser) style.
+- Framework agnostic - to access the uploaded file/files just use the `cachedFileArray` (always will be an array) property of your `FileUploadWithPreview` object.
+- For every file-group you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a `multiple` property to allow multiple files on the same input.
 
 ### Installation
 
@@ -57,20 +57,20 @@ When installed through npm or yarn:
 
 ```javascript
 // using require
-const FileUploadWithPreview = require("file-upload-with-preview");
+const FileUploadWithPreview = require('file-upload-with-preview');
 
 // using import
-import FileUploadWithPreview from "file-upload-with-preview";
+import FileUploadWithPreview from 'file-upload-with-preview';
 
 // initialize a new FileUploadWithPreview object
-const upload = new FileUploadWithPreview("myUniqueUploadId");
+const upload = new FileUploadWithPreview('myUniqueUploadId');
 ```
 
 ...or through the browser:
 
 ```html
 <script>
-    var upload = new FileUploadWithPreview("myUniqueUploadId");
+  var upload = new FileUploadWithPreview('myUniqueUploadId');
 </script>
 ```
 
@@ -78,7 +78,7 @@ You'll also want to include the css:
 
 ```javascript
 // JavaScript
-import "file-upload-with-preview/dist/file-upload-with-preview.min.css";
+import 'file-upload-with-preview/dist/file-upload-with-preview.min.css';
 ```
 
 Or in your `<head></head>` if you're in the browser:
@@ -86,9 +86,9 @@ Or in your `<head></head>` if you're in the browser:
 ```html
 <!-- Browser -->
 <link
-    rel="stylesheet"
-    type="text/css"
-    href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css"
+  rel="stylesheet"
+  type="text/css"
+  href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css"
 />
 ```
 
@@ -96,29 +96,24 @@ The JavaScript looks for a specific set of HTML elements to display the file inp
 
 ```html
 <div class="custom-file-container" data-upload-id="myUniqueUploadId">
-    <label
-        >Upload File
-        <a
-            href="javascript:void(0)"
-            class="custom-file-container__image-clear"
-            title="Clear Image"
-            >&times;</a
-        ></label
-    >
-    <label class="custom-file-container__custom-file">
-        <input
-            type="file"
-            class="custom-file-container__custom-file__custom-file-input"
-            accept="*"
-            multiple
-            aria-label="Choose File"
-        />
-        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-        <span
-            class="custom-file-container__custom-file__custom-file-control"
-        ></span>
-    </label>
-    <div class="custom-file-container__image-preview"></div>
+  <label
+    >Upload File
+    <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"
+      >&times;</a
+    ></label
+  >
+  <label class="custom-file-container__custom-file">
+    <input
+      type="file"
+      class="custom-file-container__custom-file__custom-file-input"
+      accept="*"
+      multiple
+      aria-label="Choose File"
+    />
+    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+    <span class="custom-file-container__custom-file__custom-file-control"></span>
+  </label>
+  <div class="custom-file-container__image-preview"></div>
 </div>
 ```
 
@@ -138,15 +133,15 @@ upload.clearPreviewPanel(); // clear all selected images
 You may also want to capture the event when an image is selected:
 
 ```javascript
-window.addEventListener("fileUploadWithPreview:imagesAdded", function (e) {
-    // e.detail.uploadId
-    // e.detail.cachedFileArray
-    // e.detail.addedFilesCount
-    // Use e.detail.uploadId to match up to your specific input
-    if (e.detail.uploadId === "mySecondImage") {
-        console.log(e.detail.cachedFileArray);
-        console.log(e.detail.addedFilesCount);
-    }
+window.addEventListener('fileUploadWithPreview:imagesAdded', function (e) {
+  // e.detail.uploadId
+  // e.detail.cachedFileArray
+  // e.detail.addedFilesCount
+  // Use e.detail.uploadId to match up to your specific input
+  if (e.detail.uploadId === 'mySecondImage') {
+    console.log(e.detail.cachedFileArray);
+    console.log(e.detail.addedFilesCount);
+  }
 });
 ```
 
@@ -207,69 +202,64 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
 ```html
 <html>
-    <head>
-        ...
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css"
+  <head>
+    ...
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css"
+    />
+
+    <!-- You'll want to make sure to at least set a width on the -->
+    <!-- .custom-file-container class... -->
+    ...
+  </head>
+  <body>
+    ...
+
+    <div class="custom-file-container" data-upload-id="myUniqueUploadId">
+      <label
+        >Upload File
+        <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"
+          >&times;</a
+        ></label
+      >
+
+      <label class="custom-file-container__custom-file">
+        <input
+          type="file"
+          class="custom-file-container__custom-file__custom-file-input"
+          accept="*"
+          multiple
+          aria-label="Choose File"
         />
+        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+        <span class="custom-file-container__custom-file__custom-file-control"></span>
+      </label>
+      <div class="custom-file-container__image-preview"></div>
+    </div>
 
-        <!-- You'll want to make sure to at least set a width on the -->
-        <!-- .custom-file-container class... -->
-        ...
-    </head>
-    <body>
-        ...
+    ...
 
-        <div class="custom-file-container" data-upload-id="myUniqueUploadId">
-            <label
-                >Upload File
-                <a
-                    href="javascript:void(0)"
-                    class="custom-file-container__image-clear"
-                    title="Clear Image"
-                    >&times;</a
-                ></label
-            >
+    <script src="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js"></script>
 
-            <label class="custom-file-container__custom-file">
-                <input
-                    type="file"
-                    class="custom-file-container__custom-file__custom-file-input"
-                    accept="*"
-                    multiple
-                    aria-label="Choose File"
-                />
-                <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                <span
-                    class="custom-file-container__custom-file__custom-file-control"
-                ></span>
-            </label>
-            <div class="custom-file-container__image-preview"></div>
-        </div>
-
-        ...
-
-        <script src="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js"></script>
-
-        <script>
-            var upload = new FileUploadWithPreview("myUniqueUploadId", {
-                showDeleteButtonOnImages: true,
-                text: {
-                    chooseFile: "Custom Placeholder Copy",
-                    browse: "Custom Button Copy",
-                    selectedCount: "Custom Files Selected Copy",
-                },
-                images: {
-                    baseImage: importedBaseImage,
-                },
-                presetFiles: [
-                    "https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
-                ],
-            });
-        </script>
-    </body>
+    <script>
+      var upload = new FileUploadWithPreview('myUniqueUploadId', {
+        showDeleteButtonOnImages: true,
+        text: {
+          chooseFile: 'Custom Placeholder Copy',
+          browse: 'Custom Button Copy',
+          selectedCount: 'Custom Files Selected Copy',
+        },
+        images: {
+          baseImage: importedBaseImage,
+        },
+        presetFiles: [
+          'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+        ],
+      });
+    </script>
+  </body>
 </html>
 ```
 
@@ -277,10 +267,10 @@ In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accep
 
 ```html
 <input
-    type="file"
-    class="custom-file-container__custom-file__custom-file-input"
-    accept="application/pdf,image/*"
-    aria-label="Choose File"
+  type="file"
+  class="custom-file-container__custom-file__custom-file-input"
+  accept="application/pdf,image/*"
+  aria-label="Choose File"
 />
 <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
 ```
@@ -321,7 +311,7 @@ Clone the repo, then use the following to work on the project locally:
 yarn
 
 # Watch changes
-yarn start
+yarn dev
 
 # When done working
 yarn build

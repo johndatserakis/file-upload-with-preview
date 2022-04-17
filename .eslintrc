@@ -3,10 +3,11 @@
   "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
+    "jest": true,
     "node": true
   },
   "extends": [
-    "airbnb-base",
+    "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"

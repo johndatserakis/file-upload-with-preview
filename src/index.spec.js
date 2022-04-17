@@ -1,4 +1,4 @@
-import FileUploadWithPreview from '../src/index.ts';
+import { FileUploadWithPreview } from './index.ts';
 
 describe('Module Actions', () => {
   beforeAll(() => {

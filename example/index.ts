@@ -1,15 +1,18 @@
-import './main.scss';
-import FileUploadWithPreview from '../src/index.ts';
+import './index.scss';
 import '../src/index.scss';
 
-const importedBaseImage = require('./custom-image.svg');
+import { FileUploadWithPreview } from '../src/index';
+import importedBaseImage from './custom-image.svg';
 
 // First upload
 const firstUpload = new FileUploadWithPreview('myFirstImage');
 const firstUploadInfoButton = document.querySelector('.upload-info-button--first');
-firstUploadInfoButton.addEventListener('click', () => {
-  console.log('First upload:', firstUpload, firstUpload.cachedFileArray);
-});
+
+if (firstUploadInfoButton) {
+  firstUploadInfoButton.addEventListener('click', () => {
+    console.log('First upload:', firstUpload, firstUpload.cachedFileArray);
+  });
+}
 
 // Second upload
 const secondUpload = new FileUploadWithPreview('mySecondImage', {
@@ -28,38 +31,46 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
   ],
 });
 const secondUploadInfoButton = document.querySelector('.upload-info-button--second');
-secondUploadInfoButton.addEventListener('click', () => {
-  console.log('Second upload:', secondUpload, secondUpload.cachedFileArray);
-});
+
+if (secondUploadInfoButton) {
+  secondUploadInfoButton.addEventListener('click', () => {
+    console.log('Second upload:', secondUpload, secondUpload.cachedFileArray);
+  });
+}
 
 window.addEventListener('fileUploadWithPreview:imagesAdded', (e) => {
+  console.log('here');
+  console.log('e', e);
+
+  // const target = e.target as HTMLInputElement;
+
   // e.detail.uploadId
   // e.detail.cachedFileArray
   // e.detail.selectedFilesCount
   // Use `e.detail.uploadId` to match up to your specific input
-  if (e.detail.uploadId === 'myFirstImage') {
-    console.log(e.detail.addedFilesCount);
-    console.log(e.detail.cachedFileArray);
-  }
+  // if (e.detail.uploadId === 'myFirstImage') {
+  //   console.log(e.detail.addedFilesCount);
+  //   console.log(e.detail.cachedFileArray);
+  // }
 
-  if (e.detail.uploadId === 'mySecondImage') {
-    console.log(e.detail.addedFilesCount);
-    console.log(e.detail.cachedFileArray);
-  }
+  // if (e.detail.uploadId === 'mySecondImage') {
+  //   console.log(e.detail.addedFilesCount);
+  //   console.log(e.detail.cachedFileArray);
+  // }
 });
 
 // Image deleted event listener
 window.addEventListener('fileUploadWithPreview:imageDeleted', (e) => {
-  if (e.detail.uploadId === 'mySecondImage') {
-    console.log(e.detail.currentFileCount);
-    console.log(e.detail.cachedFileArray);
-  }
+  // if (e.detail.uploadId === 'mySecondImage') {
+  //   console.log(e.detail.currentFileCount);
+  //   console.log(e.detail.cachedFileArray);
+  // }
 });
 
 // Clear button event listener
 window.addEventListener('fileUploadWithPreview:clearButtonClicked', (e) => {
-  if (e.detail.uploadId === 'mySecondImage') {
-    console.log('clearButtonClicked');
-    console.log(e.detail.uploadId);
-  }
+  // if (e.detail.uploadId === 'mySecondImage') {
+  //   console.log('clearButtonClicked');
+  //   console.log(e.detail.uploadId);
+  // }
 });

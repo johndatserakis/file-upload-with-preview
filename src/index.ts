@@ -1,15 +1,16 @@
+import './polyfill';
+import './index.scss';
+
 import {
+  DEFAULT_BACKGROUND_IMAGE,
   DEFAULT_BASE_IMAGE,
+  DEFAULT_SUCCESS_FILE_ALT_IMAGE,
   DEFAULT_SUCCESS_PDF_IMAGE,
   DEFAULT_SUCCESS_VIDEO_IMAGE,
-  DEFAULT_SUCCESS_FILE_ALT_IMAGE,
-  DEFAULT_BACKGROUND_IMAGE,
 } from './constants/images';
-import './polyfill'; // Fixes matching issue in older ie versions
-import './index.scss';
 import {
-  DEFAULT_CHOOSE_FILE_TEXT,
   DEFAULT_BROWSE_TEXT,
+  DEFAULT_CHOOSE_FILE_TEXT,
   DEFAULT_FILES_SELECTED_TEXT,
 } from './constants/text';
 
@@ -134,7 +135,7 @@ export class FileUploadWithPreview {
         'change',
         (e) => {
           const target = e.target as HTMLInputElement;
-          const files = target.files;
+          const { files } = target;
           this.addFiles(files);
         },
         true,

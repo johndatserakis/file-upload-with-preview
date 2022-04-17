@@ -15,8 +15,10 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES6"
+    "target": "ES6",
+    "types": ["vite/client"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "docs"]
+  "exclude": ["node_modules", "dist", "docs"],
+  "files": ["example/index.ts"]
 }

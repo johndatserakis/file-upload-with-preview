@@ -14,6 +14,7 @@
   ],
   "plugins": ["@typescript-eslint", "simple-import-sort", "prettier"],
   "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "no-console": "off",

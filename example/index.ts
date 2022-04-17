@@ -60,7 +60,7 @@ window.addEventListener('fileUploadWithPreview:imagesAdded', (e) => {
 });
 
 // Image deleted event listener
-window.addEventListener('fileUploadWithPreview:imageDeleted', (e) => {
+window.addEventListener('fileUploadWithPreview:imageDeleted', () => {
   // if (e.detail.uploadId === 'mySecondImage') {
   //   console.log(e.detail.currentFileCount);
   //   console.log(e.detail.cachedFileArray);
@@ -68,7 +68,7 @@ window.addEventListener('fileUploadWithPreview:imageDeleted', (e) => {
 });
 
 // Clear button event listener
-window.addEventListener('fileUploadWithPreview:clearButtonClicked', (e) => {
+window.addEventListener('fileUploadWithPreview:clearButtonClicked', () => {
   // if (e.detail.uploadId === 'mySecondImage') {
   //   console.log('clearButtonClicked');
   //   console.log(e.detail.uploadId);

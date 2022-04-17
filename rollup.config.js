@@ -10,7 +10,7 @@ const name = 'FileUploadWithPreview';
 
 export default {
   external: [],
-  input: './src/index.js',
+  input: './src/index.ts',
   output: [
     {
       file: pkg.main,
@@ -32,11 +32,10 @@ export default {
     resolve({ extensions }),
     commonjs(),
     babel({
-      babelHelpers: 'bundled',
+      babelHelpers: 'runtime',
       exclude: 'node_modules/**',
       extensions,
       include: ['src/**/*'],
-      runtimeHelpers: true,
     }),
   ],
 };

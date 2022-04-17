@@ -53,11 +53,11 @@ export class FileUploadWithPreview {
     images: {},
     presetFiles: [],
   };
-  el: Element | null;
-  input: HTMLInputElement | null;
-  inputLabel: Element | null;
-  imagePreview: HTMLDivElement | null;
-  clearButton: Element | null;
+  el: Element;
+  input: HTMLInputElement;
+  inputLabel: Element;
+  imagePreview: HTMLDivElement;
+  clearButton: Element;
 
   constructor(uploadId: string, options: Options = { text: {}, images: {} }) {
     if (!uploadId) {
@@ -89,99 +89,94 @@ export class FileUploadWithPreview {
     this.options.text.chooseFile = chooseFile ?? DEFAULT_CHOOSE_FILE_TEXT;
     this.options.text.browse = browse ?? DEFAULT_BROWSE_TEXT;
     this.options.text.selectedCount = selectedCount ?? DEFAULT_FILES_SELECTED_TEXT;
-    this.addBrowseButton(this.options.text.browse);
 
     // Elements
-    this.el = document.querySelector(`.custom-file-container[data-upload-id="${this.uploadId}"]`);
-    if (!this.el) {
+    const el = document.querySelector(`.custom-file-container[data-upload-id="${this.uploadId}"]`);
+
+    if (!el) {
       throw new Error(`Could not find a 'custom-file-container' with the id of: ${this.uploadId}`);
     }
-    this.input = this.el.querySelector('input[type="file"]');
-    this.inputLabel = this.el.querySelector(
+
+    this.el = el;
+
+    const input = this.el.querySelector('input[type="file"]');
+    const inputLabel = this.el.querySelector(
       '.custom-file-container__custom-file__custom-file-control',
     );
-    this.imagePreview = this.el.querySelector('.custom-file-container__image-preview');
-    this.clearButton = this.el.querySelector('.custom-file-container__image-clear');
-    if (this.inputLabel) {
+    const imagePreview = this.el.querySelector('.custom-file-container__image-preview');
+    const clearButton = this.el.querySelector('.custom-file-container__image-clear');
+
+    if (input && inputLabel && imagePreview && clearButton) {
+      console.log('input', input);
+      this.input = input as HTMLInputElement;
+      this.inputLabel = inputLabel;
       this.inputLabel.innerHTML = this.options.text.chooseFile;
-    }
-    const requiredElementsMissing =
-      !this.el || !this.input || !this.inputLabel || !this.imagePreview || !this.clearButton;
-    if (requiredElementsMissing) {
+      this.imagePreview = imagePreview as HTMLDivElement;
+      this.clearButton = clearButton;
+    } else {
       throw new Error(
         `Cannot find all necessary elements. Please make sure you have all the necessary elements in your html for the id: ${this.uploadId}`,
       );
     }
 
+    this.addBrowseButton(this.options.text.browse);
+
     // Images
     const { backgroundImage, baseImage, successFileAltImage, successPdfImage, successVideoImage } =
       images;
-    this.options.images = this.options.hasOwnProperty('images') ? this.options.images : {};
     this.options.images.baseImage = baseImage ?? DEFAULT_BASE_IMAGE;
     this.options.images.successPdfImage = successPdfImage ?? DEFAULT_SUCCESS_PDF_IMAGE;
     this.options.images.successVideoImage = successVideoImage ?? DEFAULT_SUCCESS_VIDEO_IMAGE;
     this.options.images.successFileAltImage = successFileAltImage ?? DEFAULT_SUCCESS_FILE_ALT_IMAGE;
     this.options.images.backgroundImage = backgroundImage ?? DEFAULT_BACKGROUND_IMAGE;
+    this.imagePreview.style.backgroundImage = `url("${this.options.images.baseImage}")`;
 
-    if (this.imagePreview) {
-      this.imagePreview.style.backgroundImage = `url("${this.options.images.baseImage}")`;
-    }
-
-    // Set click events
     this.bindClickEvents();
   }
 
   bindClickEvents() {
-    if (this.input) {
-      this.input.addEventListener(
-        'change',
-        (e) => {
-          const target = e.target as HTMLInputElement;
-          const { files } = target;
-          if (files == null) return;
+    this.input.addEventListener(
+      'change',
+      (e) => {
+        const target = e.target as HTMLInputElement;
+        const { files } = target;
+        if (files == null) return;
 
-          this.addFiles(files);
-        },
-        true,
-      );
-    }
+        this.addFiles(files);
+      },
+      true,
+    );
 
-    if (this.clearButton) {
-      this.clearButton.addEventListener(
-        'click',
-        (e) => {
-          const clearButtonClickedEvent = new CustomEvent(
-            'fileUploadWithPreview:clearButtonClicked',
-            {
-              detail: {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                uploadId: e.target.uploadId,
-              },
+    this.clearButton.addEventListener(
+      'click',
+      (e) => {
+        const clearButtonClickedEvent = new CustomEvent(
+          'fileUploadWithPreview:clearButtonClicked',
+          {
+            detail: {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              uploadId: e.target.uploadId,
             },
-          );
-          window.dispatchEvent(clearButtonClickedEvent);
-          this.clearPreviewPanel();
-        },
-        true,
-      );
-    }
+          },
+        );
+        window.dispatchEvent(clearButtonClickedEvent);
+        this.clearPreviewPanel();
+      },
+      true,
+    );
 
-    if (this.imagePreview) {
-      this.imagePreview.addEventListener('click', (e) => {
-        const target = e.target as HTMLDivElement;
+    this.imagePreview.addEventListener('click', (e) => {
+      const target = e.target as HTMLDivElement;
 
-        if (!target) return;
+      if (!target) return;
 
-        if (
-          target.matches('.custom-file-container__image-multi-preview__single-image-clear__icon')
-        ) {
-          const fileToken = target.getAttribute('data-upload-token');
-          const selectedFileIndex = this.cachedFileArray.findIndex((x) => x.token === fileToken);
-          this.deleteFileAtIndex(selectedFileIndex);
-        }
-      });
-    }
+      if (target.matches('.custom-file-container__image-multi-preview__single-image-clear__icon')) {
+        const fileToken = target.getAttribute('data-upload-token');
+        const selectedFileIndex = this.cachedFileArray.findIndex((x) => x.token === fileToken);
+        this.deleteFileAtIndex(selectedFileIndex);
+      }
+    });
   }
 
   // Populate the cachedFileArray with images as File objects
@@ -237,8 +232,6 @@ export class FileUploadWithPreview {
 
   // Take a single File object and append it to the image preview panel
   renderFile(file: FileWithProps) {
-    if (!this.inputLabel || !this.imagePreview) return;
-
     if (this.currentFileCount === 0) {
       this.inputLabel.innerHTML = this.options.text.chooseFile || DEFAULT_CHOOSE_FILE_TEXT;
     } else if (this.currentFileCount === 1) {
@@ -267,7 +260,7 @@ export class FileUploadWithPreview {
       // //////////////////////////////////////////////////
       // First, we'll deal with a single selected image //
       // //////////////////////////////////////////////////
-      if (this.input && !this.input.multiple && this.imagePreview) {
+      if (!this.input.multiple) {
         if (
           // If png, jpg/jpeg, gif, use the actual image
           file.type.match('image/png') ||
@@ -293,7 +286,7 @@ export class FileUploadWithPreview {
       // The next logic set is for a multiple situation, and  //
       // they want to show multiple images                    //
       // ////////////////////////////////////////////////////////
-      if (this.input && this.input.multiple && this.imagePreview) {
+      if (this.input.multiple) {
         // Set the main panel's background image to the blank one here
         this.imagePreview.style.backgroundImage = `url("${this.options.images.backgroundImage}")`;
 
@@ -493,10 +486,7 @@ export class FileUploadWithPreview {
   }
 
   refreshPreviewPanel() {
-    if (this.imagePreview) {
-      this.imagePreview.innerHTML = '';
-    }
-
+    this.imagePreview.innerHTML = '';
     this.currentFileCount = this.cachedFileArray.length;
     this.cachedFileArray.forEach((file) => this.renderFile(file));
 
@@ -508,34 +498,20 @@ export class FileUploadWithPreview {
   }
 
   addBrowseButton(text: string) {
-    if (!this.inputLabel) return;
-
     this.inputLabel.innerHTML += `<span class="custom-file-container__custom-file__custom-file-control__button">${text}</span>`;
   }
 
   emulateInputSelection() {
-    if (!this.input) return;
-
     this.input.click();
   }
 
   clearPreviewPanel() {
     this.addBrowseButton(this.options.text.browse || DEFAULT_CHOOSE_FILE_TEXT);
-
-    if (this.input) {
-      this.input.value = '';
-    }
-
-    if (this.inputLabel) {
-      this.inputLabel.innerHTML = DEFAULT_CHOOSE_FILE_TEXT;
-    }
-
-    if (this.imagePreview) {
-      this.imagePreview.style.backgroundImage = `url("${this.options.images.baseImage}")`;
-      this.imagePreview.classList.remove('custom-file-container__image-preview--active');
-      this.imagePreview.innerHTML = '';
-    }
-
+    this.input.value = '';
+    this.inputLabel.innerHTML = DEFAULT_CHOOSE_FILE_TEXT;
+    this.imagePreview.style.backgroundImage = `url("${this.options.images.baseImage}")`;
+    this.imagePreview.classList.remove('custom-file-container__image-preview--active');
+    this.imagePreview.innerHTML = '';
     this.cachedFileArray = [];
     this.currentFileCount = 0;
   }

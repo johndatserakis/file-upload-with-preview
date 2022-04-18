@@ -1,6 +1,7 @@
 import './polyfill';
 import './index.scss';
 
+import { DEFAULT_LABEL_TEXT } from './constants/elements';
 import {
   DEFAULT_BACKGROUND_IMAGE,
   DEFAULT_BASE_IMAGE,
@@ -31,11 +32,14 @@ interface Images {
 type PresetFiles = string[];
 
 interface Options {
-  showDeleteButtonOnImages?: boolean;
-  text: Text;
+  accept?: HTMLInputElement['accept'];
+  images?: Images;
+  label?: string;
   maxFileCount?: number;
-  images: Images;
+  multiple?: boolean;
   presetFiles?: PresetFiles;
+  showDeleteButtonOnImages?: boolean;
+  text?: Text;
 }
 
 type FileWithProps = File & {
@@ -46,12 +50,16 @@ export class FileUploadWithPreview {
   uploadId: string;
   cachedFileArray: FileWithProps[];
   currentFileCount: number;
+  // TODO: Try to remove duplicate initializers in constructor
   options: Required<Options> = {
+    accept: '*',
+    images: {},
+    label: DEFAULT_LABEL_TEXT,
+    maxFileCount: 0,
+    multiple: false,
+    presetFiles: [],
     showDeleteButtonOnImages: true,
     text: {},
-    maxFileCount: 0,
-    images: {},
-    presetFiles: [],
   };
   el: Element;
   input: HTMLInputElement;
@@ -59,22 +67,23 @@ export class FileUploadWithPreview {
   imagePreview: HTMLDivElement;
   clearButton: Element;
 
-  constructor(uploadId: string, options: Options = { text: {}, images: {} }) {
+  constructor(uploadId: string, options: Options = {}) {
     if (!uploadId) {
       throw new Error(
         'No uploadId found. You must initialize file-upload-with-preview with a unique uploadId.',
       );
     }
-
     this.uploadId = uploadId;
-
-    // Base options
-    const { images, maxFileCount, presetFiles, showDeleteButtonOnImages, text } = options;
-    this.options.showDeleteButtonOnImages = showDeleteButtonOnImages ?? true;
-    this.options.maxFileCount = maxFileCount ?? 0;
     this.cachedFileArray = [];
     this.currentFileCount = 0;
+
+    // Base options
+    const { label, maxFileCount, multiple, presetFiles, showDeleteButtonOnImages } = options;
+    this.options.showDeleteButtonOnImages = showDeleteButtonOnImages ?? true;
+    this.options.maxFileCount = maxFileCount ?? 0;
     this.options.presetFiles = presetFiles ?? [];
+    this.options.multiple = multiple ?? false;
+    this.options.label = label ?? DEFAULT_LABEL_TEXT;
 
     if (this.options.presetFiles) {
       // Using thenable promises because we're in the constructor
@@ -85,7 +94,7 @@ export class FileUploadWithPreview {
     }
 
     // Text options
-    const { browse, chooseFile, selectedCount } = text;
+    const { browse, chooseFile, selectedCount } = options.text || {};
     this.options.text.chooseFile = chooseFile ?? DEFAULT_CHOOSE_FILE_TEXT;
     this.options.text.browse = browse ?? DEFAULT_BROWSE_TEXT;
     this.options.text.selectedCount = selectedCount ?? DEFAULT_FILES_SELECTED_TEXT;
@@ -99,6 +108,31 @@ export class FileUploadWithPreview {
 
     this.el = el;
 
+    this.el.innerHTML += `
+      <label>
+        ${this.options.label}
+        <a
+          href="javascript:void(0)"
+          class="custom-file-container__image-clear"
+          title="Clear Image"
+        >
+          &times;
+        </a>
+      </label>
+      <label class="custom-file-container__custom-file">
+        <input
+          accept="${this.options.accept ? this.options.accept : '*'}"
+          aria-label="Choose File"
+          class="custom-file-container__custom-file__custom-file-input"
+          id="file-upload-with-preview-${uploadId}"
+          ${this.options.multiple ? 'multiple' : ''}
+          type="file"
+        />
+        <span class="custom-file-container__custom-file__custom-file-control"></span>
+      </label>
+      <div class="custom-file-container__image-preview"></div>
+    `;
+
     const input = this.el.querySelector('input[type="file"]');
     const inputLabel = this.el.querySelector(
       '.custom-file-container__custom-file__custom-file-control',
@@ -106,24 +140,22 @@ export class FileUploadWithPreview {
     const imagePreview = this.el.querySelector('.custom-file-container__image-preview');
     const clearButton = this.el.querySelector('.custom-file-container__image-clear');
 
-    if (input && inputLabel && imagePreview && clearButton) {
-      console.log('input', input);
+    const requiredElementsFound = input && inputLabel && imagePreview && clearButton;
+    if (requiredElementsFound) {
       this.input = input as HTMLInputElement;
       this.inputLabel = inputLabel;
       this.inputLabel.innerHTML = this.options.text.chooseFile;
       this.imagePreview = imagePreview as HTMLDivElement;
       this.clearButton = clearButton;
     } else {
-      throw new Error(
-        `Cannot find all necessary elements. Please make sure you have all the necessary elements in your html for the id: ${this.uploadId}`,
-      );
+      throw new Error(`Cannot find all necessary elements for the id: ${this.uploadId}`);
     }
 
     this.addBrowseButton(this.options.text.browse);
 
     // Images
     const { backgroundImage, baseImage, successFileAltImage, successPdfImage, successVideoImage } =
-      images;
+      options.images || {};
     this.options.images.baseImage = baseImage ?? DEFAULT_BASE_IMAGE;
     this.options.images.successPdfImage = successPdfImage ?? DEFAULT_SUCCESS_PDF_IMAGE;
     this.options.images.successVideoImage = successVideoImage ?? DEFAULT_SUCCESS_VIDEO_IMAGE;
@@ -179,11 +211,7 @@ export class FileUploadWithPreview {
     });
   }
 
-  // Populate the cachedFileArray with images as File objects
   addFiles(files: FileList) {
-    // // Grab the current instance
-    // const self = this;
-
     // In this case, the user most likely had hit cancel - which does something
     // a little strange if they had already selected a single or multiple images -
     // it acts like they now have *no* files - which isn't true. We'll just check here
@@ -452,7 +480,6 @@ export class FileUploadWithPreview {
     this.refreshPreviewPanel();
   }
 
-  // Take a single File object and index, replace existing file at that index
   replaceFileAtIndex(file: FileWithProps, index: number) {
     if (!file) {
       throw new Error('No file found.');
@@ -498,7 +525,9 @@ export class FileUploadWithPreview {
   }
 
   addBrowseButton(text: string) {
-    this.inputLabel.innerHTML += `<span class="custom-file-container__custom-file__custom-file-control__button">${text}</span>`;
+    this.inputLabel.innerHTML += `
+      <span class="custom-file-container__custom-file__custom-file-control__button">${text}</span>
+    `;
   }
 
   emulateInputSelection() {

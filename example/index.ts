@@ -16,13 +16,14 @@ if (firstUploadInfoButton) {
 
 // Second upload
 const secondUpload = new FileUploadWithPreview('mySecondImage', {
-  showDeleteButtonOnImages: true,
   text: {
     chooseFile: 'Custom Placeholder Copy',
     browse: 'Custom Button Copy',
     selectedCount: 'Custom Files Selected Copy',
   },
+  label: 'My Custom Label Text',
   maxFileCount: 5,
+  multiple: true,
   images: {
     baseImage: importedBaseImage,
   },

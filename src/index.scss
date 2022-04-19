@@ -9,7 +9,7 @@ $black: #333;
   position: relative;
   display: block;
 
-  &__custom-file {
+  .custom-file {
     box-sizing: border-box;
     position: relative;
     display: inline-block;
@@ -21,59 +21,59 @@ $black: #333;
     &:hover {
       cursor: pointer;
     }
+  }
 
-    &__custom-file-input {
-      box-sizing: border-box;
-      min-width: 14rem;
-      max-width: 100%;
-      height: calc(2.25rem + 2px);
-      margin: 0;
-      opacity: 0;
+  .custom-file-input {
+    box-sizing: border-box;
+    min-width: 14rem;
+    max-width: 100%;
+    height: calc(2.25rem + 2px);
+    margin: 0;
+    opacity: 0;
 
-      // on input focus, applies focus style to the styled input span
-      &:focus ~ span {
-        outline: 1px dotted #212121;
-        outline: 5px auto -webkit-focus-ring-color;
-      }
-    }
-
-    &__custom-file-control {
-      box-sizing: border-box;
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 5;
-      height: calc(2.25rem + 2px);
-      padding: 0.5rem 0.75rem;
-      overflow: hidden;
-      line-height: 1.5;
-      color: $font-color;
-      user-select: none;
-      background-color: $white;
-      background-clip: padding-box;
-      border: 1px solid $border-color;
-      border-radius: 0.25rem;
-
-      &__button {
-        box-sizing: border-box;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 6;
-        display: block;
-        height: calc(2.25rem + 2px);
-        padding: 0.5rem 0.75rem;
-        line-height: 1.25;
-        color: $font-color;
-        background-color: $grey;
-        border-left: 1px solid $border-color;
-        box-sizing: border-box;
-      }
+    // on input focus, applies focus style to the styled input span
+    &:focus ~ span {
+      outline: 1px dotted #212121;
+      outline: 5px auto -webkit-focus-ring-color;
     }
   }
 
-  &__image-preview {
+  .custom-file-control {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    height: calc(2.25rem + 2px);
+    padding: 0.5rem 0.75rem;
+    overflow: hidden;
+    line-height: 1.5;
+    color: $font-color;
+    user-select: none;
+    background-color: $white;
+    background-clip: padding-box;
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
+  }
+
+  .custom-file-control-button {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 6;
+    display: block;
+    height: calc(2.25rem + 2px);
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
+    color: $font-color;
+    background-color: $grey;
+    border-left: 1px solid $border-color;
+    box-sizing: border-box;
+  }
+
+  .image-preview {
     box-sizing: border-box;
     transition: all 0.2s ease;
     margin-top: 20px;
@@ -88,7 +88,7 @@ $black: #333;
     overflow: scroll;
   }
 
-  &__image-multi-preview {
+  .image-multi-preview {
     position: relative;
     box-sizing: border-box;
     transition: all 0.2s ease;
@@ -101,28 +101,28 @@ $black: #333;
     width: 29.615861214%;
     height: 90px;
     box-shadow: 0 4px 10px 0 rgba($black, 0.25);
+  }
 
-    &__single-image-clear {
-      left: -6px;
-      background: $grey;
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      text-align: center;
-      margin-top: -6px;
-      box-shadow: 0 4px 10px 0 rgba($black, 0.25);
+  .single-image-clear {
+    left: -6px;
+    background: $grey;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    margin-top: -6px;
+    box-shadow: 0 4px 10px 0 rgba($black, 0.25);
 
-      &:hover {
-        background: darken($grey, 15%);
-        cursor: pointer;
-      }
-
-      &__icon {
-        color: darken($grey, 55%);
-        display: block;
-        margin-top: -2px;
-      }
+    &:hover {
+      background: darken($grey, 15%);
+      cursor: pointer;
     }
+  }
+
+  .single-image-clear-icon {
+    color: darken($grey, 55%);
+    display: block;
+    margin-top: -2px;
   }
 }

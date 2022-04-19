@@ -21,6 +21,7 @@
     "no-prototype-builtins": "off",
     "prettier/prettier": 2,
     "simple-import-sort/exports": "error",
-    "simple-import-sort/imports": "error"
+    "simple-import-sort/imports": "error",
+    "sort-keys": ["error", "asc", { "caseSensitive": true, "natural": false, "minKeys": 2 }]
   }
 }

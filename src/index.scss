@@ -95,7 +95,7 @@ $box-shadow: 0 4px 10px 0 rgba($black, 0.25);
   }
 
   .image-preview {
-    background-color: $white;
+    background-color: $grey;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -117,8 +117,12 @@ $box-shadow: 0 4px 10px 0 rgba($black, 0.25);
     height: 90px;
     margin: 1.858736059%;
     position: relative;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease-in-out, opacity 0.2s ease-in-out;
     width: 29.615861214%;
+
+    &.multi-item-clear-animation {
+      opacity: 0;
+    }
   }
 
   .image-preview-item-clear {
@@ -130,7 +134,7 @@ $box-shadow: 0 4px 10px 0 rgba($black, 0.25);
     margin-top: -6px;
     position: absolute;
     text-align: center;
-    transition: background, color 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
     width: 20px;
 
     &:hover {

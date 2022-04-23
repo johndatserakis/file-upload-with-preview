@@ -8,6 +8,7 @@ import {
   DEFAULT_SUCCESS_PDF_IMAGE,
   DEFAULT_SUCCESS_VIDEO_IMAGE,
 } from './constants/images';
+import { MULTI_ITEM_CLEAR_ANIMATION_CLASS } from './constants/style';
 import {
   DEFAULT_BROWSE_TEXT,
   DEFAULT_CHOOSE_FILE_TEXT,
@@ -414,13 +415,22 @@ export class FileUploadWithPreview {
   }
 
   refreshPreviewPanel() {
-    this.imagePreview.innerHTML = '';
-    this.cachedFileArray.forEach((file) => this.addFileToPreviewPanel(file));
+    const timeoutWait = 200; // Match the opacity animation on the MULTI_ITEM_CLEAR_ANIMATION_CLASS
+    const imagePreviewItems = this.imagePreview.querySelectorAll('.image-preview-item');
+    const imagePreviewItemsArray = Array.from(imagePreviewItems);
+    imagePreviewItemsArray.forEach((item) => item.classList.add(MULTI_ITEM_CLEAR_ANIMATION_CLASS));
 
-    // Reset the panel if there are no files
-    if (!this.cachedFileArray.length) {
-      this.resetPreviewPanel();
-    }
+    setTimeout(() => {
+      this.imagePreview.innerHTML = '';
+
+      // Reset the panel if there are no files
+      if (!this.cachedFileArray.length) {
+        this.resetPreviewPanel();
+        return;
+      }
+
+      this.cachedFileArray.forEach((file) => this.addFileToPreviewPanel(file));
+    }, timeoutWait);
   }
 
   addBrowseButton(text: string) {

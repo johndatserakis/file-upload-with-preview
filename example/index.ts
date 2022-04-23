@@ -1,7 +1,14 @@
 import './index.scss';
 import '../src/index.scss';
 
-import { FileUploadWithPreview } from '../src/index';
+import {
+  ClearButtonClickedEvent,
+  Events,
+  FileUploadWithPreview,
+  ImageAddedEvent,
+  ImageDeletedEvent,
+  ImageMultiItemClickedEvent,
+} from '../src/index';
 import importedBaseImage from './custom-image.svg';
 
 const firstUpload = new FileUploadWithPreview('myFirstImage');
@@ -37,39 +44,26 @@ if (secondUploadInfoButton) {
   });
 }
 
-window.addEventListener('fileUploadWithPreview:imagesAdded', (e) => {
-  console.log('here');
-  console.log('e', e);
+window.addEventListener(Events.IMAGE_ADDED, (e: Event) => {
+  const { detail } = e as unknown as ImageAddedEvent;
 
-  // const target = e.target as HTMLInputElement;
-
-  // e.detail.uploadId
-  // e.detail.cachedFileArray
-  // e.detail.selectedFilesCount
-  // Use `e.detail.uploadId` to match up to your specific input
-  // if (e.detail.uploadId === 'myFirstImage') {
-  //   console.log(e.detail.addedFilesCount);
-  //   console.log(e.detail.cachedFileArray);
-  // }
-
-  // if (e.detail.uploadId === 'mySecondImage') {
-  //   console.log(e.detail.addedFilesCount);
-  //   console.log(e.detail.cachedFileArray);
-  // }
+  console.log('detail', detail);
 });
 
-// Image deleted event listener
-window.addEventListener('fileUploadWithPreview:imageDeleted', () => {
-  // if (e.detail.uploadId === 'mySecondImage') {
-  //   console.log(e.detail.currentFileCount);
-  //   console.log(e.detail.cachedFileArray);
-  // }
+window.addEventListener(Events.IMAGE_DELETED, (e: Event) => {
+  const { detail } = e as unknown as ImageDeletedEvent;
+
+  console.log('detail', detail);
 });
 
-// Clear button event listener
-window.addEventListener('fileUploadWithPreview:clearButtonClicked', () => {
-  // if (e.detail.uploadId === 'mySecondImage') {
-  //   console.log('clearButtonClicked');
-  //   console.log(e.detail.uploadId);
-  // }
+window.addEventListener(Events.CLEAR_BUTTON_CLICKED, (e: Event) => {
+  const { detail } = e as unknown as ClearButtonClickedEvent;
+
+  console.log('detail', detail);
+});
+
+window.addEventListener(Events.IMAGE_MULTI_ITEM_CLICKED, (e: Event) => {
+  const { detail } = e as unknown as ImageMultiItemClickedEvent;
+
+  console.log('detail', detail);
 });

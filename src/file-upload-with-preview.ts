@@ -136,7 +136,7 @@ export class FileUploadWithPreview {
       <div class="image-preview"></div>
     `;
 
-    const inputHidden = this.el.querySelector('.custom-file-container input[type="file"]');
+    const inputHidden = this.el.querySelector('.custom-file-container .input-hidden');
     const inputVisible = this.el.querySelector('.custom-file-container .input-visible');
     const imagePreview = this.el.querySelector('.custom-file-container .image-preview');
     const clearButton = this.el.querySelector('.custom-file-container .clear-button');
@@ -420,6 +420,7 @@ export class FileUploadWithPreview {
     const imagePreviewItemsArray = Array.from(imagePreviewItems);
     imagePreviewItemsArray.forEach((item) => item.classList.add(MULTI_ITEM_CLEAR_ANIMATION_CLASS));
 
+    // Use the setTimeout to process images after the MULTI_ITEM_CLEAR_ANIMATION_CLASS is done
     setTimeout(() => {
       this.imagePreview.innerHTML = '';
 

@@ -1,8 +1,18 @@
 # CHANGELOG.md
 
+## 5.0.0
+
+- Revamped library
+- Added TypeScript
+- Replaced webpack with vite for example
+- Updated all deps
+- Added prettier and updated eslint
+- Simplified library logic
+- Updated SCSS styling
+
 ## 4.3.0
 
--   Added image click event and updated deps. Thanks @tasinttttttt.
+- Added image click event and updated deps. Thanks @tasinttttttt.
 
 ## 4.1.0
 

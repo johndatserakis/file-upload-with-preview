@@ -1,6 +1,6 @@
 # CHANGELOG.md
 
-## 5.0.5
+## 5.0.6
 
 - Revamped library
 - Added TypeScript

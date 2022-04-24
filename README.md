@@ -2,6 +2,8 @@
 
 # file-upload-with-preview
 
+📌 A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with or without a framework.
+
 <p align="left">
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/v/file-upload-with-preview.svg" alt="NPM Version"></a>
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/dm/file-upload-with-preview.svg" alt="NPM Downloads"></a>
@@ -16,99 +18,58 @@
 - [npm](https://www.npmjs.com/package/file-upload-with-preview)
 - [GitHub](https://github.com/johndatserakis/file-upload-with-preview#readme)
 
-## About
-
-This is a simple frontend utility to help the file-upload process on your website. It is written in pure JavaScript, has no dependencies, and is a small 13.55 kB (gzipped). You can check out the live demo [here](https://johndatserakis.github.io/file-upload-with-preview).
-
-For the most part, browsers do a good job of handling image-uploads. That being said - we find that the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.
-
-**file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
-
-## Features
-
-- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a _success-image_ in the case of an uploaded .pdf file, uploaded video, or other unrenderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user's selected images will be shown in a grid.
-- Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
-- Allows the user to clear their upload, and clear individual images in the `multiple` grid.
-- Looks great - styling based on Bootstrap 4's [custom file-upload](https://getbootstrap.com/docs/4.0/components/forms/#file-browser) style.
-- Framework agnostic - to access the uploaded file/files just use the `cachedFileArray` (always will be an array) property of your `FileUploadWithPreview` object.
-- For every file-group you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a `multiple` property to allow multiple files on the same input.
-
-## Installation
+## Install
 
 ```bash
 yarn add file-upload-with-preview
 ```
 
-Or you can include it through the browser at the bottom of your page. When using the browser version make sure update your target version as needed.
+Or, you can include it through the browser.
 
 ```html
-<script src="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js"></script>
-```
-
-## Usage
-
-When installed through npm or yarn:
-
-```javascript
-// using require
-const FileUploadWithPreview = require('file-upload-with-preview');
-
-// using import
-import FileUploadWithPreview from 'file-upload-with-preview';
-
-// initialize a new FileUploadWithPreview object
-const upload = new FileUploadWithPreview('myUniqueUploadId');
-```
-
-...or through the browser:
-
-```html
-<script>
-  var upload = new FileUploadWithPreview('myUniqueUploadId');
-</script>
-```
-
-You'll also want to include the css:
-
-```javascript
-// JavaScript
-import 'file-upload-with-preview/dist/file-upload-with-preview.min.css';
-```
-
-Or in your `<head></head>` if you're in the browser:
-
-```html
-<!-- Browser -->
 <link
   rel="stylesheet"
   type="text/css"
-  href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css"
+  href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css"
 />
+
+<script src="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.iife.js"></script>
 ```
 
-The JavaScript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the `custom-file-container` element with the uniqueId:
+## About
+
+This is a simple frontend utility meant to help the file-upload process on your website.
+
+It is written in pure JavaScript and has no dependencies. You can check out the live demo [here](https://johndatserakis.github.io/file-upload-with-preview).
+
+For the most part, browsers do a good job of handling image-uploads. That being said - I find the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.
+
+**file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
+
+## Features
+
+- Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a _success-image_ in the case of an uploaded .pdf file, uploaded video, or other un-renderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user's selected images will be shown in a grid.
+- Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
+- Allows the user to clear their upload and clear individual images in the `multiple` grid
+- Looks great
+- Framework agnostic - to access the uploaded file/files just use the `cachedFileArray` (always will be an array) property of your `FileUploadWithPreview` object.
+- For every file-group you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a `multiple` property to allow multiple files on the same input.
+
+## Usage
+
+```javascript
+import { FileUploadWithPreview } from 'file-upload-with-preview';
+import 'file-upload-with-preview/dist/file-upload-with-preview.min.css';
+
+const upload = new FileUploadWithPreview('myFirstImage');
+```
+
+The JavaScript looks for a specific of HTML element to display the file input, label, image preview, and clear-button.
+
+Make sure to populate the `custom-file-container` element with your unique id in the `data-upload-id` attribute.
 
 ```html
-<div class="custom-file-container" data-upload-id="myUniqueUploadId">
-  <label
-    >Upload File
-    <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"
-      >&times;</a
-    ></label
-  >
-  <label class="custom-file-container__custom-file">
-    <input
-      type="file"
-      class="custom-file-container__custom-file__custom-file-input"
-      accept="*"
-      multiple
-      aria-label="Choose File"
-    />
-    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-    <span class="custom-file-container__custom-file__custom-file-control"></span>
-  </label>
-  <div class="custom-file-container__image-preview"></div>
-</div>
+<div class="custom-file-container" data-upload-id="myFirstImage"></div>
 ```
 
 Then when you're ready to use the user's file for an API call or whatever, just access the user's uploaded file/files in the `cachedFileArray` property of your initialized object like this:
@@ -117,25 +78,22 @@ Then when you're ready to use the user's file for an API call or whatever, just 
 upload.cachedFileArray;
 ```
 
-You can optionally trigger image browser and clear selected images by script code:
+You can optionally trigger the image browser and clear selected images programmatically:
 
 ```javascript
 upload.emulateInputSelection(); // to open image browser
-upload.clearPreviewPanel(); // clear all selected images
+upload.resetPreviewPanel(); // clear all selected images
 ```
 
 You may also want to capture the event when an image is selected:
 
 ```javascript
-window.addEventListener('fileUploadWithPreview:imagesAdded', function (e) {
-  // e.detail.uploadId
-  // e.detail.cachedFileArray
-  // e.detail.addedFilesCount
-  // Use e.detail.uploadId to match up to your specific input
-  if (e.detail.uploadId === 'mySecondImage') {
-    console.log(e.detail.cachedFileArray);
-    console.log(e.detail.addedFilesCount);
-  }
+import { Events, ImageAddedEvent } from 'file-upload-with-preview';
+
+window.addEventListener(Events.IMAGE_ADDED, (e: Event) => {
+  const { detail } = e as unknown as ImageAddedEvent;
+
+  console.log('detail', detail);
 });
 ```
 
@@ -143,7 +101,7 @@ window.addEventListener('fileUploadWithPreview:imagesAdded', function (e) {
 
 The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.
 
-Make sure to set `multiple` on your input if you want to allow the user to select multiple images.
+Make sure to pass in `multiple: true` in your options if you want to allow the user to select multiple images.
 
 ## Properties
 
@@ -194,80 +152,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 
 ## Full Example
 
-```html
-<html>
-  <head>
-    ...
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css"
-    />
-
-    <!-- You'll want to make sure to at least set a width on the -->
-    <!-- .custom-file-container class... -->
-    ...
-  </head>
-  <body>
-    ...
-
-    <div class="custom-file-container" data-upload-id="myUniqueUploadId">
-      <label
-        >Upload File
-        <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image"
-          >&times;</a
-        ></label
-      >
-
-      <label class="custom-file-container__custom-file">
-        <input
-          type="file"
-          class="custom-file-container__custom-file__custom-file-input"
-          accept="*"
-          multiple
-          aria-label="Choose File"
-        />
-        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-        <span class="custom-file-container__custom-file__custom-file-control"></span>
-      </label>
-      <div class="custom-file-container__image-preview"></div>
-    </div>
-
-    ...
-
-    <script src="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js"></script>
-
-    <script>
-      var upload = new FileUploadWithPreview('myUniqueUploadId', {
-        showDeleteButtonOnImages: true,
-        text: {
-          chooseFile: 'Custom Placeholder Copy',
-          browse: 'Custom Button Copy',
-          selectedCount: 'Custom Files Selected Copy',
-        },
-        images: {
-          baseImage: importedBaseImage,
-        },
-        presetFiles: [
-          'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-        ],
-      });
-    </script>
-  </body>
-</html>
-```
-
-In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accepted images to `*` (everything), and designate `multiple` to allow the user to select multiple files - you can adjust those settings to whatever you like. For example, if you'd like to limit uploads to only images and pdf's and only allow a single file upload use the following:
-
-```html
-<input
-  type="file"
-  class="custom-file-container__custom-file__custom-file-input"
-  accept="application/pdf,image/*"
-  aria-label="Choose File"
-/>
-<input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-```
+See the full example in the `./example/index.ts` folder.
 
 ## Browser Support
 

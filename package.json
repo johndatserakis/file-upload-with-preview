@@ -30,6 +30,7 @@
     "rollup": "2.70.2",
     "rollup-plugin-scss": "^3.0.0",
     "sass": "^1.49.9",
+    "typedoc": "^0.22.15",
     "typescript": "^4.3.5",
     "vite": "^2.9.5"
   },
@@ -52,10 +53,13 @@
     "url": "git+https://github.com/johndatserakis/file-upload-with-preview.git"
   },
   "scripts": {
-    "build:example": "rimraf ./docs && vite build",
-    "build:library": "rimraf ./dist && rollup -c",
+    "build:example": "vite build",
+    "build:library": "rollup -c",
+    "build:typedoc": "yarn typedoc",
     "build:types": "tsc --emitDeclarationOnly",
-    "build": "yarn typescript:check-types && yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:library",
+    "build": "yarn clear:dist && yarn clear:docs && yarn typescript:check-types && yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:typedoc && yarn build:library",
+    "clear:dist": "rimraf ./dist",
+    "clear:docs": "rimraf ./docs ",
     "dev": "vite",
     "lint:fix": "npm run lint -- --fix",
     "lint": "eslint .",

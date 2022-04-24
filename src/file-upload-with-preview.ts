@@ -22,13 +22,13 @@ import {
 } from './types/events';
 import { generateUniqueId } from './utils/file';
 
-interface Text {
+export interface Text {
   browse?: string;
   chooseFile?: string;
   selectedCount?: string;
 }
 
-interface Images {
+export interface Images {
   backgroundImage?: string;
   baseImage?: string;
   successFileAltImage?: string;
@@ -36,9 +36,9 @@ interface Images {
   successVideoImage?: string;
 }
 
-type PresetFiles = string[];
+export type PresetFiles = string[];
 
-interface Options {
+export interface Options {
   accept?: HTMLInputElement['accept'];
   images?: Images;
   label?: string;
@@ -49,7 +49,7 @@ interface Options {
   text?: Text;
 }
 
-type RequiredOptions = Required<Options> & {
+export type RequiredOptions = Required<Options> & {
   images: Required<Images>;
   text: Required<Text>;
 };

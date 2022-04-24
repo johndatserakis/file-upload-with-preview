@@ -1,5 +1,6 @@
 {
   "author": "John Datserakis <johndatserakis@gmail.com>",
+  "browser": "dist/file-upload-with-preview.iife.js",
   "bugs": {
     "url": "https://github.com/johndatserakis/file-upload-with-preview/issues"
   },
@@ -45,28 +46,28 @@
   "license": "MIT",
   "main": "dist/file-upload-with-preview.cjs.js",
   "module": "dist/file-upload-with-preview.esm.js",
-  "browser": "dist/file-upload-with-preview.iife.js",
-  "types": "dist/types/index.d.ts",
   "name": "file-upload-with-preview",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johndatserakis/file-upload-with-preview.git"
   },
   "scripts": {
+    "build": "yarn clear:dist && yarn clear:docs && yarn typescript:check-types && yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:typedoc && yarn build:library && yarn build:types",
     "build:example": "vite build",
     "build:library": "rollup -c",
     "build:typedoc": "yarn typedoc",
     "build:types": "tsc --emitDeclarationOnly",
-    "build": "yarn clear:dist && yarn clear:docs && yarn typescript:check-types && yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:typedoc && yarn build:library && yarn build:types",
     "clear:dist": "rimraf ./dist",
     "clear:docs": "rimraf ./docs ",
     "dev": "vite",
-    "lint:fix": "npm run lint -- --fix",
     "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
     "prettier:format": "prettier 'src/**/*.ts' --write",
     "test": "jest",
     "typescript:check-types": "tsc --noEmit"
   },
   "sideEffects": false,
-  "version": "5.0.2"
+  "style": "dist/file-upload-with-preview.min.css",
+  "types": "dist/types/src/index.d.ts",
+  "version": "5.0.3"
 }

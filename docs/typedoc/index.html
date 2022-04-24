@@ -4,7 +4,7 @@
 <a href="#file-upload-with-preview" id="file-upload-with-preview" style="color: inherit; text-decoration: none;">
   <h1>file-upload-with-preview</h1>
 </a>
-<p>📌 A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with or without a framework.</p>
+<p>🖼 Simple file-upload utility that shows a preview of the uploaded image. Written in TypeScript. No dependencies. Works well with or without a framework.</p>
 <p align="left">
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/v/file-upload-with-preview.svg" alt="NPM Version"></a>
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/dm/file-upload-with-preview.svg" alt="NPM Downloads"></a>
@@ -29,24 +29,25 @@
 <pre><code class="language-bash"><span class="hl-0">yarn add file-upload-with-preview</span>
 </code></pre>
 <p>Or, you can include it through the browser.</p>
-<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">link</span><br/><span class="hl-0">  </span><span class="hl-3">rel</span><span class="hl-0">=</span><span class="hl-4">&quot;stylesheet&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;text/css&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">href</span><span class="hl-0">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.css&quot;</span><br/><span class="hl-1">/&gt;</span><br/><br/><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-5"> </span><span class="hl-3">src</span><span class="hl-5">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.iife.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">link</span><br/><span class="hl-0">  </span><span class="hl-3">rel</span><span class="hl-0">=</span><span class="hl-4">&quot;stylesheet&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;text/css&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">href</span><span class="hl-0">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css&quot;</span><br/><span class="hl-1">/&gt;</span><br/><br/><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-5"> </span><span class="hl-3">src</span><span class="hl-5">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.iife.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
 </code></pre>
 
 <a href="#about" id="about" style="color: inherit; text-decoration: none;">
   <h2>About</h2>
 </a>
-<p>This is a simple frontend utility to help the file-upload process on your website. It is written in pure JavaScript, has no dependencies, and is a small 13.55 kB (gzipped). You can check out the live demo <a href="https://johndatserakis.github.io/file-upload-with-preview">here</a>.</p>
-<p>For the most part, browsers do a good job of handling image-uploads. That being said - we find that the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.</p>
+<p>This is a simple frontend utility meant to help the file-upload process on your website.</p>
+<p>It is written in pure JavaScript and has no dependencies. You can check out the live demo <a href="https://johndatserakis.github.io/file-upload-with-preview">here</a>.</p>
+<p>For the most part, browsers do a good job of handling image-uploads. That being said - I find the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.</p>
 <p><strong>file-upload-with-preview</strong> aims to address the issue of showing a preview of a user&#39;s uploaded image in a simple to use package.</p>
 
 <a href="#features" id="features" style="color: inherit; text-decoration: none;">
   <h2>Features</h2>
 </a>
 <ul>
-<li>Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a <em>success-image</em> in the case of an uploaded .pdf file, uploaded video, or other unrenderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user&#39;s selected images will be shown in a grid.</li>
+<li>Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a <em>success-image</em> in the case of an uploaded .pdf file, uploaded video, or other un-renderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user&#39;s selected images will be shown in a grid.</li>
 <li>Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.</li>
-<li>Allows the user to clear their upload, and clear individual images in the <code>multiple</code> grid.</li>
-<li>Looks great - styling based on Bootstrap 4&#39;s <a href="https://getbootstrap.com/docs/4.0/components/forms/#file-browser">custom file-upload</a> style.</li>
+<li>Allows the user to clear their upload and clear individual images in the <code>multiple</code> grid</li>
+<li>Looks great</li>
 <li>Framework agnostic - to access the uploaded file/files just use the <code>cachedFileArray</code> (always will be an array) property of your <code>FileUploadWithPreview</code> object.</li>
 <li>For every file-group you want just initialize another <code>FileUploadWithPreview</code> object with its own <code>uniqueId</code> - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a <code>multiple</code> property to allow multiple files on the same input.</li>
 </ul>
@@ -54,36 +55,27 @@
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
   <h2>Usage</h2>
 </a>
-<p>When installed through npm or yarn:</p>
-<pre><code class="language-javascript"><span class="hl-6">// using require</span><br/><span class="hl-7">const</span><span class="hl-0"> </span><span class="hl-8">FileUploadWithPreview</span><span class="hl-0"> = </span><span class="hl-9">require</span><span class="hl-0">(</span><span class="hl-10">&#39;file-upload-with-preview&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-6">// using import</span><br/><span class="hl-11">import</span><span class="hl-0"> </span><span class="hl-12">FileUploadWithPreview</span><span class="hl-0"> </span><span class="hl-11">from</span><span class="hl-0"> </span><span class="hl-10">&#39;file-upload-with-preview&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-6">// initialize a new FileUploadWithPreview object</span><br/><span class="hl-7">const</span><span class="hl-0"> </span><span class="hl-8">upload</span><span class="hl-0"> = </span><span class="hl-7">new</span><span class="hl-0"> </span><span class="hl-9">FileUploadWithPreview</span><span class="hl-0">(</span><span class="hl-10">&#39;myUniqueUploadId&#39;</span><span class="hl-0">);</span>
+<pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-0"> { </span><span class="hl-7">FileUploadWithPreview</span><span class="hl-0"> } </span><span class="hl-6">from</span><span class="hl-0"> </span><span class="hl-8">&#39;file-upload-with-preview&#39;</span><span class="hl-0">;</span><br/><span class="hl-6">import</span><span class="hl-0"> </span><span class="hl-8">&#39;file-upload-with-preview/dist/file-upload-with-preview.min.css&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">upload</span><span class="hl-0"> = </span><span class="hl-9">new</span><span class="hl-0"> </span><span class="hl-11">FileUploadWithPreview</span><span class="hl-0">(</span><span class="hl-8">&#39;myFirstImage&#39;</span><span class="hl-0">);</span>
 </code></pre>
-<p>...or through the browser:</p>
-<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><span class="hl-5">  </span><span class="hl-7">var</span><span class="hl-5"> </span><span class="hl-12">upload</span><span class="hl-5"> </span><span class="hl-0">=</span><span class="hl-5"> </span><span class="hl-7">new</span><span class="hl-5"> </span><span class="hl-9">FileUploadWithPreview</span><span class="hl-5">(</span><span class="hl-10">&#39;myUniqueUploadId&#39;</span><span class="hl-5">);</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
-</code></pre>
-<p>You&#39;ll also want to include the css:</p>
-<pre><code class="language-javascript"><span class="hl-6">// JavaScript</span><br/><span class="hl-11">import</span><span class="hl-0"> </span><span class="hl-10">&#39;file-upload-with-preview/dist/file-upload-with-preview.min.css&#39;</span><span class="hl-0">;</span>
-</code></pre>
-<p>Or in your <code>&lt;head&gt;&lt;/head&gt;</code> if you&#39;re in the browser:</p>
-<pre><code class="language-html"><span class="hl-6">&lt;!-- Browser --&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-2">link</span><br/><span class="hl-0">  </span><span class="hl-3">rel</span><span class="hl-0">=</span><span class="hl-4">&quot;stylesheet&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;text/css&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">href</span><span class="hl-0">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css&quot;</span><br/><span class="hl-1">/&gt;</span>
-</code></pre>
-<p>The JavaScript looks for a specific set of HTML elements to display the file input, label, image preview, and clear-button. Make sure to populate the <code>custom-file-container</code> element with the uniqueId:</p>
-<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container&quot;</span><span class="hl-0"> </span><span class="hl-3">data-upload-id</span><span class="hl-0">=</span><span class="hl-4">&quot;myUniqueUploadId&quot;</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">label</span><br/><span class="hl-0">    </span><span class="hl-1">&gt;</span><span class="hl-0">Upload File</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">a</span><span class="hl-0"> </span><span class="hl-3">href</span><span class="hl-0">=</span><span class="hl-4">&quot;javascript:void(0)&quot;</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__image-clear&quot;</span><span class="hl-0"> </span><span class="hl-3">title</span><span class="hl-0">=</span><span class="hl-4">&quot;Clear Image&quot;</span><br/><span class="hl-0">      </span><span class="hl-1">&gt;</span><span class="hl-7">&amp;times;</span><span class="hl-1">&lt;/</span><span class="hl-2">a</span><br/><span class="hl-0">    </span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">label</span><br/><span class="hl-0">  </span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">label</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__custom-file&quot;</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">input</span><br/><span class="hl-0">      </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;file&quot;</span><br/><span class="hl-0">      </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__custom-file__custom-file-input&quot;</span><br/><span class="hl-0">      </span><span class="hl-3">accept</span><span class="hl-0">=</span><span class="hl-4">&quot;*&quot;</span><br/><span class="hl-0">      </span><span class="hl-3">multiple</span><br/><span class="hl-0">      </span><span class="hl-3">aria-label</span><span class="hl-0">=</span><span class="hl-4">&quot;Choose File&quot;</span><br/><span class="hl-0">    </span><span class="hl-1">/&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">input</span><span class="hl-0"> </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;hidden&quot;</span><span class="hl-0"> </span><span class="hl-3">name</span><span class="hl-0">=</span><span class="hl-4">&quot;MAX_FILE_SIZE&quot;</span><span class="hl-0"> </span><span class="hl-3">value</span><span class="hl-0">=</span><span class="hl-4">&quot;10485760&quot;</span><span class="hl-0"> </span><span class="hl-1">/&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">span</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__custom-file__custom-file-control&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">span</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;/</span><span class="hl-2">label</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__image-preview&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span>
+<p>The JavaScript looks for a specific of HTML element to display the file input, label, image preview, and clear-button.</p>
+<p>Make sure to populate the <code>custom-file-container</code> element with your unique id in the <code>data-upload-id</code> attribute.</p>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container&quot;</span><span class="hl-0"> </span><span class="hl-3">data-upload-id</span><span class="hl-0">=</span><span class="hl-4">&quot;myFirstImage&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span>
 </code></pre>
 <p>Then when you&#39;re ready to use the user&#39;s file for an API call or whatever, just access the user&#39;s uploaded file/files in the <code>cachedFileArray</code> property of your initialized object like this:</p>
-<pre><code class="language-javascript"><span class="hl-12">upload</span><span class="hl-0">.</span><span class="hl-12">cachedFileArray</span><span class="hl-0">;</span>
+<pre><code class="language-javascript"><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-7">cachedFileArray</span><span class="hl-0">;</span>
 </code></pre>
-<p>You can optionally trigger image browser and clear selected images by script code:</p>
-<pre><code class="language-javascript"><span class="hl-12">upload</span><span class="hl-0">.</span><span class="hl-9">emulateInputSelection</span><span class="hl-0">(); </span><span class="hl-6">// to open image browser</span><br/><span class="hl-12">upload</span><span class="hl-0">.</span><span class="hl-9">clearPreviewPanel</span><span class="hl-0">(); </span><span class="hl-6">// clear all selected images</span>
+<p>You can optionally trigger the image browser and clear selected images programmatically. There are additional methods on the class if you&#39;d like to take a look.</p>
+<pre><code class="language-javascript"><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-11">emulateInputSelection</span><span class="hl-0">(); </span><span class="hl-12">// to open image browser</span><br/><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-11">resetPreviewPanel</span><span class="hl-0">(); </span><span class="hl-12">// clear all selected images</span>
 </code></pre>
-<p>You may also want to capture the event when an image is selected:</p>
-<pre><code class="language-javascript"><span class="hl-12">window</span><span class="hl-0">.</span><span class="hl-9">addEventListener</span><span class="hl-0">(</span><span class="hl-10">&#39;fileUploadWithPreview:imagesAdded&#39;</span><span class="hl-0">, </span><span class="hl-7">function</span><span class="hl-0"> (</span><span class="hl-12">e</span><span class="hl-0">) {</span><br/><span class="hl-0">  </span><span class="hl-6">// e.detail.uploadId</span><br/><span class="hl-0">  </span><span class="hl-6">// e.detail.cachedFileArray</span><br/><span class="hl-0">  </span><span class="hl-6">// e.detail.addedFilesCount</span><br/><span class="hl-0">  </span><span class="hl-6">// Use e.detail.uploadId to match up to your specific input</span><br/><span class="hl-0">  </span><span class="hl-11">if</span><span class="hl-0"> (</span><span class="hl-12">e</span><span class="hl-0">.</span><span class="hl-12">detail</span><span class="hl-0">.</span><span class="hl-12">uploadId</span><span class="hl-0"> === </span><span class="hl-10">&#39;mySecondImage&#39;</span><span class="hl-0">) {</span><br/><span class="hl-0">    </span><span class="hl-12">console</span><span class="hl-0">.</span><span class="hl-9">log</span><span class="hl-0">(</span><span class="hl-12">e</span><span class="hl-0">.</span><span class="hl-12">detail</span><span class="hl-0">.</span><span class="hl-12">cachedFileArray</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-12">console</span><span class="hl-0">.</span><span class="hl-9">log</span><span class="hl-0">(</span><span class="hl-12">e</span><span class="hl-0">.</span><span class="hl-12">detail</span><span class="hl-0">.</span><span class="hl-12">addedFilesCount</span><span class="hl-0">);</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">});</span>
+<p>You may also want to capture the event when an image is selected.</p>
+<pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-0"> { </span><span class="hl-7">Events</span><span class="hl-0">, </span><span class="hl-7">ImageAddedEvent</span><span class="hl-0"> } </span><span class="hl-6">from</span><span class="hl-0"> </span><span class="hl-8">&#39;file-upload-with-preview&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-7">window</span><span class="hl-0">.</span><span class="hl-11">addEventListener</span><span class="hl-0">(</span><span class="hl-7">Events</span><span class="hl-0">.</span><span class="hl-10">IMAGE_ADDED</span><span class="hl-0">, (</span><span class="hl-7">e</span><span class="hl-0">: </span><span class="hl-13">Event</span><span class="hl-0">) </span><span class="hl-9">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-9">const</span><span class="hl-0"> { </span><span class="hl-10">detail</span><span class="hl-0"> } = </span><span class="hl-7">e</span><span class="hl-0"> </span><span class="hl-6">as</span><span class="hl-0"> </span><span class="hl-13">unknown</span><span class="hl-0"> </span><span class="hl-6">as</span><span class="hl-0"> </span><span class="hl-13">ImageAddedEvent</span><span class="hl-0">;</span><br/><br/><span class="hl-0">  </span><span class="hl-7">console</span><span class="hl-0">.</span><span class="hl-11">log</span><span class="hl-0">(</span><span class="hl-8">&#39;detail&#39;</span><span class="hl-0">, </span><span class="hl-7">detail</span><span class="hl-0">);</span><br/><span class="hl-0">});</span>
 </code></pre>
 
 <a href="#note" id="note" style="color: inherit; text-decoration: none;">
   <h3>Note</h3>
 </a>
 <p>The <code>cachedFileArray</code> property is always an array. So if you are only allowing the user to upload a single file, you can access that file at <code>cachedFileArray[0]</code> - otherwise just send the entire array to your backend to handle it normally.</p>
-<p>Make sure to set <code>multiple</code> on your input if you want to allow the user to select multiple images.</p>
+<p>Make sure to pass in <code>multiple: true</code> in your options if you want to allow the user to select multiple images.</p>
 
 <a href="#properties" id="properties" style="color: inherit; text-decoration: none;">
   <h2>Properties</h2>
@@ -93,205 +85,148 @@
 <tr>
 <th>name</th>
 <th>type</th>
+<th>default</th>
 <th>description</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>el</td>
-<td>Element</td>
-<td>The main container for the instance</td>
-</tr>
-<tr>
-<td>input</td>
-<td>Element</td>
-<td>The main container for the instance</td>
-</tr>
-<tr>
-<td>inputLabel</td>
-<td>Element</td>
-<td>The label for the image name/count</td>
-</tr>
-<tr>
-<td>uploadId</td>
-<td>String</td>
-<td>The id you set for the instance</td>
-</tr>
-<tr>
 <td>cachedFileArray</td>
-<td>Array</td>
-<td>The current selected files</td>
-</tr>
-<tr>
-<td>currentFileCount</td>
-<td>Number</td>
-<td>The count of the currently selected files</td>
+<td>File[]</td>
+<td><code>[]</code></td>
+<td>Currently selected files</td>
 </tr>
 <tr>
 <td>clearButton</td>
 <td>Element</td>
-<td>The button to reset the instance</td>
+<td>-</td>
+<td>Button to reset the instance</td>
+</tr>
+<tr>
+<td>el</td>
+<td>Element</td>
+<td>-</td>
+<td>Main container for the instance</td>
 </tr>
 <tr>
 <td>imagePreview</td>
-<td>Element</td>
-<td>The display panel for the images</td>
+<td>HTMLDivElement</td>
+<td>-</td>
+<td>Display panel for the images</td>
 </tr>
 <tr>
-<td>options.images.baseImage</td>
+<td>inputHidden</td>
+<td>HTMLInputElement</td>
+<td>-</td>
+<td>Hidden input</td>
+</tr>
+<tr>
+<td>inputVisible</td>
+<td>Element</td>
+<td>-</td>
+<td>Visible input</td>
+</tr>
+<tr>
+<td>options.accept</td>
 <td>String</td>
-<td>Replace placeholder image.</td>
+<td><code>*</code></td>
+<td>Type of files to accept in your input</td>
 </tr>
 <tr>
 <td>options.images.backgroundImage</td>
 <td>String</td>
-<td>Replace background image for image grid.</td>
+<td><code>DEFAULT_BACKGROUND_IMAGE</code></td>
+<td>Background image for image grid</td>
+</tr>
+<tr>
+<td>options.images.baseImage</td>
+<td>String</td>
+<td><code>DEFAULT_BASE_IMAGE</code></td>
+<td>Placeholder image</td>
 </tr>
 <tr>
 <td>options.images.successFileAltImage</td>
 <td>String</td>
-<td>Replace successful alternate file upload image.</td>
+<td><code>DEFAULT_SUCCESS_FILE_ALT_IMAGE</code></td>
+<td>Alternate file upload image</td>
 </tr>
 <tr>
 <td>options.images.successPdfImage</td>
 <td>String</td>
-<td>Replace successful PDF upload image.</td>
+<td><code>DEFAULT_SUCCESS_PDF_IMAGE</code></td>
+<td>PDF upload image</td>
 </tr>
 <tr>
 <td>options.images.successVideoImage</td>
 <td>String</td>
-<td>Replace successful video upload image.</td>
+<td><code>DEFAULT_SUCCESS_VIDEO_IMAGE</code></td>
+<td>Video upload image</td>
+</tr>
+<tr>
+<td>options.maxFileCount</td>
+<td>Number</td>
+<td><code>0</code></td>
+<td>Set a maximum number of files you&#39;d like the component to deal with. Must be <code>&gt; 0</code> if set. By default there is no limit.</td>
+</tr>
+<tr>
+<td>options.multiple</td>
+<td>Number</td>
+<td><code>false</code></td>
+<td>Set to <code>true</code> if you want to allow the user to selected multiple images. Will use grid view in the image preview if set.</td>
 </tr>
 <tr>
 <td>options.presetFiles</td>
 <td>Array</td>
+<td><code>[]</code></td>
 <td>Provide an array of image paths to be automatically uploaded and displayed on page load (can be images hosted on server or URLs)</td>
 </tr>
 <tr>
 <td>options.showDeleteButtonOnImages</td>
 <td>Boolean</td>
-<td>Show a delete button on images in the grid. Default <code>true</code></td>
+<td><code>true</code></td>
+<td>Show a delete button on images in the grid</td>
 </tr>
 <tr>
 <td>options.text.browse</td>
 <td>String</td>
-<td>Edit button text. Default <code>&#39;Browse&#39;</code></td>
+<td><code>Browse</code></td>
+<td>Browse button text</td>
 </tr>
 <tr>
 <td>options.text.chooseFile</td>
 <td>String</td>
-<td>Edit input placeholder text. Default <code>&#39;Choose file...&#39;</code></td>
+<td><code>Choose file...</code></td>
+<td>Placeholder text</td>
+</tr>
+<tr>
+<td>options.text.label</td>
+<td>String</td>
+<td><code>Upload</code></td>
+<td>Main input label text</td>
 </tr>
 <tr>
 <td>options.text.selectedCount</td>
 <td>String</td>
-<td>Edit input text when multiple files have been selected in one input. Default <code>${ n } &#39;files selected&#39;</code></td>
+<td><code>files selected</code></td>
+<td>Count descriptor text. Defaults to <code>${ n } files selected</code>.</td>
 </tr>
 <tr>
-<td>options.maxFileCount</td>
-<td>Number</td>
-<td>Set a maximum number of files you&#39;d like the component to deal with. Must be <code>&gt; 0</code> if set. By default there is no limit.</td>
-</tr>
-</tbody></table>
-
-<a href="#methods" id="methods" style="color: inherit; text-decoration: none;">
-  <h2>Methods</h2>
-</a>
-<table>
-<thead>
-<tr>
-<th>method</th>
-<th>parameters</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>addFiles</td>
-<td>array of File objects</td>
-<td>Populate the <code>cachedFileArray</code> with images as File objects</td>
-</tr>
-<tr>
-<td>processFile</td>
-<td>file object</td>
-<td>Take a single File object and append it to the image preview panel</td>
-</tr>
-<tr>
-<td>addImagesFromPath</td>
-<td>array of image paths</td>
-<td>Take an array of image paths, convert them to File objects, and display them in the image preview panel (can be paths to images on the server or urls)</td>
-</tr>
-<tr>
-<td>replaceFiles</td>
-<td>array of File objects</td>
-<td>Replace files in <code>cachedFileArray</code> and image preview panel with array of File objects</td>
-</tr>
-<tr>
-<td>replaceFileAtIndex</td>
-<td>file object, index (Number)</td>
-<td>Take a single file object and index, replace existing file at that index</td>
-</tr>
-<tr>
-<td>deleteFileAtIndex</td>
-<td>index (Number)</td>
-<td>Delete specified file from <code>cachedFileArray</code></td>
-</tr>
-<tr>
-<td>refreshPreviewPanel</td>
-<td>none</td>
-<td>Refresh image preview panel with current <code>cachedFileArray</code></td>
-</tr>
-<tr>
-<td>addBrowseButton</td>
-<td>text</td>
-<td>Appends browse button to input with custom button text</td>
-</tr>
-<tr>
-<td>emulateInputSelection</td>
-<td>none</td>
-<td>Open the image browser programmatically</td>
-</tr>
-<tr>
-<td>clearPreviewPanel</td>
-<td>none</td>
-<td>Clear the <code>cachedFileArray</code></td>
+<td>uploadId</td>
+<td>String</td>
+<td>-</td>
+<td>The <code>id</code> you set for the instance</td>
 </tr>
 </tbody></table>
 
 <a href="#events" id="events" style="color: inherit; text-decoration: none;">
   <h2>Events</h2>
 </a>
-<table>
-<thead>
-<tr>
-<th>event</th>
-<th>value</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>fileUploadWithPreview:imagesAdded</td>
-<td><code>e</code> (e.detail.uploadId, e.detail.cachedFileArray, e.detail.addedFilesCount)</td>
-<td>Triggered each time file/files are selected. Delivers the <code>uploadId</code>, updated <code>cachedFilesArray</code>, and <code>addedFilesCount</code> for the event.</td>
-</tr>
-<tr>
-<td>fileUploadWithPreview:imageDeleted</td>
-<td><code>e</code> (e.detail.uploadId, e.detail.cachedFileArray, e.detail.currentFileCount)</td>
-<td>Triggered each time a file is deleted. Delivers the <code>uploadId</code>, updated <code>cachedFilesArray</code>, and <code>currentFileCount</code> for the event.</td>
-</tr>
-<tr>
-<td>fileUploadWithPreview:clearButtonClicked</td>
-<td><code>e</code> (e.detail.uploadId)</td>
-<td>Triggered when the clear button is clicked. Delivers the <code>uploadId</code>.</td>
-</tr>
-</tbody></table>
+<pre><code class="language-ts"><span class="hl-6">export</span><span class="hl-0"> </span><span class="hl-9">enum</span><span class="hl-0"> </span><span class="hl-13">Events</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_ADDED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imagesAdded&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_DELETED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imageDeleted&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">CLEAR_BUTTON_CLICKED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:clearButtonClicked&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_MULTI_ITEM_CLICKED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imageMultiItemClicked&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">}</span>
+</code></pre>
 
 <a href="#full-example" id="full-example" style="color: inherit; text-decoration: none;">
   <h2>Full Example</h2>
 </a>
-<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">html</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">head</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    ...</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">link</span><br/><span class="hl-0">      </span><span class="hl-3">rel</span><span class="hl-0">=</span><span class="hl-4">&quot;stylesheet&quot;</span><br/><span class="hl-0">      </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;text/css&quot;</span><br/><span class="hl-0">      </span><span class="hl-3">href</span><span class="hl-0">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.css&quot;</span><br/><span class="hl-0">    </span><span class="hl-1">/&gt;</span><br/><br/><span class="hl-0">    </span><span class="hl-6">&lt;!-- You&#39;ll want to make sure to at least set a width on the --&gt;</span><br/><span class="hl-0">    </span><span class="hl-6">&lt;!-- .custom-file-container class... --&gt;</span><br/><span class="hl-0">    ...</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;/</span><span class="hl-2">head</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">body</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    ...</span><br/><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container&quot;</span><span class="hl-0"> </span><span class="hl-3">data-upload-id</span><span class="hl-0">=</span><span class="hl-4">&quot;myUniqueUploadId&quot;</span><span class="hl-1">&gt;</span><br/><span class="hl-0">      </span><span class="hl-1">&lt;</span><span class="hl-2">label</span><br/><span class="hl-0">        </span><span class="hl-1">&gt;</span><span class="hl-0">Upload File</span><br/><span class="hl-0">        </span><span class="hl-1">&lt;</span><span class="hl-2">a</span><span class="hl-0"> </span><span class="hl-3">href</span><span class="hl-0">=</span><span class="hl-4">&quot;javascript:void(0)&quot;</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__image-clear&quot;</span><span class="hl-0"> </span><span class="hl-3">title</span><span class="hl-0">=</span><span class="hl-4">&quot;Clear Image&quot;</span><br/><span class="hl-0">          </span><span class="hl-1">&gt;</span><span class="hl-7">&amp;times;</span><span class="hl-1">&lt;/</span><span class="hl-2">a</span><br/><span class="hl-0">        </span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">label</span><br/><span class="hl-0">      </span><span class="hl-1">&gt;</span><br/><br/><span class="hl-0">      </span><span class="hl-1">&lt;</span><span class="hl-2">label</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__custom-file&quot;</span><span class="hl-1">&gt;</span><br/><span class="hl-0">        </span><span class="hl-1">&lt;</span><span class="hl-2">input</span><br/><span class="hl-0">          </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;file&quot;</span><br/><span class="hl-0">          </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__custom-file__custom-file-input&quot;</span><br/><span class="hl-0">          </span><span class="hl-3">accept</span><span class="hl-0">=</span><span class="hl-4">&quot;*&quot;</span><br/><span class="hl-0">          </span><span class="hl-3">multiple</span><br/><span class="hl-0">          </span><span class="hl-3">aria-label</span><span class="hl-0">=</span><span class="hl-4">&quot;Choose File&quot;</span><br/><span class="hl-0">        </span><span class="hl-1">/&gt;</span><br/><span class="hl-0">        </span><span class="hl-1">&lt;</span><span class="hl-2">input</span><span class="hl-0"> </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;hidden&quot;</span><span class="hl-0"> </span><span class="hl-3">name</span><span class="hl-0">=</span><span class="hl-4">&quot;MAX_FILE_SIZE&quot;</span><span class="hl-0"> </span><span class="hl-3">value</span><span class="hl-0">=</span><span class="hl-4">&quot;10485760&quot;</span><span class="hl-0"> </span><span class="hl-1">/&gt;</span><br/><span class="hl-0">        </span><span class="hl-1">&lt;</span><span class="hl-2">span</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__custom-file__custom-file-control&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">span</span><span class="hl-1">&gt;</span><br/><span class="hl-0">      </span><span class="hl-1">&lt;/</span><span class="hl-2">label</span><span class="hl-1">&gt;</span><br/><span class="hl-0">      </span><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__image-preview&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span><br/><br/><span class="hl-0">    ...</span><br/><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-5"> </span><span class="hl-3">src</span><span class="hl-5">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><span class="hl-5">      </span><span class="hl-7">var</span><span class="hl-5"> </span><span class="hl-12">upload</span><span class="hl-5"> </span><span class="hl-0">=</span><span class="hl-5"> </span><span class="hl-7">new</span><span class="hl-5"> </span><span class="hl-9">FileUploadWithPreview</span><span class="hl-5">(</span><span class="hl-10">&#39;myUniqueUploadId&#39;</span><span class="hl-5">, {</span><br/><span class="hl-5">        </span><span class="hl-12">showDeleteButtonOnImages:</span><span class="hl-5"> </span><span class="hl-7">true</span><span class="hl-5">,</span><br/><span class="hl-5">        </span><span class="hl-12">text:</span><span class="hl-5"> {</span><br/><span class="hl-5">          </span><span class="hl-12">chooseFile:</span><span class="hl-5"> </span><span class="hl-10">&#39;Custom Placeholder Copy&#39;</span><span class="hl-5">,</span><br/><span class="hl-5">          </span><span class="hl-12">browse:</span><span class="hl-5"> </span><span class="hl-10">&#39;Custom Button Copy&#39;</span><span class="hl-5">,</span><br/><span class="hl-5">          </span><span class="hl-12">selectedCount:</span><span class="hl-5"> </span><span class="hl-10">&#39;Custom Files Selected Copy&#39;</span><span class="hl-5">,</span><br/><span class="hl-5">        },</span><br/><span class="hl-5">        </span><span class="hl-12">images:</span><span class="hl-5"> {</span><br/><span class="hl-5">          </span><span class="hl-12">baseImage:</span><span class="hl-5"> </span><span class="hl-12">importedBaseImage</span><span class="hl-5">,</span><br/><span class="hl-5">        },</span><br/><span class="hl-5">        </span><span class="hl-12">presetFiles:</span><span class="hl-5"> [</span><br/><span class="hl-5">          </span><span class="hl-10">&#39;https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=668&amp;q=80&#39;</span><span class="hl-5">,</span><br/><span class="hl-5">        ],</span><br/><span class="hl-5">      });</span><br/><span class="hl-5">    </span><span class="hl-1">&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;/</span><span class="hl-2">body</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">html</span><span class="hl-1">&gt;</span>
-</code></pre>
-<p>In this example we set the <code>MAX_FILE_SIZE</code> value to <code>10485760</code> (10MB), the accepted images to <code>*</code> (everything), and designate <code>multiple</code> to allow the user to select multiple files - you can adjust those settings to whatever you like. For example, if you&#39;d like to limit uploads to only images and pdf&#39;s and only allow a single file upload use the following:</p>
-<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">input</span><br/><span class="hl-0">  </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;file&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container__custom-file__custom-file-input&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">accept</span><span class="hl-0">=</span><span class="hl-4">&quot;application/pdf,image/*&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">aria-label</span><span class="hl-0">=</span><span class="hl-4">&quot;Choose File&quot;</span><br/><span class="hl-1">/&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-2">input</span><span class="hl-0"> </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;hidden&quot;</span><span class="hl-0"> </span><span class="hl-3">name</span><span class="hl-0">=</span><span class="hl-4">&quot;MAX_FILE_SIZE&quot;</span><span class="hl-0"> </span><span class="hl-3">value</span><span class="hl-0">=</span><span class="hl-4">&quot;10485760&quot;</span><span class="hl-0"> </span><span class="hl-1">/&gt;</span>
-</code></pre>
+<p>See the full example in the <code>./example/index.ts</code> folder.</p>
 
 <a href="#browser-support" id="browser-support" style="color: inherit; text-decoration: none;">
   <h2>Browser Support</h2>
@@ -303,7 +238,7 @@
 <a href="#development" id="development" style="color: inherit; text-decoration: none;">
   <h2>Development</h2>
 </a>
-<pre><code class="language-bash"><span class="hl-6"># Install dependencies</span><br/><span class="hl-0">yarn</span><br/><br/><span class="hl-6"># Watch changes during local development</span><br/><span class="hl-0">yarn dev</span><br/><br/><span class="hl-6"># Run tests</span><br/><span class="hl-0">yarn </span><span class="hl-9">test</span><br/><br/><span class="hl-6"># Build library</span><br/><span class="hl-0">yarn build</span>
+<pre><code class="language-bash"><span class="hl-12"># Install dependencies</span><br/><span class="hl-0">yarn</span><br/><br/><span class="hl-12"># Watch changes during local development</span><br/><span class="hl-0">yarn dev</span><br/><br/><span class="hl-12"># Run tests</span><br/><span class="hl-0">yarn </span><span class="hl-11">test</span><br/><br/><span class="hl-12"># Build library</span><br/><span class="hl-0">yarn build</span>
 </code></pre>
 
 <a href="#other" id="other" style="color: inherit; text-decoration: none;">

@@ -11,20 +11,22 @@
     --dark-hl-4: #CE9178;
     --light-hl-5: #000000FF;
     --dark-hl-5: #D4D4D4;
-    --light-hl-6: #008000;
-    --dark-hl-6: #6A9955;
-    --light-hl-7: #0000FF;
-    --dark-hl-7: #569CD6;
-    --light-hl-8: #0070C1;
-    --dark-hl-8: #4FC1FF;
-    --light-hl-9: #795E26;
-    --dark-hl-9: #DCDCAA;
-    --light-hl-10: #A31515;
-    --dark-hl-10: #CE9178;
-    --light-hl-11: #AF00DB;
-    --dark-hl-11: #C586C0;
-    --light-hl-12: #001080;
-    --dark-hl-12: #9CDCFE;
+    --light-hl-6: #AF00DB;
+    --dark-hl-6: #C586C0;
+    --light-hl-7: #001080;
+    --dark-hl-7: #9CDCFE;
+    --light-hl-8: #A31515;
+    --dark-hl-8: #CE9178;
+    --light-hl-9: #0000FF;
+    --dark-hl-9: #569CD6;
+    --light-hl-10: #0070C1;
+    --dark-hl-10: #4FC1FF;
+    --light-hl-11: #795E26;
+    --dark-hl-11: #DCDCAA;
+    --light-hl-12: #008000;
+    --dark-hl-12: #6A9955;
+    --light-hl-13: #267F99;
+    --dark-hl-13: #4EC9B0;
     --light-code-background: #F5F5F5;
     --dark-code-background: #1E1E1E;
 }
@@ -43,6 +45,7 @@
     --hl-10: var(--light-hl-10);
     --hl-11: var(--light-hl-11);
     --hl-12: var(--light-hl-12);
+    --hl-13: var(--light-hl-13);
     --code-background: var(--light-code-background);
 } }
 
@@ -60,6 +63,7 @@
     --hl-10: var(--dark-hl-10);
     --hl-11: var(--dark-hl-11);
     --hl-12: var(--dark-hl-12);
+    --hl-13: var(--dark-hl-13);
     --code-background: var(--dark-code-background);
 } }
 
@@ -77,6 +81,7 @@ body.light {
     --hl-10: var(--light-hl-10);
     --hl-11: var(--light-hl-11);
     --hl-12: var(--light-hl-12);
+    --hl-13: var(--light-hl-13);
     --code-background: var(--light-code-background);
 }
 
@@ -94,6 +99,7 @@ body.dark {
     --hl-10: var(--dark-hl-10);
     --hl-11: var(--dark-hl-11);
     --hl-12: var(--dark-hl-12);
+    --hl-13: var(--dark-hl-13);
     --code-background: var(--dark-code-background);
 }
 
@@ -110,4 +116,5 @@ body.dark {
 .hl-10 { color: var(--hl-10); }
 .hl-11 { color: var(--hl-11); }
 .hl-12 { color: var(--hl-12); }
+.hl-13 { color: var(--hl-13); }
 pre, code { background: var(--code-background); }

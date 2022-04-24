@@ -164,18 +164,9 @@ export class FileUploadWithPreview {
       successFileAltImage ?? this.options.images.successFileAltImage;
     this.options.images.backgroundImage = backgroundImage ?? this.options.images.backgroundImage;
 
-    // Using thenable promises because we're in the constructor
-    if (this.options.presetFiles) {
-      this.addImagesFromPath(this.options.presetFiles).catch((error) => {
-        console.warn(`${error.toString()}`);
-        console.warn('An image you added from a path cannot be added to the cachedFileArray.');
-      });
-    }
-
+    this.addImagesFromPath(this.options.presetFiles);
     this.addBrowseButton(this.options.text.browse);
-
     this.imagePreview.style.backgroundImage = `url("${this.options.images.baseImage}")`;
-
     this.bindClickEvents();
   }
 
@@ -244,8 +235,8 @@ export class FileUploadWithPreview {
   }
 
   async addImagesFromPath(presetFiles: PresetFiles) {
-    try {
-      presetFiles.forEach(async (path) => {
+    presetFiles.forEach(async (path) => {
+      try {
         const defaultType = 'image/jpeg';
         const response = await fetch(path, { mode: 'cors' });
         const blob = await response.blob();
@@ -253,10 +244,14 @@ export class FileUploadWithPreview {
           type: blob.type || defaultType,
         });
         this.addFiles([file]);
-      });
-    } catch {
-      throw new Error('Error processing presetFiles');
-    }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.warn(`${error.message.toString()}`);
+        }
+
+        console.warn('Image cannot be added to the cachedFileArray.');
+      }
+    });
   }
 
   addFiles(files: FileList | File[]) {
@@ -280,7 +275,7 @@ export class FileUploadWithPreview {
     fileArray.forEach((file) => {
       const fileWithUniqueName = new File(
         [file],
-        `${file.name}${UNIQUE_ID_IDENTIFIER}${generateUniqueId()}`,
+        `${file.name || 'fallback-name'}${UNIQUE_ID_IDENTIFIER}${generateUniqueId()}`,
         {
           type: file.type,
         },

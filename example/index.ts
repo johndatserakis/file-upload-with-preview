@@ -22,11 +22,8 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
   multiple: true,
   presetFiles: [
     'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-    'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-    'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-    'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-    'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-    'https://images.unsplash.com/photo-1557090495-fc9312e77b28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+    importedBaseImage,
+    'https://images.unsplash.com/photo-1632333650998-8842b63f5cfc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80',
   ],
   text: {
     browse: 'Choose',
@@ -34,8 +31,8 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
   },
 });
 
-const firstUploadInfoButton = document.querySelector('.upload-info-button--first');
-const secondUploadInfoButton = document.querySelector('.upload-info-button--second');
+const firstUploadInfoButton = document.querySelector('.upload-info-button-first');
+const secondUploadInfoButton = document.querySelector('.upload-info-button-second');
 
 if (firstUploadInfoButton) {
   firstUploadInfoButton.addEventListener('click', () => {

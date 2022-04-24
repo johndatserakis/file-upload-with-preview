@@ -1,113 +1,118 @@
+$grey: #edede8;
+
 html {
-  position: relative;
   min-height: 100%;
+  position: relative;
 }
 
 body {
-  width: 100%;
-  height: 100%;
   color: #333;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
+  height: 100%;
   line-height: 1.5;
   margin: 0;
+  width: 100%;
 }
 
 a {
   color: #3157b3;
-  text-decoration: none;
 }
 
 a:hover {
   color: #3f7ebd;
 }
 
-/* Pre, Code */
-
 pre {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-}
-
-pre {
-  padding: 0.2rem 0.4rem;
-  font-size: 90%;
-  color: #333;
   background-color: #edede8;
-  border-radius: 0.25rem;
+  border-radius: 4px;
+  color: #333;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 14px;
+  padding: 8px 16px;
 }
-
-/* Header */
 
 .header-container {
-  margin-top: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
+  margin-bottom: 16px;
 
-.header-container__header-image {
-  max-width: 100%;
-  max-height: 60px;
-  margin-bottom: 30px;
-}
+  .content {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    text-align: center;
+  }
 
-.header-container__header-content {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  margin-top: 0;
-  text-align: center;
+  .code {
+    margin-bottom: 8px;
+  }
 }
-
-.header-container__code {
-  margin-bottom: 10px;
-}
-
-/* Upload Container */
 
 .demo-upload-container {
-  padding: 50px 10px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1000px;
-  position: relative;
+  align-items: center;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
+  flex-direction: column;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 32px;
 
-/* Info Container */
+  @media (min-width: 992px) {
+    flex-direction: row;
+    gap: 64px;
+  }
+}
 
 .demo-info-container {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
-  max-width: 300px;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
+  align-items: center;
   background: #3157b3;
-  padding: 15px 15px;
-  border-radius: 6px;
-  text-align: center;
+  border-radius: 4px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  margin: 0 auto 16px;
+  padding: 8px 12px;
+  width: 300px;
+
+  a {
+    color: white;
+
+    &:hover {
+      color: darken(white, 10%);
+    }
+  }
 }
 
-.demo-info-container a {
-  color: white;
-  text-decoration: underline;
+// GitHub Banner
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
 }
 
-.demo-info-container a:hover {
-  color: #eee;
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
 }
 
-.upload-info-button {
-  display: block;
-  margin-bottom: 10px;
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
 }

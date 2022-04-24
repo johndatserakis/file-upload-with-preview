@@ -21,7 +21,9 @@
 <li><a href="https://johndatserakis.github.io/file-upload-with-preview">Demo</a></li>
 <li><a href="https://www.npmjs.com/package/file-upload-with-preview">npm</a></li>
 <li><a href="https://github.com/johndatserakis/file-upload-with-preview#readme">GitHub</a></li>
-<li><a href="https://codesandbox.io/s/file-upload-with-preview-4ypil8?file=/src/index.ts">CodeSandbox</a></li>
+<li><a href="https://codesandbox.io/s/file-upload-with-preview-4ypil8?file=/src/index.ts">CodeSandbox - TypeScript</a></li>
+<li><a href="https://codesandbox.io/s/file-upload-with-preview-browser-446nc8?file=/src/index.js">CodeSandbox - Browser</a></li>
+<li><a href="https://johndatserakis.github.io/file-upload-with-preview/typedoc/">Docs</a></li>
 </ul>
 
 <a href="#install" id="install" style="color: inherit; text-decoration: none;">
@@ -56,16 +58,22 @@
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
   <h2>Usage</h2>
 </a>
+<p>This library looks for a specific HTML element to display the file-upload. Simply add the below <code>div</code> to your HTML. Make sure to populate your unique id in the <code>data-upload-id</code> attribute.</p>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container&quot;</span><span class="hl-0"> </span><span class="hl-3">data-upload-id</span><span class="hl-0">=</span><span class="hl-4">&quot;myFirstImage&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span>
+</code></pre>
+<p>Then, initialize your file-upload in the JavaScript like below:</p>
 <pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-0"> { </span><span class="hl-7">FileUploadWithPreview</span><span class="hl-0"> } </span><span class="hl-6">from</span><span class="hl-0"> </span><span class="hl-8">&#39;file-upload-with-preview&#39;</span><span class="hl-0">;</span><br/><span class="hl-6">import</span><span class="hl-0"> </span><span class="hl-8">&#39;file-upload-with-preview/dist/file-upload-with-preview.min.css&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">upload</span><span class="hl-0"> = </span><span class="hl-9">new</span><span class="hl-0"> </span><span class="hl-11">FileUploadWithPreview</span><span class="hl-0">(</span><span class="hl-8">&#39;myFirstImage&#39;</span><span class="hl-0">);</span>
 </code></pre>
-<p>The JavaScript looks for a specific of HTML element to display the file input, label, image preview, and clear-button.</p>
-<p>Make sure to populate the <code>custom-file-container</code> element with your unique id in the <code>data-upload-id</code> attribute.</p>
-<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container&quot;</span><span class="hl-0"> </span><span class="hl-3">data-upload-id</span><span class="hl-0">=</span><span class="hl-4">&quot;myFirstImage&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span>
+<p>If you&#39;re importing directly in the browser, use the following instead:</p>
+<pre><code class="language-html"><span class="hl-1">&lt;!</span><span class="hl-2">DOCTYPE</span><span class="hl-0"> </span><span class="hl-3">html</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-2">html</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">head</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">meta</span><span class="hl-0"> </span><span class="hl-3">charset</span><span class="hl-0">=</span><span class="hl-4">&quot;UTF-8&quot;</span><span class="hl-0"> </span><span class="hl-1">/&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">link</span><br/><span class="hl-0">      </span><span class="hl-3">rel</span><span class="hl-0">=</span><span class="hl-4">&quot;stylesheet&quot;</span><br/><span class="hl-0">      </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;text/css&quot;</span><br/><span class="hl-0">      </span><span class="hl-3">href</span><span class="hl-0">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css&quot;</span><br/><span class="hl-0">    </span><span class="hl-1">/&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;/</span><span class="hl-2">head</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">body</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container&quot;</span><span class="hl-0"> </span><span class="hl-3">data-upload-id</span><span class="hl-0">=</span><span class="hl-4">&quot;myFirstImage&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-5"> </span><span class="hl-3">src</span><span class="hl-5">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><span class="hl-0">  </span><span class="hl-1">&lt;/</span><span class="hl-2">body</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">html</span><span class="hl-1">&gt;</span>
+</code></pre>
+<p>Then initialize like this:</p>
+<pre><code class="language-javascript"><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">upload</span><span class="hl-0"> = </span><span class="hl-9">new</span><span class="hl-0"> </span><span class="hl-7">FileUploadWithPreview</span><span class="hl-0">.</span><span class="hl-11">FileUploadWithPreview</span><span class="hl-0">(</span><span class="hl-8">&#39;myFirstImage&#39;</span><span class="hl-0">);</span>
 </code></pre>
 <p>Then when you&#39;re ready to use the user&#39;s file for an API call or whatever, just access the user&#39;s uploaded file/files in the <code>cachedFileArray</code> property of your initialized object like this:</p>
 <pre><code class="language-javascript"><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-7">cachedFileArray</span><span class="hl-0">;</span>
 </code></pre>
-<p>You can optionally trigger the image browser and clear selected images programmatically. There are additional methods on the class if you&#39;d like to take a look.</p>
+<p>You can optionally trigger the image browser and clear selected images programmatically. There are additional methods on the class if you&#39;d like to take a look at the source code.</p>
 <pre><code class="language-javascript"><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-11">emulateInputSelection</span><span class="hl-0">(); </span><span class="hl-12">// to open image browser</span><br/><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-11">resetPreviewPanel</span><span class="hl-0">(); </span><span class="hl-12">// clear all selected images</span>
 </code></pre>
 <p>You may also want to capture the event when an image is selected.</p>
@@ -80,6 +88,10 @@
 
 <a href="#properties" id="properties" style="color: inherit; text-decoration: none;">
   <h2>Properties</h2>
+</a>
+
+<a href="#view-the-full-docs-here" id="view-the-full-docs-here" style="color: inherit; text-decoration: none;">
+  <h3>View the full docs <a href="https://johndatserakis.github.io/file-upload-with-preview/typedoc/">here</a>.</h3>
 </a>
 <table>
 <thead>

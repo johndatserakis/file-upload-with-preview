@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="public/multiple-file-upload-with-preview.png"></a></p>
+<p align="center"><a href="" target="_blank"><img src="public/file-upload-with-preview.jpg"></a></p>
 
 # file-upload-with-preview
 
@@ -10,15 +10,13 @@
   <img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/file-upload-with-preview.svg?style=social" alt="Tweet"></a>
 </p>
 
-### Links
+## Links
 
-[View demo](https://johndatserakis.github.io/file-upload-with-preview)
+- [Demo](https://johndatserakis.github.io/file-upload-with-preview)
+- [npm](https://www.npmjs.com/package/file-upload-with-preview)
+- [GitHub](https://github.com/johndatserakis/file-upload-with-preview#readme)
 
-[View on npm](https://www.npmjs.com/package/file-upload-with-preview)
-
-[View on GitHub](https://github.com/johndatserakis/file-upload-with-preview#readme)
-
-### About
+## About
 
 This is a simple frontend utility to help the file-upload process on your website. It is written in pure JavaScript, has no dependencies, and is a small 13.55 kB (gzipped). You can check out the live demo [here](https://johndatserakis.github.io/file-upload-with-preview).
 
@@ -26,7 +24,7 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 
 **file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
 
-### Features
+## Features
 
 - Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a _success-image_ in the case of an uploaded .pdf file, uploaded video, or other unrenderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user's selected images will be shown in a grid.
 - Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.
@@ -35,7 +33,7 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 - Framework agnostic - to access the uploaded file/files just use the `cachedFileArray` (always will be an array) property of your `FileUploadWithPreview` object.
 - For every file-group you want just initialize another `FileUploadWithPreview` object with its own `uniqueId` - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a `multiple` property to allow multiple files on the same input.
 
-### Installation
+## Installation
 
 ```bash
 yarn add file-upload-with-preview
@@ -47,7 +45,7 @@ Or you can include it through the browser at the bottom of your page. When using
 <script src="https://unpkg.com/file-upload-with-preview@4.1.0/dist/file-upload-with-preview.min.js"></script>
 ```
 
-### Usage
+## Usage
 
 When installed through npm or yarn:
 
@@ -141,13 +139,13 @@ window.addEventListener('fileUploadWithPreview:imagesAdded', function (e) {
 });
 ```
 
-#### Note
+### Note
 
 The `cachedFileArray` property is always an array. So if you are only allowing the user to upload a single file, you can access that file at `cachedFileArray[0]` - otherwise just send the entire array to your backend to handle it normally.
 
 Make sure to set `multiple` on your input if you want to allow the user to select multiple images.
 
-### Properties
+## Properties
 
 | name                               | type    | description                                                                                                                      |
 | ---------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -171,7 +169,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 | options.text.selectedCount         | String  | Edit input text when multiple files have been selected in one input. Default `${ n } 'files selected'`                           |
 | options.maxFileCount               | Number  | Set a maximum number of files you'd like the component to deal with. Must be `> 0` if set. By default there is no limit.         |
 
-### Methods
+## Methods
 
 | method                | parameters                  | description                                                                                                                                            |
 | --------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -186,7 +184,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 | emulateInputSelection | none                        | Open the image browser programmatically                                                                                                                |
 | clearPreviewPanel     | none                        | Clear the `cachedFileArray`                                                                                                                            |
 
-### Events
+## Events
 
 | event                                    | value                                                                        | description                                                                                                                            |
 | ---------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -194,7 +192,7 @@ Make sure to set `multiple` on your input if you want to allow the user to selec
 | fileUploadWithPreview:imageDeleted       | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.currentFileCount) | Triggered each time a file is deleted. Delivers the `uploadId`, updated `cachedFilesArray`, and `currentFileCount` for the event.      |
 | fileUploadWithPreview:clearButtonClicked | `e` (e.detail.uploadId)                                                      | Triggered when the clear button is clicked. Delivers the `uploadId`.                                                                   |
 
-### Full Example
+## Full Example
 
 ```html
 <html>
@@ -271,36 +269,16 @@ In this example we set the `MAX_FILE_SIZE` value to `10485760` (10MB), the accep
 <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
 ```
 
-### Browser Example
+## Browser Support
 
-[See on CodePen](https://codepen.io/johndatserakis/pen/PLdYEa)
-
-### Vue Example
-
-[See on CodePen](https://codepen.io/johndatserakis/pen/vMRPwa)
-
-### jQuery Sort Example
-
-[See on CodePen](https://codepen.io/johndatserakis/pen/WBwJVr)
-
-### Browser Support
-
-If you are supporting a browser like IE11, you'll need a polyfill for `fetch` and `promise` at the bottom of your `index.html`:
+If you are supporting a browser like IE11, one way to add a polyfill for `fetch` and `promise` is by adding the following in the bottom of your `index.html`:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
 ```
 
-Or, you can install babel-polyfill and import that in the main script of your app. You can read more about babel-polyfill [here](https://babeljs.io/docs/en/babel-polyfill). In the example folder, we use the external script method.
-
-### Testing
-
-Use `yarn test` to run the tests.
-
-### Development
-
-Clone the repo, then use the following to work on the project locally:
+## Development
 
 ```bash
 # Install dependencies
@@ -309,14 +287,17 @@ yarn
 # Watch changes during local development
 yarn dev
 
+# Run tests
+yarn test
+
 # Build library
 yarn build
 ```
 
-### Other
+## Other
 
 Go ahead and fork the project! Submit an issue if needed. Have fun!
 
-### License
+## License
 
 [MIT](http://opensource.org/licenses/MIT)

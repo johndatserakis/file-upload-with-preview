@@ -17,7 +17,7 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
   images: {
     baseImage: importedBaseImage,
   },
-  label: 'Custom Label Text',
+  label: 'Choose Files to Upload',
   maxFileCount: 5,
   multiple: true,
   presetFiles: [

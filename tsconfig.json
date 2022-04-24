@@ -16,7 +16,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "ES6",
-    "types": ["vite/client"]
+    "types": ["vite/client", "jest"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "docs"],

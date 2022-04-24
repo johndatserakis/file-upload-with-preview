@@ -29,7 +29,7 @@ export default {
   ],
   plugins: [
     scss({ output: 'dist/file-upload-with-preview.min.css' }),
-    resolve({ extensions }),
+    resolve({ browser: true, extensions }),
     commonjs(),
     babel({
       babelHelpers: 'runtime',

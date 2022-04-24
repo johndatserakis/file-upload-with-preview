@@ -17,6 +17,7 @@
 - [Demo](https://johndatserakis.github.io/file-upload-with-preview)
 - [npm](https://www.npmjs.com/package/file-upload-with-preview)
 - [GitHub](https://github.com/johndatserakis/file-upload-with-preview#readme)
+- [CodeSandbox](https://codesandbox.io/s/file-upload-with-preview-4ypil8?file=/src/index.ts)
 
 ## Install
 

@@ -68,5 +68,5 @@
     "typescript:check-types": "tsc --noEmit"
   },
   "sideEffects": false,
-  "version": "5.0.0"
+  "version": "5.0.1"
 }

@@ -28,7 +28,7 @@ export default {
     },
   ],
   plugins: [
-    scss({ output: 'dist/index.min.css' }),
+    scss({ output: 'dist/file-upload-with-preview.min.css' }),
     resolve({ extensions }),
     commonjs(),
     babel({

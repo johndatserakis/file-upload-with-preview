@@ -57,7 +57,7 @@
     "build:library": "rollup -c",
     "build:typedoc": "yarn typedoc",
     "build:types": "tsc --emitDeclarationOnly",
-    "build": "yarn clear:dist && yarn clear:docs && yarn typescript:check-types && yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:typedoc && yarn build:library",
+    "build": "yarn clear:dist && yarn clear:docs && yarn typescript:check-types && yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:typedoc && yarn build:library && yarn build:types",
     "clear:dist": "rimraf ./dist",
     "clear:docs": "rimraf ./docs ",
     "dev": "vite",
@@ -68,5 +68,5 @@
     "typescript:check-types": "tsc --noEmit"
   },
   "sideEffects": false,
-  "version": "5.0.1"
+  "version": "5.0.2"
 }

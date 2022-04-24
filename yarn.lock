@@ -1285,7 +1285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.17.9, @babel/runtime@npm:^7.8.4":
   version: 7.17.9
   resolution: "@babel/runtime@npm:7.17.9"
   dependencies:
@@ -1889,7 +1889,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^17.0.25":
   version: 17.0.25
   resolution: "@types/node@npm:17.0.25"
   checksum: 6a820bd624e69ea772f52a6cdb326484eff5829443dc981939373929ade109f58c21698b9f0a831bd6ceea799e722a75dc49c5fa7a6bc32a81e1cbdfc6507b64
@@ -3650,10 +3650,12 @@ __metadata:
     "@babel/plugin-transform-runtime": ^7.17.0
     "@babel/preset-env": ^7.16.11
     "@babel/preset-typescript": ^7.16.7
+    "@babel/runtime": ^7.17.9
     "@rollup/plugin-babel": 5.3.1
     "@rollup/plugin-commonjs": 21.1.0
     "@rollup/plugin-node-resolve": 13.2.1
     "@types/jest": ^27.4.1
+    "@types/node": ^17.0.25
     "@typescript-eslint/eslint-plugin": ^5.19.0
     "@typescript-eslint/parser": ^5.19.0
     babel-jest: ^27.5.1
@@ -3668,7 +3670,7 @@ __metadata:
     rollup: 2.70.2
     rollup-plugin-scss: ^3.0.0
     sass: ^1.49.9
-    typescript: ^4.4.4
+    typescript: ^4.3.5
     vite: ^2.9.5
   languageName: unknown
   linkType: soft
@@ -6616,7 +6618,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.4.4":
+"typescript@npm:^4.3.5":
   version: 4.6.3
   resolution: "typescript@npm:4.6.3"
   bin:
@@ -6626,7 +6628,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.4.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.3.5#~builtin<compat/typescript>":
   version: 4.6.3
   resolution: "typescript@patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=493e53"
   bin:

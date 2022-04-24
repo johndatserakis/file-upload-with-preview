@@ -17,7 +17,6 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
   images: {
     baseImage: importedBaseImage,
   },
-  label: 'Choose Files to Upload',
   maxFileCount: 5,
   multiple: true,
   presetFiles: [
@@ -28,6 +27,7 @@ const secondUpload = new FileUploadWithPreview('mySecondImage', {
   text: {
     browse: 'Choose',
     chooseFile: 'Take your pick...',
+    label: 'Choose Files to Upload',
   },
 });
 

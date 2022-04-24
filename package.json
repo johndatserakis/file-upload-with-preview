@@ -3,7 +3,7 @@
   "bugs": {
     "url": "https://github.com/johndatserakis/file-upload-with-preview/issues"
   },
-  "description": "A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with Bootstrap or without a framework.",
+  "description": "Simple file-upload utility that shows a preview of the uploaded image. Written in TypeScript. No dependencies. Works well with or without a framework.",
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.9",

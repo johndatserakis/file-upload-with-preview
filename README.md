@@ -2,7 +2,7 @@
 
 # file-upload-with-preview
 
-📌 A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with or without a framework.
+🖼 Simple file-upload utility that shows a preview of the uploaded image. Written in TypeScript. No dependencies. Works well with or without a framework.
 
 <p align="left">
   <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/v/file-upload-with-preview.svg" alt="NPM Version"></a>
@@ -78,14 +78,14 @@ Then when you're ready to use the user's file for an API call or whatever, just 
 upload.cachedFileArray;
 ```
 
-You can optionally trigger the image browser and clear selected images programmatically:
+You can optionally trigger the image browser and clear selected images programmatically. There are additional methods on the class if you'd like to take a look.
 
 ```javascript
 upload.emulateInputSelection(); // to open image browser
 upload.resetPreviewPanel(); // clear all selected images
 ```
 
-You may also want to capture the event when an image is selected:
+You may also want to capture the event when an image is selected.
 
 ```javascript
 import { Events, ImageAddedEvent } from 'file-upload-with-preview';
@@ -105,50 +105,40 @@ Make sure to pass in `multiple: true` in your options if you want to allow the u
 
 ## Properties
 
-| name                               | type    | description                                                                                                                      |
-| ---------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| el                                 | Element | The main container for the instance                                                                                              |
-| input                              | Element | The main container for the instance                                                                                              |
-| inputLabel                         | Element | The label for the image name/count                                                                                               |
-| uploadId                           | String  | The id you set for the instance                                                                                                  |
-| cachedFileArray                    | Array   | The current selected files                                                                                                       |
-| currentFileCount                   | Number  | The count of the currently selected files                                                                                        |
-| clearButton                        | Element | The button to reset the instance                                                                                                 |
-| imagePreview                       | Element | The display panel for the images                                                                                                 |
-| options.images.baseImage           | String  | Replace placeholder image.                                                                                                       |
-| options.images.backgroundImage     | String  | Replace background image for image grid.                                                                                         |
-| options.images.successFileAltImage | String  | Replace successful alternate file upload image.                                                                                  |
-| options.images.successPdfImage     | String  | Replace successful PDF upload image.                                                                                             |
-| options.images.successVideoImage   | String  | Replace successful video upload image.                                                                                           |
-| options.presetFiles                | Array   | Provide an array of image paths to be automatically uploaded and displayed on page load (can be images hosted on server or URLs) |
-| options.showDeleteButtonOnImages   | Boolean | Show a delete button on images in the grid. Default `true`                                                                       |
-| options.text.browse                | String  | Edit button text. Default `'Browse'`                                                                                             |
-| options.text.chooseFile            | String  | Edit input placeholder text. Default `'Choose file...'`                                                                          |
-| options.text.selectedCount         | String  | Edit input text when multiple files have been selected in one input. Default `${ n } 'files selected'`                           |
-| options.maxFileCount               | Number  | Set a maximum number of files you'd like the component to deal with. Must be `> 0` if set. By default there is no limit.         |
-
-## Methods
-
-| method                | parameters                  | description                                                                                                                                            |
-| --------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| addFiles              | array of File objects       | Populate the `cachedFileArray` with images as File objects                                                                                             |
-| processFile           | file object                 | Take a single File object and append it to the image preview panel                                                                                     |
-| addImagesFromPath     | array of image paths        | Take an array of image paths, convert them to File objects, and display them in the image preview panel (can be paths to images on the server or urls) |
-| replaceFiles          | array of File objects       | Replace files in `cachedFileArray` and image preview panel with array of File objects                                                                  |
-| replaceFileAtIndex    | file object, index (Number) | Take a single file object and index, replace existing file at that index                                                                               |
-| deleteFileAtIndex     | index (Number)              | Delete specified file from `cachedFileArray`                                                                                                           |
-| refreshPreviewPanel   | none                        | Refresh image preview panel with current `cachedFileArray`                                                                                             |
-| addBrowseButton       | text                        | Appends browse button to input with custom button text                                                                                                 |
-| emulateInputSelection | none                        | Open the image browser programmatically                                                                                                                |
-| clearPreviewPanel     | none                        | Clear the `cachedFileArray`                                                                                                                            |
+| name                               | type             | default                          | description                                                                                                                      |
+| ---------------------------------- | ---------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| cachedFileArray                    | File[]           | `[]`                             | Currently selected files                                                                                                         |
+| clearButton                        | Element          | -                                | Button to reset the instance                                                                                                     |
+| el                                 | Element          | -                                | Main container for the instance                                                                                                  |
+| imagePreview                       | HTMLDivElement   | -                                | Display panel for the images                                                                                                     |
+| inputHidden                        | HTMLInputElement | -                                | Hidden input                                                                                                                     |
+| inputVisible                       | Element          | -                                | Visible input                                                                                                                    |
+| options.accept                     | String           | `*`                              | Type of files to accept in your input                                                                                            |
+| options.images.backgroundImage     | String           | `DEFAULT_BACKGROUND_IMAGE`       | Background image for image grid                                                                                                  |
+| options.images.baseImage           | String           | `DEFAULT_BASE_IMAGE`             | Placeholder image                                                                                                                |
+| options.images.successFileAltImage | String           | `DEFAULT_SUCCESS_FILE_ALT_IMAGE` | Alternate file upload image                                                                                                      |
+| options.images.successPdfImage     | String           | `DEFAULT_SUCCESS_PDF_IMAGE`      | PDF upload image                                                                                                                 |
+| options.images.successVideoImage   | String           | `DEFAULT_SUCCESS_VIDEO_IMAGE`    | Video upload image                                                                                                               |
+| options.maxFileCount               | Number           | `0`                              | Set a maximum number of files you'd like the component to deal with. Must be `> 0` if set. By default there is no limit.         |
+| options.multiple                   | Number           | `false`                          | Set to `true` if you want to allow the user to selected multiple images. Will use grid view in the image preview if set.         |
+| options.presetFiles                | Array            | `[]`                             | Provide an array of image paths to be automatically uploaded and displayed on page load (can be images hosted on server or URLs) |
+| options.showDeleteButtonOnImages   | Boolean          | `true`                           | Show a delete button on images in the grid                                                                                       |
+| options.text.browse                | String           | `Browse`                         | Browse button text                                                                                                               |
+| options.text.chooseFile            | String           | `Choose file...`                 | Placeholder text                                                                                                                 |
+| options.text.label                 | String           | `Upload`                         | Main input label text                                                                                                            |
+| options.text.selectedCount         | String           | `files selected`                 | Count descriptor text. Defaults to `${ n } files selected`.                                                                      |
+| uploadId                           | String           | -                                | The `id` you set for the instance                                                                                                |
 
 ## Events
 
-| event                                    | value                                                                        | description                                                                                                                            |
-| ---------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| fileUploadWithPreview:imagesAdded        | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.addedFilesCount)  | Triggered each time file/files are selected. Delivers the `uploadId`, updated `cachedFilesArray`, and `addedFilesCount` for the event. |
-| fileUploadWithPreview:imageDeleted       | `e` (e.detail.uploadId, e.detail.cachedFileArray, e.detail.currentFileCount) | Triggered each time a file is deleted. Delivers the `uploadId`, updated `cachedFilesArray`, and `currentFileCount` for the event.      |
-| fileUploadWithPreview:clearButtonClicked | `e` (e.detail.uploadId)                                                      | Triggered when the clear button is clicked. Delivers the `uploadId`.                                                                   |
+```ts
+export enum Events {
+  IMAGE_ADDED = 'fileUploadWithPreview:imagesAdded',
+  IMAGE_DELETED = 'fileUploadWithPreview:imageDeleted',
+  CLEAR_BUTTON_CLICKED = 'fileUploadWithPreview:clearButtonClicked',
+  IMAGE_MULTI_ITEM_CLICKED = 'fileUploadWithPreview:imageMultiItemClicked',
+}
+```
 
 ## Full Example
 

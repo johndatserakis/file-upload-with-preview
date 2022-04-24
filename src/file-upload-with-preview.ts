@@ -1,4 +1,3 @@
-import { DEFAULT_LABEL_TEXT } from './constants/elements';
 import { Events } from './constants/events';
 import { UNIQUE_ID_IDENTIFIER } from './constants/file';
 import {
@@ -13,6 +12,7 @@ import {
   DEFAULT_BROWSE_TEXT,
   DEFAULT_CHOOSE_FILE_TEXT,
   DEFAULT_FILES_SELECTED_TEXT,
+  DEFAULT_LABEL_TEXT,
 } from './constants/text';
 import {
   ClearButtonClickedEvent,
@@ -25,6 +25,7 @@ import { generateUniqueId } from './utils/file';
 export interface Text {
   browse?: string;
   chooseFile?: string;
+  label?: string;
   selectedCount?: string;
 }
 
@@ -41,7 +42,6 @@ export type PresetFiles = string[];
 export interface Options {
   accept?: HTMLInputElement['accept'];
   images?: Images;
-  label?: string;
   maxFileCount?: number;
   multiple?: boolean;
   presetFiles?: PresetFiles;
@@ -61,7 +61,6 @@ export class FileUploadWithPreview {
   imagePreview: HTMLDivElement;
   inputHidden: HTMLInputElement;
   inputVisible: Element;
-  uploadId: string;
   options: RequiredOptions = {
     accept: '*',
     images: {
@@ -71,7 +70,6 @@ export class FileUploadWithPreview {
       successPdfImage: DEFAULT_SUCCESS_PDF_IMAGE,
       successVideoImage: DEFAULT_SUCCESS_VIDEO_IMAGE,
     },
-    label: DEFAULT_LABEL_TEXT,
     maxFileCount: 0,
     multiple: false,
     presetFiles: [],
@@ -79,9 +77,11 @@ export class FileUploadWithPreview {
     text: {
       browse: DEFAULT_BROWSE_TEXT,
       chooseFile: DEFAULT_CHOOSE_FILE_TEXT,
+      label: DEFAULT_LABEL_TEXT,
       selectedCount: DEFAULT_FILES_SELECTED_TEXT,
     },
   };
+  uploadId: string;
 
   constructor(uploadId: string, options: Options = {}) {
     if (!uploadId) {
@@ -94,17 +94,17 @@ export class FileUploadWithPreview {
     this.cachedFileArray = [];
 
     // Base options
-    const { label, maxFileCount, multiple, presetFiles, showDeleteButtonOnImages } = options;
+    const { maxFileCount, multiple, presetFiles, showDeleteButtonOnImages } = options;
     this.options.showDeleteButtonOnImages = showDeleteButtonOnImages ?? true;
     this.options.maxFileCount = maxFileCount ?? 0;
     this.options.presetFiles = presetFiles ?? [];
     this.options.multiple = multiple ?? false;
-    this.options.label = label ?? DEFAULT_LABEL_TEXT;
 
     // Text options
-    const { browse, chooseFile, selectedCount } = options.text || {};
+    const { browse, chooseFile, label, selectedCount } = options.text || {};
     this.options.text.chooseFile = chooseFile ?? this.options.text.chooseFile;
     this.options.text.browse = browse ?? this.options.text.browse;
+    this.options.text.label = label ?? DEFAULT_LABEL_TEXT;
     this.options.text.selectedCount = selectedCount ?? this.options.text.selectedCount;
 
     // Elements
@@ -117,7 +117,7 @@ export class FileUploadWithPreview {
     this.el = el;
     this.el.innerHTML += `
       <div class="label-container">
-        <label>${this.options.label}</label>
+        <label>${this.options.text.label}</label>
         <a class="clear-button" href="javascript:void(0)" title="Clear Image">
           &times;
         </a>

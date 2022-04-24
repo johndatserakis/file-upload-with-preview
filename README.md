@@ -17,7 +17,9 @@
 - [Demo](https://johndatserakis.github.io/file-upload-with-preview)
 - [npm](https://www.npmjs.com/package/file-upload-with-preview)
 - [GitHub](https://github.com/johndatserakis/file-upload-with-preview#readme)
-- [CodeSandbox](https://codesandbox.io/s/file-upload-with-preview-4ypil8?file=/src/index.ts)
+- [CodeSandbox - TypeScript](https://codesandbox.io/s/file-upload-with-preview-4ypil8?file=/src/index.ts)
+- [CodeSandbox - Browser](https://codesandbox.io/s/file-upload-with-preview-browser-446nc8?file=/src/index.js)
+- [Docs](https://johndatserakis.github.io/file-upload-with-preview/typedoc/)
 
 ## Install
 
@@ -58,6 +60,14 @@ For the most part, browsers do a good job of handling image-uploads. That being 
 
 ## Usage
 
+This library looks for a specific HTML element to display the file-upload. Simply add the below `div` to your HTML. Make sure to populate your unique id in the `data-upload-id` attribute.
+
+```html
+<div class="custom-file-container" data-upload-id="myFirstImage"></div>
+```
+
+Then, initialize your file-upload in the JavaScript like below:
+
 ```javascript
 import { FileUploadWithPreview } from 'file-upload-with-preview';
 import 'file-upload-with-preview/dist/file-upload-with-preview.min.css';
@@ -65,12 +75,30 @@ import 'file-upload-with-preview/dist/file-upload-with-preview.min.css';
 const upload = new FileUploadWithPreview('myFirstImage');
 ```
 
-The JavaScript looks for a specific of HTML element to display the file input, label, image preview, and clear-button.
-
-Make sure to populate the `custom-file-container` element with your unique id in the `data-upload-id` attribute.
+If you're importing directly in the browser, use the following instead:
 
 ```html
-<div class="custom-file-container" data-upload-id="myFirstImage"></div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css"
+    />
+  </head>
+  <body>
+    <div class="custom-file-container" data-upload-id="myFirstImage"></div>
+    <script src="https://unpkg.com/file-upload-with-preview"></script>
+  </body>
+</html>
+```
+
+Then initialize like this:
+
+```javascript
+const upload = new FileUploadWithPreview.FileUploadWithPreview('myFirstImage');
 ```
 
 Then when you're ready to use the user's file for an API call or whatever, just access the user's uploaded file/files in the `cachedFileArray` property of your initialized object like this:
@@ -79,7 +107,7 @@ Then when you're ready to use the user's file for an API call or whatever, just 
 upload.cachedFileArray;
 ```
 
-You can optionally trigger the image browser and clear selected images programmatically. There are additional methods on the class if you'd like to take a look.
+You can optionally trigger the image browser and clear selected images programmatically. There are additional methods on the class if you'd like to take a look at the source code.
 
 ```javascript
 upload.emulateInputSelection(); // to open image browser
@@ -105,6 +133,8 @@ The `cachedFileArray` property is always an array. So if you are only allowing t
 Make sure to pass in `multiple: true` in your options if you want to allow the user to select multiple images.
 
 ## Properties
+
+### View the full docs [here](https://johndatserakis.github.io/file-upload-with-preview/typedoc/).
 
 | name                               | type             | default                          | description                                                                                                                      |
 | ---------------------------------- | ---------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |

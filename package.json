@@ -69,5 +69,5 @@
   "sideEffects": false,
   "style": "dist/file-upload-with-preview.min.css",
   "types": "dist/types/src/index.d.ts",
-  "version": "5.0.4"
+  "version": "5.0.5"
 }

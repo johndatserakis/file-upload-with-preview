@@ -46,7 +46,7 @@ describe('Module Actions', () => {
     const upload = new FileUploadWithPreview(TEST_ID);
 
     const file = new Blob([''], { type: 'image/jpeg' });
-    upload.cachedFileArray.push(file);
+    upload.cachedFileArray.push(file as File);
     expect(upload.cachedFileArray.length).toBe(1);
 
     const event = new Event('click', {

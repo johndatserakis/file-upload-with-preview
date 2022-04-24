@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="public/file-upload-with-preview.jpg"></a></p>
+<p align="center"><a href="" target="_blank"><img src="https://raw.githubusercontent.com/johndatserakis/file-upload-with-preview/master/public/file-upload-with-preview.jpg"></a></p>
 
 # file-upload-with-preview
 
@@ -47,7 +47,7 @@ It is written in pure JavaScript and has no dependencies. You can check out the 
 
 For the most part, browsers do a good job of handling image-uploads. That being said - I find the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.
 
-**file-upload-with-preview** aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
+file-upload-with-preview aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
 
 ## Features
 
@@ -132,48 +132,13 @@ The `cachedFileArray` property is always an array. So if you are only allowing t
 
 Make sure to pass in `multiple: true` in your options if you want to allow the user to select multiple images.
 
-## Properties
+## Docs
 
-### View the full docs [here](https://johndatserakis.github.io/file-upload-with-preview/typedoc/).
-
-| name                               | type             | default                          | description                                                                                                                      |
-| ---------------------------------- | ---------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| cachedFileArray                    | File[]           | `[]`                             | Currently selected files                                                                                                         |
-| clearButton                        | Element          | -                                | Button to reset the instance                                                                                                     |
-| el                                 | Element          | -                                | Main container for the instance                                                                                                  |
-| imagePreview                       | HTMLDivElement   | -                                | Display panel for the images                                                                                                     |
-| inputHidden                        | HTMLInputElement | -                                | Hidden input                                                                                                                     |
-| inputVisible                       | Element          | -                                | Visible input                                                                                                                    |
-| options.accept                     | String           | `*`                              | Type of files to accept in your input                                                                                            |
-| options.images.backgroundImage     | String           | `DEFAULT_BACKGROUND_IMAGE`       | Background image for image grid                                                                                                  |
-| options.images.baseImage           | String           | `DEFAULT_BASE_IMAGE`             | Placeholder image                                                                                                                |
-| options.images.successFileAltImage | String           | `DEFAULT_SUCCESS_FILE_ALT_IMAGE` | Alternate file upload image                                                                                                      |
-| options.images.successPdfImage     | String           | `DEFAULT_SUCCESS_PDF_IMAGE`      | PDF upload image                                                                                                                 |
-| options.images.successVideoImage   | String           | `DEFAULT_SUCCESS_VIDEO_IMAGE`    | Video upload image                                                                                                               |
-| options.maxFileCount               | Number           | `0`                              | Set a maximum number of files you'd like the component to deal with. Must be `> 0` if set. By default there is no limit.         |
-| options.multiple                   | Number           | `false`                          | Set to `true` if you want to allow the user to selected multiple images. Will use grid view in the image preview if set.         |
-| options.presetFiles                | Array            | `[]`                             | Provide an array of image paths to be automatically uploaded and displayed on page load (can be images hosted on server or URLs) |
-| options.showDeleteButtonOnImages   | Boolean          | `true`                           | Show a delete button on images in the grid                                                                                       |
-| options.text.browse                | String           | `Browse`                         | Browse button text                                                                                                               |
-| options.text.chooseFile            | String           | `Choose file...`                 | Placeholder text                                                                                                                 |
-| options.text.label                 | String           | `Upload`                         | Main input label text                                                                                                            |
-| options.text.selectedCount         | String           | `files selected`                 | Count descriptor text. Defaults to `${ n } files selected`.                                                                      |
-| uploadId                           | String           | -                                | The `id` you set for the instance                                                                                                |
-
-## Events
-
-```ts
-export enum Events {
-  IMAGE_ADDED = 'fileUploadWithPreview:imagesAdded',
-  IMAGE_DELETED = 'fileUploadWithPreview:imageDeleted',
-  CLEAR_BUTTON_CLICKED = 'fileUploadWithPreview:clearButtonClicked',
-  IMAGE_MULTI_ITEM_CLICKED = 'fileUploadWithPreview:imageMultiItemClicked',
-}
-```
+View the full docs [here](https://johndatserakis.github.io/file-upload-with-preview/typedoc/).
 
 ## Full Example
 
-See the full example in the `./example/index.ts` folder.
+See the full example in the `./example/index.ts` folder. See the top of this README for some links to a few live CodeSandbox's.
 
 ## Browser Support
 

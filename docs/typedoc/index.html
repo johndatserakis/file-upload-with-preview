@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>file-upload-with-preview</title><meta name="description" content="Documentation for file-upload-with-preview"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">file-upload-with-preview</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>file-upload-with-preview </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><p align="center"><a href="" target="_blank"><img src="public/file-upload-with-preview.jpg"></a></p>
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>file-upload-with-preview</title><meta name="description" content="Documentation for file-upload-with-preview"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">file-upload-with-preview</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>file-upload-with-preview </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><p align="center"><a href="" target="_blank"><img src="https://raw.githubusercontent.com/johndatserakis/file-upload-with-preview/develop/public/file-upload-with-preview.jpg"></a></p>
 
 
 <a href="#file-upload-with-preview" id="file-upload-with-preview" style="color: inherit; text-decoration: none;">
@@ -41,7 +41,7 @@
 <p>This is a simple frontend utility meant to help the file-upload process on your website.</p>
 <p>It is written in pure JavaScript and has no dependencies. You can check out the live demo <a href="https://johndatserakis.github.io/file-upload-with-preview">here</a>.</p>
 <p>For the most part, browsers do a good job of handling image-uploads. That being said - I find the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.</p>
-<p><strong>file-upload-with-preview</strong> aims to address the issue of showing a preview of a user&#39;s uploaded image in a simple to use package.</p>
+<p>file-upload-with-preview aims to address the issue of showing a preview of a user&#39;s uploaded image in a simple to use package.</p>
 
 <a href="#features" id="features" style="color: inherit; text-decoration: none;">
   <h2>Features</h2>
@@ -86,160 +86,15 @@
 <p>The <code>cachedFileArray</code> property is always an array. So if you are only allowing the user to upload a single file, you can access that file at <code>cachedFileArray[0]</code> - otherwise just send the entire array to your backend to handle it normally.</p>
 <p>Make sure to pass in <code>multiple: true</code> in your options if you want to allow the user to select multiple images.</p>
 
-<a href="#properties" id="properties" style="color: inherit; text-decoration: none;">
-  <h2>Properties</h2>
+<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
+  <h2>Docs</h2>
 </a>
-
-<a href="#view-the-full-docs-here" id="view-the-full-docs-here" style="color: inherit; text-decoration: none;">
-  <h3>View the full docs <a href="https://johndatserakis.github.io/file-upload-with-preview/typedoc/">here</a>.</h3>
-</a>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>type</th>
-<th>default</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>cachedFileArray</td>
-<td>File[]</td>
-<td><code>[]</code></td>
-<td>Currently selected files</td>
-</tr>
-<tr>
-<td>clearButton</td>
-<td>Element</td>
-<td>-</td>
-<td>Button to reset the instance</td>
-</tr>
-<tr>
-<td>el</td>
-<td>Element</td>
-<td>-</td>
-<td>Main container for the instance</td>
-</tr>
-<tr>
-<td>imagePreview</td>
-<td>HTMLDivElement</td>
-<td>-</td>
-<td>Display panel for the images</td>
-</tr>
-<tr>
-<td>inputHidden</td>
-<td>HTMLInputElement</td>
-<td>-</td>
-<td>Hidden input</td>
-</tr>
-<tr>
-<td>inputVisible</td>
-<td>Element</td>
-<td>-</td>
-<td>Visible input</td>
-</tr>
-<tr>
-<td>options.accept</td>
-<td>String</td>
-<td><code>*</code></td>
-<td>Type of files to accept in your input</td>
-</tr>
-<tr>
-<td>options.images.backgroundImage</td>
-<td>String</td>
-<td><code>DEFAULT_BACKGROUND_IMAGE</code></td>
-<td>Background image for image grid</td>
-</tr>
-<tr>
-<td>options.images.baseImage</td>
-<td>String</td>
-<td><code>DEFAULT_BASE_IMAGE</code></td>
-<td>Placeholder image</td>
-</tr>
-<tr>
-<td>options.images.successFileAltImage</td>
-<td>String</td>
-<td><code>DEFAULT_SUCCESS_FILE_ALT_IMAGE</code></td>
-<td>Alternate file upload image</td>
-</tr>
-<tr>
-<td>options.images.successPdfImage</td>
-<td>String</td>
-<td><code>DEFAULT_SUCCESS_PDF_IMAGE</code></td>
-<td>PDF upload image</td>
-</tr>
-<tr>
-<td>options.images.successVideoImage</td>
-<td>String</td>
-<td><code>DEFAULT_SUCCESS_VIDEO_IMAGE</code></td>
-<td>Video upload image</td>
-</tr>
-<tr>
-<td>options.maxFileCount</td>
-<td>Number</td>
-<td><code>0</code></td>
-<td>Set a maximum number of files you&#39;d like the component to deal with. Must be <code>&gt; 0</code> if set. By default there is no limit.</td>
-</tr>
-<tr>
-<td>options.multiple</td>
-<td>Number</td>
-<td><code>false</code></td>
-<td>Set to <code>true</code> if you want to allow the user to selected multiple images. Will use grid view in the image preview if set.</td>
-</tr>
-<tr>
-<td>options.presetFiles</td>
-<td>Array</td>
-<td><code>[]</code></td>
-<td>Provide an array of image paths to be automatically uploaded and displayed on page load (can be images hosted on server or URLs)</td>
-</tr>
-<tr>
-<td>options.showDeleteButtonOnImages</td>
-<td>Boolean</td>
-<td><code>true</code></td>
-<td>Show a delete button on images in the grid</td>
-</tr>
-<tr>
-<td>options.text.browse</td>
-<td>String</td>
-<td><code>Browse</code></td>
-<td>Browse button text</td>
-</tr>
-<tr>
-<td>options.text.chooseFile</td>
-<td>String</td>
-<td><code>Choose file...</code></td>
-<td>Placeholder text</td>
-</tr>
-<tr>
-<td>options.text.label</td>
-<td>String</td>
-<td><code>Upload</code></td>
-<td>Main input label text</td>
-</tr>
-<tr>
-<td>options.text.selectedCount</td>
-<td>String</td>
-<td><code>files selected</code></td>
-<td>Count descriptor text. Defaults to <code>${ n } files selected</code>.</td>
-</tr>
-<tr>
-<td>uploadId</td>
-<td>String</td>
-<td>-</td>
-<td>The <code>id</code> you set for the instance</td>
-</tr>
-</tbody></table>
-
-<a href="#events" id="events" style="color: inherit; text-decoration: none;">
-  <h2>Events</h2>
-</a>
-<pre><code class="language-ts"><span class="hl-6">export</span><span class="hl-0"> </span><span class="hl-9">enum</span><span class="hl-0"> </span><span class="hl-13">Events</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_ADDED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imagesAdded&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_DELETED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imageDeleted&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">CLEAR_BUTTON_CLICKED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:clearButtonClicked&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_MULTI_ITEM_CLICKED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imageMultiItemClicked&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">}</span>
-</code></pre>
+<p>View the full docs <a href="https://johndatserakis.github.io/file-upload-with-preview/typedoc/">here</a>.</p>
 
 <a href="#full-example" id="full-example" style="color: inherit; text-decoration: none;">
   <h2>Full Example</h2>
 </a>
-<p>See the full example in the <code>./example/index.ts</code> folder.</p>
+<p>See the full example in the <code>./example/index.ts</code> folder. See the top of this README for some links to a few live CodeSandbox&#39;s.</p>
 
 <a href="#browser-support" id="browser-support" style="color: inherit; text-decoration: none;">
   <h2>Browser Support</h2>

@@ -902,6 +902,31 @@ var generateUniqueId = function generateUniqueId() {
 };
 
 var FileUploadWithPreview = /*#__PURE__*/function () {
+  /**
+   * Currently selected files
+   *
+   * @default []
+   */
+
+  /**
+   * Button to reset the instance
+   */
+
+  /**
+   * Main container for the instance
+   */
+
+  /**
+   * Display panel for the images
+   */
+
+  /**
+   * Hidden input
+   */
+
+  /**
+   * Visible input
+   */
   function FileUploadWithPreview(uploadId) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 

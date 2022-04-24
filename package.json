@@ -1,15 +1,38 @@
 {
-  "name": "file-upload-with-preview",
-  "version": "4.3.0",
-  "description": "A simple file-upload utility that shows a preview of the uploaded image. Written in pure JavaScript. No dependencies. Works well with Bootstrap 4 or without a framework.",
   "author": "John Datserakis <johndatserakis@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johndatserakis/file-upload-with-preview.git"
-  },
   "bugs": {
     "url": "https://github.com/johndatserakis/file-upload-with-preview/issues"
+  },
+  "description": "Simple file-upload utility that shows a preview of the uploaded image. Written in TypeScript. No dependencies. Works well with or without a framework.",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@babel/runtime": "^7.17.9",
+    "@rollup/plugin-babel": "5.3.1",
+    "@rollup/plugin-commonjs": "21.1.0",
+    "@rollup/plugin-node-resolve": "13.2.1",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.25",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "babel-jest": "^27.5.1",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "rollup": "2.70.2",
+    "rollup-plugin-scss": "^3.0.0",
+    "sass": "^1.49.9",
+    "typedoc": "^0.22.15",
+    "typescript": "^4.3.5",
+    "vite": "^2.9.5"
   },
   "keywords": [
     "upload",
@@ -19,65 +42,31 @@
     "file",
     "bootstrap"
   ],
-  "main": "dist/file-upload-with-preview.umd.js",
+  "license": "MIT",
+  "main": "dist/file-upload-with-preview.cjs.js",
   "module": "dist/file-upload-with-preview.esm.js",
-  "unpkg": "dist/file-upload-with-preview.min.js",
+  "browser": "dist/file-upload-with-preview.iife.js",
+  "types": "dist/types/index.d.ts",
+  "name": "file-upload-with-preview",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johndatserakis/file-upload-with-preview.git"
+  },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot --display-error-details",
-    "build": "npm run test && npm run build:example && npm run build:library",
-    "build:umd": "rollup --config build/rollup.config.js --format umd --file dist/file-upload-with-preview.umd.js",
-    "build:es": "rollup --config build/rollup.config.js --format es --file dist/file-upload-with-preview.esm.js",
-    "build:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/file-upload-with-preview.min.js",
-    "build:library": "rm -rf ./dist npm run build:unpkg & npm run build:es & npm run build:umd & npm run build:unpkg",
-    "build:example": "rm -rf ./docs && cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "test": "jest"
+    "build:example": "vite build",
+    "build:library": "rollup -c",
+    "build:typedoc": "yarn typedoc",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "yarn clear:dist && yarn clear:docs && yarn typescript:check-types && yarn lint:fix && yarn prettier:format && yarn test && yarn build:example && yarn build:typedoc && yarn build:library",
+    "clear:dist": "rimraf ./dist",
+    "clear:docs": "rimraf ./docs ",
+    "dev": "vite",
+    "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint .",
+    "prettier:format": "prettier 'src/**/*.ts' --write",
+    "test": "jest",
+    "typescript:check-types": "tsc --noEmit"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.9",
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/runtime": "^7.17.9",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "^8.2.4",
-    "clean-webpack-plugin": "^1.0.1",
-    "copy-webpack-plugin": "^4.6.0",
-    "cross-env": "^6.0.3",
-    "css-loader": "^0.28.11",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-loader": "^2.2.1",
-    "eslint-plugin-import": "^2.26.0",
-    "file-loader": "^1.1.11",
-    "html-webpack-plugin": "^3.2.0",
-    "jest": "^24.9.0",
-    "mini-css-extract-plugin": "^0.12.0",
-    "minimist": "^1.2.6",
-    "node-sass": "^4.14.1",
-    "optimize-css-assets-webpack-plugin": "^4.0.3",
-    "rollup": "^1.32.1",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-scss": "^1.0.2",
-    "rollup-plugin-terser": "^4.0.4",
-    "sass-loader": "^7.3.1",
-    "style-loader": "^0.23.1",
-    "terser-webpack-plugin": "^1.4.5",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/example/$1"
-    },
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.(scss|less|svg|png)$": "./test/styleMock.js"
-    }
-  }
+  "sideEffects": false,
+  "version": "5.0.0"
 }

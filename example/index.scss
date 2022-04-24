@@ -1,0 +1,118 @@
+$grey: #edede8;
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  height: 100%;
+  line-height: 1.5;
+  margin: 0;
+  width: 100%;
+}
+
+a {
+  color: #3157b3;
+}
+
+a:hover {
+  color: #3f7ebd;
+}
+
+pre {
+  background-color: #edede8;
+  border-radius: 4px;
+  color: #333;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.header-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+
+  .content {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .code {
+    margin-bottom: 8px;
+  }
+}
+
+.demo-upload-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 32px;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+    gap: 64px;
+  }
+}
+
+.demo-info-container {
+  align-items: center;
+  background: #3157b3;
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  margin: 0 auto 16px;
+  padding: 8px 12px;
+  width: 300px;
+
+  a {
+    color: white;
+
+    &:hover {
+      color: darken(white, 10%);
+    }
+  }
+}
+
+// GitHub Banner
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}

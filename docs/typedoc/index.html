@@ -1,0 +1,253 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>file-upload-with-preview</title><meta name="description" content="Documentation for file-upload-with-preview"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">file-upload-with-preview</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>file-upload-with-preview </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><p align="center"><a href="" target="_blank"><img src="public/file-upload-with-preview.jpg"></a></p>
+
+
+<a href="#file-upload-with-preview" id="file-upload-with-preview" style="color: inherit; text-decoration: none;">
+  <h1>file-upload-with-preview</h1>
+</a>
+<p>🖼 Simple file-upload utility that shows a preview of the uploaded image. Written in TypeScript. No dependencies. Works well with or without a framework.</p>
+<p align="left">
+  <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/v/file-upload-with-preview.svg" alt="NPM Version"></a>
+  <a href="https://www.npmjs.com/package/file-upload-with-preview"><img src="https://img.shields.io/npm/dm/file-upload-with-preview.svg" alt="NPM Downloads"></a>
+  <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+  <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%johndatserakis%2Ffile-upload-with-preview&text=Check%20out%20file-upload-with-preview%20on%20GitHub&via=johndatserakis">
+  <img src="https://img.shields.io/twitter/url/https/github.com/johndatserakis/file-upload-with-preview.svg?style=social" alt="Tweet"></a>
+</p>
+
+
+<a href="#links" id="links" style="color: inherit; text-decoration: none;">
+  <h2>Links</h2>
+</a>
+<ul>
+<li><a href="https://johndatserakis.github.io/file-upload-with-preview">Demo</a></li>
+<li><a href="https://www.npmjs.com/package/file-upload-with-preview">npm</a></li>
+<li><a href="https://github.com/johndatserakis/file-upload-with-preview#readme">GitHub</a></li>
+</ul>
+
+<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+  <h2>Install</h2>
+</a>
+<pre><code class="language-bash"><span class="hl-0">yarn add file-upload-with-preview</span>
+</code></pre>
+<p>Or, you can include it through the browser.</p>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">link</span><br/><span class="hl-0">  </span><span class="hl-3">rel</span><span class="hl-0">=</span><span class="hl-4">&quot;stylesheet&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">type</span><span class="hl-0">=</span><span class="hl-4">&quot;text/css&quot;</span><br/><span class="hl-0">  </span><span class="hl-3">href</span><span class="hl-0">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css&quot;</span><br/><span class="hl-1">/&gt;</span><br/><br/><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-5"> </span><span class="hl-3">src</span><span class="hl-5">=</span><span class="hl-4">&quot;https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.iife.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+
+<a href="#about" id="about" style="color: inherit; text-decoration: none;">
+  <h2>About</h2>
+</a>
+<p>This is a simple frontend utility meant to help the file-upload process on your website.</p>
+<p>It is written in pure JavaScript and has no dependencies. You can check out the live demo <a href="https://johndatserakis.github.io/file-upload-with-preview">here</a>.</p>
+<p>For the most part, browsers do a good job of handling image-uploads. That being said - I find the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.</p>
+<p><strong>file-upload-with-preview</strong> aims to address the issue of showing a preview of a user&#39;s uploaded image in a simple to use package.</p>
+
+<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+  <h2>Features</h2>
+</a>
+<ul>
+<li>Shows the actual image preview in the case of a single uploaded .jpg, .jpeg, .gif, or .png image. Shows a <em>success-image</em> in the case of an uploaded .pdf file, uploaded video, or other un-renderable file - so the user knows their image was collected successfully. In the case of multiple selected files, the user&#39;s selected images will be shown in a grid.</li>
+<li>Shows the image name in the input bar. Shows the count of selected images in the case of multiple selections within the same input.</li>
+<li>Allows the user to clear their upload and clear individual images in the <code>multiple</code> grid</li>
+<li>Looks great</li>
+<li>Framework agnostic - to access the uploaded file/files just use the <code>cachedFileArray</code> (always will be an array) property of your <code>FileUploadWithPreview</code> object.</li>
+<li>For every file-group you want just initialize another <code>FileUploadWithPreview</code> object with its own <code>uniqueId</code> - this way you can have multiple file-uploads on the same page. You also can just use a single input designated with a <code>multiple</code> property to allow multiple files on the same input.</li>
+</ul>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-0"> { </span><span class="hl-7">FileUploadWithPreview</span><span class="hl-0"> } </span><span class="hl-6">from</span><span class="hl-0"> </span><span class="hl-8">&#39;file-upload-with-preview&#39;</span><span class="hl-0">;</span><br/><span class="hl-6">import</span><span class="hl-0"> </span><span class="hl-8">&#39;file-upload-with-preview/dist/file-upload-with-preview.min.css&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">upload</span><span class="hl-0"> = </span><span class="hl-9">new</span><span class="hl-0"> </span><span class="hl-11">FileUploadWithPreview</span><span class="hl-0">(</span><span class="hl-8">&#39;myFirstImage&#39;</span><span class="hl-0">);</span>
+</code></pre>
+<p>The JavaScript looks for a specific of HTML element to display the file input, label, image preview, and clear-button.</p>
+<p>Make sure to populate the <code>custom-file-container</code> element with your unique id in the <code>data-upload-id</code> attribute.</p>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-3">class</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-file-container&quot;</span><span class="hl-0"> </span><span class="hl-3">data-upload-id</span><span class="hl-0">=</span><span class="hl-4">&quot;myFirstImage&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span>
+</code></pre>
+<p>Then when you&#39;re ready to use the user&#39;s file for an API call or whatever, just access the user&#39;s uploaded file/files in the <code>cachedFileArray</code> property of your initialized object like this:</p>
+<pre><code class="language-javascript"><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-7">cachedFileArray</span><span class="hl-0">;</span>
+</code></pre>
+<p>You can optionally trigger the image browser and clear selected images programmatically. There are additional methods on the class if you&#39;d like to take a look.</p>
+<pre><code class="language-javascript"><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-11">emulateInputSelection</span><span class="hl-0">(); </span><span class="hl-12">// to open image browser</span><br/><span class="hl-7">upload</span><span class="hl-0">.</span><span class="hl-11">resetPreviewPanel</span><span class="hl-0">(); </span><span class="hl-12">// clear all selected images</span>
+</code></pre>
+<p>You may also want to capture the event when an image is selected.</p>
+<pre><code class="language-javascript"><span class="hl-6">import</span><span class="hl-0"> { </span><span class="hl-7">Events</span><span class="hl-0">, </span><span class="hl-7">ImageAddedEvent</span><span class="hl-0"> } </span><span class="hl-6">from</span><span class="hl-0"> </span><span class="hl-8">&#39;file-upload-with-preview&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-7">window</span><span class="hl-0">.</span><span class="hl-11">addEventListener</span><span class="hl-0">(</span><span class="hl-7">Events</span><span class="hl-0">.</span><span class="hl-10">IMAGE_ADDED</span><span class="hl-0">, (</span><span class="hl-7">e</span><span class="hl-0">: </span><span class="hl-13">Event</span><span class="hl-0">) </span><span class="hl-9">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-9">const</span><span class="hl-0"> { </span><span class="hl-10">detail</span><span class="hl-0"> } = </span><span class="hl-7">e</span><span class="hl-0"> </span><span class="hl-6">as</span><span class="hl-0"> </span><span class="hl-13">unknown</span><span class="hl-0"> </span><span class="hl-6">as</span><span class="hl-0"> </span><span class="hl-13">ImageAddedEvent</span><span class="hl-0">;</span><br/><br/><span class="hl-0">  </span><span class="hl-7">console</span><span class="hl-0">.</span><span class="hl-11">log</span><span class="hl-0">(</span><span class="hl-8">&#39;detail&#39;</span><span class="hl-0">, </span><span class="hl-7">detail</span><span class="hl-0">);</span><br/><span class="hl-0">});</span>
+</code></pre>
+
+<a href="#note" id="note" style="color: inherit; text-decoration: none;">
+  <h3>Note</h3>
+</a>
+<p>The <code>cachedFileArray</code> property is always an array. So if you are only allowing the user to upload a single file, you can access that file at <code>cachedFileArray[0]</code> - otherwise just send the entire array to your backend to handle it normally.</p>
+<p>Make sure to pass in <code>multiple: true</code> in your options if you want to allow the user to select multiple images.</p>
+
+<a href="#properties" id="properties" style="color: inherit; text-decoration: none;">
+  <h2>Properties</h2>
+</a>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cachedFileArray</td>
+<td>File[]</td>
+<td><code>[]</code></td>
+<td>Currently selected files</td>
+</tr>
+<tr>
+<td>clearButton</td>
+<td>Element</td>
+<td>-</td>
+<td>Button to reset the instance</td>
+</tr>
+<tr>
+<td>el</td>
+<td>Element</td>
+<td>-</td>
+<td>Main container for the instance</td>
+</tr>
+<tr>
+<td>imagePreview</td>
+<td>HTMLDivElement</td>
+<td>-</td>
+<td>Display panel for the images</td>
+</tr>
+<tr>
+<td>inputHidden</td>
+<td>HTMLInputElement</td>
+<td>-</td>
+<td>Hidden input</td>
+</tr>
+<tr>
+<td>inputVisible</td>
+<td>Element</td>
+<td>-</td>
+<td>Visible input</td>
+</tr>
+<tr>
+<td>options.accept</td>
+<td>String</td>
+<td><code>*</code></td>
+<td>Type of files to accept in your input</td>
+</tr>
+<tr>
+<td>options.images.backgroundImage</td>
+<td>String</td>
+<td><code>DEFAULT_BACKGROUND_IMAGE</code></td>
+<td>Background image for image grid</td>
+</tr>
+<tr>
+<td>options.images.baseImage</td>
+<td>String</td>
+<td><code>DEFAULT_BASE_IMAGE</code></td>
+<td>Placeholder image</td>
+</tr>
+<tr>
+<td>options.images.successFileAltImage</td>
+<td>String</td>
+<td><code>DEFAULT_SUCCESS_FILE_ALT_IMAGE</code></td>
+<td>Alternate file upload image</td>
+</tr>
+<tr>
+<td>options.images.successPdfImage</td>
+<td>String</td>
+<td><code>DEFAULT_SUCCESS_PDF_IMAGE</code></td>
+<td>PDF upload image</td>
+</tr>
+<tr>
+<td>options.images.successVideoImage</td>
+<td>String</td>
+<td><code>DEFAULT_SUCCESS_VIDEO_IMAGE</code></td>
+<td>Video upload image</td>
+</tr>
+<tr>
+<td>options.maxFileCount</td>
+<td>Number</td>
+<td><code>0</code></td>
+<td>Set a maximum number of files you&#39;d like the component to deal with. Must be <code>&gt; 0</code> if set. By default there is no limit.</td>
+</tr>
+<tr>
+<td>options.multiple</td>
+<td>Number</td>
+<td><code>false</code></td>
+<td>Set to <code>true</code> if you want to allow the user to selected multiple images. Will use grid view in the image preview if set.</td>
+</tr>
+<tr>
+<td>options.presetFiles</td>
+<td>Array</td>
+<td><code>[]</code></td>
+<td>Provide an array of image paths to be automatically uploaded and displayed on page load (can be images hosted on server or URLs)</td>
+</tr>
+<tr>
+<td>options.showDeleteButtonOnImages</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>Show a delete button on images in the grid</td>
+</tr>
+<tr>
+<td>options.text.browse</td>
+<td>String</td>
+<td><code>Browse</code></td>
+<td>Browse button text</td>
+</tr>
+<tr>
+<td>options.text.chooseFile</td>
+<td>String</td>
+<td><code>Choose file...</code></td>
+<td>Placeholder text</td>
+</tr>
+<tr>
+<td>options.text.label</td>
+<td>String</td>
+<td><code>Upload</code></td>
+<td>Main input label text</td>
+</tr>
+<tr>
+<td>options.text.selectedCount</td>
+<td>String</td>
+<td><code>files selected</code></td>
+<td>Count descriptor text. Defaults to <code>${ n } files selected</code>.</td>
+</tr>
+<tr>
+<td>uploadId</td>
+<td>String</td>
+<td>-</td>
+<td>The <code>id</code> you set for the instance</td>
+</tr>
+</tbody></table>
+
+<a href="#events" id="events" style="color: inherit; text-decoration: none;">
+  <h2>Events</h2>
+</a>
+<pre><code class="language-ts"><span class="hl-6">export</span><span class="hl-0"> </span><span class="hl-9">enum</span><span class="hl-0"> </span><span class="hl-13">Events</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_ADDED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imagesAdded&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_DELETED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imageDeleted&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">CLEAR_BUTTON_CLICKED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:clearButtonClicked&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">IMAGE_MULTI_ITEM_CLICKED</span><span class="hl-0"> = </span><span class="hl-8">&#39;fileUploadWithPreview:imageMultiItemClicked&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#full-example" id="full-example" style="color: inherit; text-decoration: none;">
+  <h2>Full Example</h2>
+</a>
+<p>See the full example in the <code>./example/index.ts</code> folder.</p>
+
+<a href="#browser-support" id="browser-support" style="color: inherit; text-decoration: none;">
+  <h2>Browser Support</h2>
+</a>
+<p>If you are supporting a browser like IE11, one way to add a polyfill for <code>fetch</code> and <code>promise</code> is by adding the following in the bottom of your <code>index.html</code>:</p>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-5"> </span><span class="hl-3">src</span><span class="hl-5">=</span><span class="hl-4">&quot;https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-5"> </span><span class="hl-3">src</span><span class="hl-5">=</span><span class="hl-4">&quot;https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+
+<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+  <h2>Development</h2>
+</a>
+<pre><code class="language-bash"><span class="hl-12"># Install dependencies</span><br/><span class="hl-0">yarn</span><br/><br/><span class="hl-12"># Watch changes during local development</span><br/><span class="hl-0">yarn dev</span><br/><br/><span class="hl-12"># Run tests</span><br/><span class="hl-0">yarn </span><span class="hl-11">test</span><br/><br/><span class="hl-12"># Build library</span><br/><span class="hl-0">yarn build</span>
+</code></pre>
+
+<a href="#other" id="other" style="color: inherit; text-decoration: none;">
+  <h2>Other</h2>
+</a>
+<p>Go ahead and fork the project! Submit an issue if needed. Have fun!</p>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p><a href="http://opensource.org/licenses/MIT">MIT</a></p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/Events.html" class="tsd-kind-icon">Events</a></li><li class="tsd-kind-class"><a href="classes/FileUploadWithPreview.html" class="tsd-kind-icon">File<wbr/>Upload<wbr/>With<wbr/>Preview</a></li><li class="tsd-kind-interface"><a href="interfaces/ClearButtonClickedEvent.html" class="tsd-kind-icon">Clear<wbr/>Button<wbr/>Clicked<wbr/>Event</a></li><li class="tsd-kind-interface"><a href="interfaces/ClearButtonClickedEventDetail.html" class="tsd-kind-icon">Clear<wbr/>Button<wbr/>Clicked<wbr/>Event<wbr/>Detail</a></li><li class="tsd-kind-interface"><a href="interfaces/ImageAddedEvent.html" class="tsd-kind-icon">Image<wbr/>Added<wbr/>Event</a></li><li class="tsd-kind-interface"><a href="interfaces/ImageAddedEventDetail.html" class="tsd-kind-icon">Image<wbr/>Added<wbr/>Event<wbr/>Detail</a></li><li class="tsd-kind-interface"><a href="interfaces/ImageDeletedEvent.html" class="tsd-kind-icon">Image<wbr/>Deleted<wbr/>Event</a></li><li class="tsd-kind-interface"><a href="interfaces/ImageDeletedEventDetail.html" class="tsd-kind-icon">Image<wbr/>Deleted<wbr/>Event<wbr/>Detail</a></li><li class="tsd-kind-interface"><a href="interfaces/ImageMultiItemClickedEvent.html" class="tsd-kind-icon">Image<wbr/>Multi<wbr/>Item<wbr/>Clicked<wbr/>Event</a></li><li class="tsd-kind-interface"><a href="interfaces/ImageMultiItemClickedEventDetail.html" class="tsd-kind-icon">Image<wbr/>Multi<wbr/>Item<wbr/>Clicked<wbr/>Event<wbr/>Detail</a></li><li class="tsd-kind-interface"><a href="interfaces/Images.html" class="tsd-kind-icon">Images</a></li><li class="tsd-kind-interface"><a href="interfaces/Options.html" class="tsd-kind-icon">Options</a></li><li class="tsd-kind-interface"><a href="interfaces/Text.html" class="tsd-kind-icon">Text</a></li><li class="tsd-kind-type-alias"><a href="modules.html#PresetFiles" class="tsd-kind-icon">Preset<wbr/>Files</a></li><li class="tsd-kind-type-alias"><a href="modules.html#RequiredOptions" class="tsd-kind-icon">Required<wbr/>Options</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_BACKGROUND_IMAGE" class="tsd-kind-icon">DEFAULT_<wbr/>BACKGROUND_<wbr/>IMAGE</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_BASE_IMAGE" class="tsd-kind-icon">DEFAULT_<wbr/>BASE_<wbr/>IMAGE</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_SUCCESS_FILE_ALT_IMAGE" class="tsd-kind-icon">DEFAULT_<wbr/>SUCCESS_<wbr/>FILE_<wbr/>ALT_<wbr/>IMAGE</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_SUCCESS_PDF_IMAGE" class="tsd-kind-icon">DEFAULT_<wbr/>SUCCESS_<wbr/>PDF_<wbr/>IMAGE</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_SUCCESS_VIDEO_IMAGE" class="tsd-kind-icon">DEFAULT_<wbr/>SUCCESS_<wbr/>VIDEO_<wbr/>IMAGE</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>

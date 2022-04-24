@@ -1,0 +1,152 @@
+@function toPx($number) {
+  @return $number + 0px;
+}
+
+$grey: #edede8;
+$font-color: #333;
+$white: #fff;
+$border-color: darken($grey, 20%);
+$black: #333;
+$hover: #777;
+
+$input-min-width: 300;
+$input-height: 40;
+$image-preview-height: 250;
+$border-radius: 4;
+$box-shadow: 0 4px 10px 0 rgba($black, 0.25);
+
+.custom-file-container {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .label-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .clear-button {
+    color: $font-color;
+    font-size: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: $hover;
+    }
+  }
+
+  .input-container {
+    display: inline-block;
+    height: 40px;
+    margin-bottom: 8px;
+    position: relative;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .input-hidden {
+    height: toPx($input-height);
+    margin: 0;
+    max-width: 100%;
+    min-width: toPx($input-min-width);
+    opacity: 0;
+  }
+
+  .input-visible {
+    background-clip: padding-box;
+    background-color: $white;
+    border-radius: toPx($border-radius);
+    border: 1px solid $border-color;
+    color: $font-color;
+    height: toPx($input-height);
+    left: 0;
+    line-height: 1.5;
+    overflow: hidden;
+    padding: 8px 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    user-select: none;
+    z-index: 5;
+  }
+
+  .browse-button {
+    background-color: $grey;
+    border-left: 1px solid $border-color;
+    color: $font-color;
+    display: block;
+    height: toPx($input-height - 2);
+    padding: 8px 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 6;
+  }
+
+  .image-preview {
+    background-color: $grey;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: toPx($border-radius);
+    height: toPx($image-preview-height);
+    overflow: auto;
+    padding: 4px;
+    transition: background 0.2s ease-in-out;
+    width: 100%;
+  }
+
+  .image-preview-item {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: toPx($border-radius);
+    box-shadow: $box-shadow;
+    float: left;
+    height: 90px;
+    margin: 1.858736059%;
+    position: relative;
+    transition: background 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    width: 29.615861214%;
+
+    &.multi-item-clear-animation {
+      opacity: 0;
+    }
+  }
+
+  .image-preview-item-clear {
+    background: $grey;
+    border-radius: 50%;
+    box-shadow: $box-shadow;
+    height: 20px;
+    left: -6px;
+    margin-top: -6px;
+    position: absolute;
+    text-align: center;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+    width: 20px;
+
+    &:hover {
+      background: darken($grey, 5%);
+      cursor: pointer;
+    }
+  }
+
+  .image-preview-item-clear-icon {
+    color: $font-color;
+    display: block;
+    margin-top: -2px;
+  }
+}

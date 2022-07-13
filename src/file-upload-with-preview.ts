@@ -419,6 +419,7 @@ export class FileUploadWithPreview {
         if (
           file.type.match('image/png') ||
           file.type.match('image/jpeg') ||
+          file.type.match('image/webp') ||
           file.type.match('image/gif')
         ) {
           image = `url("${reader.result}")`;
@@ -449,6 +450,7 @@ export class FileUploadWithPreview {
       if (
         file.type.match('image/png') ||
         file.type.match('image/jpeg') ||
+        file.type.match('image/webp') ||
         file.type.match('image/gif')
       ) {
         backgroundImage = reader.result;

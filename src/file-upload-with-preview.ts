@@ -196,11 +196,12 @@ export class FileUploadWithPreview {
     this.cachedFileArray = [];
 
     // Base options
-    const { maxFileCount, multiple, presetFiles, showDeleteButtonOnImages } = options;
+    const { maxFileCount, multiple, presetFiles, showDeleteButtonOnImages, accept} = options;
     this.options.showDeleteButtonOnImages = showDeleteButtonOnImages ?? true;
     this.options.maxFileCount = maxFileCount ?? 0;
     this.options.presetFiles = presetFiles ?? [];
     this.options.multiple = multiple ?? false;
+    this.options.accept = accept ?? this.options.accept;
 
     // Text options
     const { browse, chooseFile, label, selectedCount } = options.text || {};

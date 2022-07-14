@@ -960,14 +960,16 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
     this.uploadId = uploadId;
     this.cachedFileArray = []; // Base options
 
-    var maxFileCount = options.maxFileCount,
+    var accept = options.accept,
+        maxFileCount = options.maxFileCount,
         multiple = options.multiple,
         presetFiles = options.presetFiles,
         showDeleteButtonOnImages = options.showDeleteButtonOnImages;
     this.options.showDeleteButtonOnImages = showDeleteButtonOnImages !== null && showDeleteButtonOnImages !== void 0 ? showDeleteButtonOnImages : true;
     this.options.maxFileCount = maxFileCount !== null && maxFileCount !== void 0 ? maxFileCount : 0;
     this.options.presetFiles = presetFiles !== null && presetFiles !== void 0 ? presetFiles : [];
-    this.options.multiple = multiple !== null && multiple !== void 0 ? multiple : false; // Text options
+    this.options.multiple = multiple !== null && multiple !== void 0 ? multiple : false;
+    this.options.accept = accept !== null && accept !== void 0 ? accept : this.options.accept; // Text options
 
     var _ref = options.text || {},
         browse = _ref.browse,
@@ -1227,7 +1229,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
         if (!_this4.options.multiple) {
           var image = _this4.options.images.successFileAltImage;
 
-          if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
+          if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/webp') || file.type.match('image/gif')) {
             image = "url(\"".concat(reader.result, "\")");
           } else if (file.type.match('application/pdf')) {
             image = "url(\"".concat(_this4.options.images.successPdfImage, "\")");
@@ -1247,7 +1249,7 @@ var FileUploadWithPreview = /*#__PURE__*/function () {
 
         var backgroundImage = _this4.options.images.successFileAltImage;
 
-        if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/gif')) {
+        if (file.type.match('image/png') || file.type.match('image/jpeg') || file.type.match('image/webp') || file.type.match('image/gif')) {
           backgroundImage = reader.result;
         } else if (file.type.match('application/pdf')) {
           backgroundImage = _this4.options.images.successPdfImage;

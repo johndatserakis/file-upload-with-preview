@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 5.0.8
+
+- Fix index bug. Thank you @tasinttttttt.
+
 ## 5.0.6
 
 - Revamped library

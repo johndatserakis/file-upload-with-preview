@@ -321,7 +321,7 @@ export class FileUploadWithPreview {
         const fileName = clearIcon?.getAttribute('data-upload-name');
         const fileIndex = this.cachedFileArray.findIndex(({ name }) => name === fileName);
 
-        if (!fileIndex) return;
+        if (fileIndex < 0) return;
 
         const eventPayload: ImageMultiItemClickedEvent = {
           detail: {

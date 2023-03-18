@@ -33,7 +33,7 @@ Or, you can include it through the browser.
 <link
   rel="stylesheet"
   type="text/css"
-  href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css"
+  href="https://unpkg.com/file-upload-with-preview/dist/style.css"
 />
 
 <script src="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.iife.js"></script>
@@ -43,11 +43,11 @@ Or, you can include it through the browser.
 
 This is a simple frontend utility meant to help the file-upload process on your website.
 
-It is written in pure JavaScript and has no dependencies. You can check out the live demo [here](https://johndatserakis.github.io/file-upload-with-preview).
+It is written in pure JavaScript using TypeScript and has no dependencies. You can check out the live demo [here](https://johndatserakis.github.io/file-upload-with-preview).
 
 For the most part, browsers do a good job of handling image-uploads. That being said - I find the ability to show our users a preview of their upload can go a long way in increasing the confidence in their upload.
 
-file-upload-with-preview aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
+`file-upload-with-preview` aims to address the issue of showing a preview of a user's uploaded image in a simple to use package.
 
 ## Features
 
@@ -63,16 +63,16 @@ file-upload-with-preview aims to address the issue of showing a preview of a use
 This library looks for a specific HTML element to display the file-upload. Simply add the below `div` to your HTML. Make sure to populate your unique id in the `data-upload-id` attribute.
 
 ```html
-<div class="custom-file-container" data-upload-id="myFirstImage"></div>
+<div class="custom-file-container" data-upload-id="my-unique-id"></div>
 ```
 
 Then, initialize your file-upload in the JavaScript like below:
 
 ```javascript
 import { FileUploadWithPreview } from 'file-upload-with-preview';
-import 'file-upload-with-preview/dist/file-upload-with-preview.min.css';
+import 'file-upload-with-preview/dist/style.css';
 
-const upload = new FileUploadWithPreview('myFirstImage');
+const upload = new FileUploadWithPreview('my-unique-id');
 ```
 
 If you're importing directly in the browser, use the following instead:
@@ -85,11 +85,11 @@ If you're importing directly in the browser, use the following instead:
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.min.css"
+      href="https://unpkg.com/file-upload-with-preview/dist/style.css"
     />
   </head>
   <body>
-    <div class="custom-file-container" data-upload-id="myFirstImage"></div>
+    <div class="custom-file-container" data-upload-id="my-unique-id"></div>
     <script src="https://unpkg.com/file-upload-with-preview"></script>
   </body>
 </html>
@@ -98,7 +98,7 @@ If you're importing directly in the browser, use the following instead:
 Then initialize like this:
 
 ```javascript
-const upload = new FileUploadWithPreview.FileUploadWithPreview('myFirstImage');
+const upload = new FileUploadWithPreview.FileUploadWithPreview('my-unique-id');
 ```
 
 Then when you're ready to use the user's file for an API call or whatever, just access the user's uploaded file/files in the `cachedFileArray` property of your initialized object like this:

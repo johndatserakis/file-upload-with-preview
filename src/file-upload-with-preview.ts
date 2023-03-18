@@ -544,7 +544,7 @@ export class FileUploadWithPreview {
 
   resetPreviewPanel() {
     this.inputHidden.value = '';
-    this.inputVisible.innerHTML = DEFAULT_CHOOSE_FILE_TEXT;
+    this.inputVisible.innerHTML = this.options.text.chooseFile;
     this.addBrowseButton(this.options.text.browse);
     this.imagePreview.style.backgroundImage = `url("${this.options.images.baseImage}")`;
     this.imagePreview.innerHTML = '';

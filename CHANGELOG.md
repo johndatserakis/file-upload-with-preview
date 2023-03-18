@@ -1,5 +1,12 @@
 # CHANGELOG.md
 
+## 6.0.0
+
+- Use vite for serving app and building library
+- Remove rollup
+- Remove babel
+- Update package.json exports
+
 ## 5.0.8
 
 - Fix index bug. Thank you @tasinttttttt.

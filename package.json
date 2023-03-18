@@ -27,7 +27,7 @@
   "exports": {
     ".": {
       "import": "./dist/file-upload-with-preview.js",
-      "require": "./dist/file-upload-with-preview.umd.cjs",
+      "require": "./dist/file-upload-with-preview.cjs",
       "types": "./dist/index.d.ts"
     },
     "./dist/style.css": "./dist/style.css"
@@ -44,8 +44,7 @@
     "bootstrap"
   ],
   "license": "MIT",
-  "main": "./dist/file-upload-with-preview.umd.cjs",
-  "module": "./dist/file-upload-with-preview.js",
+  "main": "./dist/file-upload-with-preview.js",
   "name": "file-upload-with-preview",
   "repository": {
     "type": "git",
@@ -69,5 +68,5 @@
   "style": "./dist/style.css",
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "6.0.1"
+  "version": "6.0.2"
 }

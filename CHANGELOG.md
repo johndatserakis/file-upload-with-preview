@@ -1,6 +1,6 @@
 # CHANGELOG.md
 
-## 6.0.1
+## 6.0.2
 
 - Use vite for serving app and building library
 - Remove rollup

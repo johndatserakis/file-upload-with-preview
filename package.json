@@ -29,7 +29,8 @@
       "import": "./dist/file-upload-with-preview.js",
       "require": "./dist/file-upload-with-preview.umd.cjs",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "files": [
     "dist"
@@ -68,5 +69,5 @@
   "style": "./dist/style.css",
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "6.0.0"
+  "version": "6.0.1"
 }

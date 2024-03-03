@@ -75,6 +75,25 @@ import 'file-upload-with-preview/dist/style.css';
 const upload = new FileUploadWithPreview('my-unique-id');
 ```
 
+Usage with Next.js / Tailwind :
+```typescript
+"use client";
+import { useEffect } from "react";
+import { FileUploadWithPreview } from "file-upload-with-preview";
+import "file-upload-with-preview/dist/style.css";
+
+export default function Uploader() {
+  useEffect(() => {
+    const upload = new FileUploadWithPreview("my-unique-id");
+  }, []);
+
+  return (
+      <div className="custom-file-container" data-upload-id="my-unique-id"></div>
+  );
+}
+```
+
+
 If you're importing directly in the browser, use the following instead:
 
 ```html

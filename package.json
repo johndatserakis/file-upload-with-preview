@@ -72,5 +72,5 @@
   "style": "./dist/style.css",
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "6.1.1"
+  "version": "6.1.2"
 }

@@ -24,10 +24,14 @@
     "vite": "^4.0.0",
     "vite-plugin-dts": "^2.1.0"
   },
+  "engines": {
+    "node": ">=10"
+  },
   "exports": {
+    "./package.json": "./package.json",
     ".": {
-      "import": "./dist/file-upload-with-preview.js",
-      "require": "./dist/file-upload-with-preview.cjs",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
     "./dist/style.css": "./dist/style.css"
@@ -44,7 +48,7 @@
     "bootstrap"
   ],
   "license": "MIT",
-  "main": "./dist/file-upload-with-preview.js",
+  "main": "./dist/index.js",
   "name": "file-upload-with-preview",
   "repository": {
     "type": "git",
@@ -68,5 +72,5 @@
   "style": "./dist/style.css",
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "6.0.2"
+  "version": "6.1.0"
 }

@@ -36,7 +36,7 @@ Or, you can include it through the browser.
   href="https://unpkg.com/file-upload-with-preview/dist/style.css"
 />
 
-<script src="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.iife.js"></script>
+<script src="https://unpkg.com/file-upload-with-preview/dist/index.js"></script>
 ```
 
 ## About
@@ -90,7 +90,7 @@ If you're importing directly in the browser, use the following instead:
   </head>
   <body>
     <div class="custom-file-container" data-upload-id="my-unique-id"></div>
-    <script src="https://unpkg.com/file-upload-with-preview/dist/file-upload-with-preview.iife.js"></script>
+    <script src="https://unpkg.com/file-upload-with-preview/dist/index.js"></script>
   </body>
 </html>
 ```

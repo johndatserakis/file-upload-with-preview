@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      fileName: 'file-upload-with-preview',
+      fileName: 'index',
       formats: ['es', 'cjs', 'iife'],
       name: 'FileUploadWithPreview',
     },
